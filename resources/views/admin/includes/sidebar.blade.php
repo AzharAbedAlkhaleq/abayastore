@@ -1,0 +1,116 @@
+<nav class="pcoded-navbar menu-light ">
+  <div class="navbar-wrapper  ">
+    <div class="navbar-content scroll-div " >
+      
+      <div class="">
+        <div class="main-menu-header">
+          <img  src="/Ico/The Logo.jpeg" >
+         
+        </div>
+      <hr>
+      <ul class="nav pcoded-inner-navbar ">
+        
+        <li class="nav-item {{ Request::is('admin')? 'active':'' }} pcoded-hasmenu">
+          <a href="{{route ('dashboard') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home " ></i></span><span class="pcoded-mtext">{{ trans('admin.Dashboard') }}</span></a>
+         
+        </li>
+        <li class="nav-item pcoded-hasmenu">
+          <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">{{ trans('admin.Users') }}</span></a>
+            </li>
+            {{-- //category --}}
+            <li class="nav-item  {{ Request::is('#!')? 'active':'' }}     pcoded-hasmenu">
+              <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">{{ trans('admin.Categories') }}</span></a>
+              <ul class="pcoded-submenu">
+                <li><a style="text-decoration: none" href="{{ route('categories') }}">
+                  <i  style="font-size:15px; color:cornflowerblue;" class="feather icon-eye">
+                  </i> <span style="font-size: 18px;bottom-left:5px;"> {{ trans('admin.Show Category') }} </a></li>
+                <li><a style="text-decoration: none" href="{{ route('add-category') }}"><i style="color: green; font-size:20px" class="feather icon-plus"></i> {{ trans('admin. Add Category') }}</a></li>
+                {{-- <li><a style="text-decoration: none" href="{{ url('admin/edit-category/'.$category->id) }}"> <i style="font-size:15px; color:blue;" class="feather icon-edit"></i> &nbsp; Edit Category</a></li> --}}
+                {{-- <li><a style="text-decoration: none" href="{{ route('categories') }}"><i  style="font-size:15px; color: red;" class="feather icon-trash"></i> &nbsp; Delete Category</a></li> --}}
+              </ul>
+            </li>
+                <li class="nav-item {{ Request::is('#!')? 'active':'' }} pcoded-hasmenu">
+                  <a href="#!"  class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-plus"></i></span><span class="pcoded-mtext">{{ trans('admin.Products') }}</span></a>
+                  <ul class="pcoded-submenu">
+                    <li><a style="text-decoration: none" href="{{ route('products') }}">
+                      <i  style="font-size:15px; color:cornflowerblue;" class="feather icon-eye"></i> 
+                       <span style="font-size: 18px;bottom-left:5px;"> {{ trans('admin.show products') }}</span></a></li>
+                    
+                      <li><a style="text-decoration:none;" href="{{ url('admin/add-product') }}">
+                        <i  style="color: green; font-size:20px;"  class="feather icon-plus"></i>
+                        {{ trans('admin.add product') }}</a></li>
+                    {{-- <li><a style="text-decoration:none;" href="{{ url('admin/add-category') }}"><i style="color: blue;" class="feather icon-edit"></i> &nbsp; Edit product</a></li>
+                    <li><a style="text-decoration:none;" href="{{ url('admin/add-product') }}"><i style="color: red;" class="feather icon-trash"></i> &nbsp; Delete Product</a></li> --}}
+  
+                  </ul>
+                </li>
+                <li class="nav-item pcoded-hasmenu">
+                  <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="fas fa-sliders-h"></i></span><span class="pcoded-mtext">{{ trans('admin.Banner') }}</span></a>
+                    
+                  <ul class="pcoded-submenu">
+
+                    <li><a style="text-decoration: none" href="{{ route('homebanner') }}">
+                      <i  style="font-size:15px; color:cornflowerblue;" class="feather icon-eye"></i>  <span style="font-size: 18px;bottom-left:5px;"> {{ trans('admin.show banner') }}</span></a></li>
+                    <li><a style="text-decoration:none;" href="{{ route('add-banner') }}">
+                      <i  style="color: green; font-size:20px;"  class="feather icon-plus"></i>  <span style="font-size: 18px;bottom-left:5px;">{{ trans('admin.add banner') }}</span></a></li>
+                    {{-- <li><a style="text-decoration:none;" href="{{ url('admin/edit-banner/'.$banner->id) }}"><i style="color: blue;font-size:15px;" class="feather icon-edit"></i> <span style="font-size: 18px;bottom-left:5px;"> {{ trans('admin.edit banner') }}</span></a></li> --}}
+                    {{-- <li><a style="text-decoration:none;" href="{{ route('homebanner') }}" >
+                      <i style="color: red; font-size:15px;" class="feather icon-trash"> --}}
+                      {{-- </i> <span style="font-size: 18px; bottom-left:5px;">{{ trans('admin.delete banner') }}</span></a></li> --}}
+  
+                  </ul> 
+                
+                </li>
+
+                    <li class="nav-item   pcoded-hasmenu">
+                      <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-sliders" ></i></span><span class="pcoded-mtext">{{ trans('admin.SliderHome') }}</span></a>
+                      <ul class="pcoded-submenu">
+
+                        <li><a style="text-decoration: none" href="{{ route('homeslider') }}"><i  style="font-size:15px; color:cornflowerblue;" class="feather icon-eye"></i>  <span style="font-size: 18px;bottom-left:5px;"> {{ trans('admin.show slider') }}</span></a></li>
+                        <li><a style="text-decoration:none;" href="{{ route('add-slider') }}"><i  style="color: green; font-size:20px;"  class="feather icon-plus"></i>  <span style="font-size: 18px;bottom-left:5px;">{{ trans('admin.add slider') }}</span></a></li>
+                        {{-- <li><a style="text-decoration:none;" href="{{ url('admin/edit-slider/'.$slider->id) }}"><i style="color: blue;font-size:15px;" class="feather icon-edit"></i> <span style="font-size: 18px;bottom-left:5px;"> Edit Slider</span></a></li>
+                        <li><a style="text-decoration:none;" href="{{ route('homeslider') }}" ><i style="color: red; font-size:15px;" class="feather icon-trash"></i> <span style="font-size: 18px; bottom-left:5px;"> Delete Slider</span></a></li>
+       --}}
+                      </ul> 
+                    </li>
+                        
+
+                        <li class="nav-item pcoded-hasmenu">
+                          <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-percent"></i></span><span class="pcoded-mtext">{{ trans('admin.Coupon') }}</span></a>
+                          <ul class="pcoded-submenu">
+
+                            <li><a style="text-decoration: none" href="{{ route('home-coupon') }}"><i  style="font-size:15px; color:cornflowerblue;" class="feather icon-eye"></i>  <span style="font-size: 18px;bottom-left:5px;"> {{ trans('admin.show coupon') }}</span></a></li>
+                            <li><a style="text-decoration:none;" href="{{ route('add-coupon') }}"><i  style="color: green; font-size:20px;"  class="feather icon-plus"></i>  <span style="font-size: 18px;bottom-left:5px;">{{ trans('admin.add coupon') }}</span></a></li>
+                            {{-- <li><a style="text-decoration:none;" href="{{ url('admin/edit-coupon/{id}/'.$coupon->id) }}"><i style="color: blue;font-size:15px;" class="feather icon-edit"></i> <span style="font-size: 18px;bottom-left:5px;"> {{ trans('admin.edit coupon') }}</span></a></li> --}}
+                            <li><a style="text-decoration:none;" href="{{ route('home-coupon') }}" ><i style="color: red; font-size:15px;" class="feather icon-trash"></i> <span style="font-size: 18px; bottom-left:5px;">{{ trans('admin.delete coupon') }}</span></a></li>
+          
+                          </ul> 
+                        
+                        
+                        </li>
+                            <li class="nav-item pcoded-hasmenu">
+                              <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file"></i></span><span class="pcoded-mtext">Reports</span></a>
+                              <ul class="pcoded-submenu">
+                                <li><a href="email_inbox.html">Daily Reports</a></li>
+                                <li><a href="email_read.html"> Weekly Reports</a></li>
+                                <li><a href="#">Yearly Reports</a></li>
+                              </ul>
+                            </li>
+
+                        <li class="nav-item pcoded-hasmenu">
+                         
+                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-mail" ></i></span><span class="pcoded-mtext">Email </span></a>
+                         <ul class="pcoded-submenu">
+                          <li><a href="email_inbox.html">Inbox</a></li>
+                          <li><a href="email_read.html">Read mail</a></li>
+                          <li><a href=""{{ aurl('admin/email') }}"">Compose mail</a></li>
+                        </ul>
+                  
+                        </li>
+                        <li class="nav-item pcoded-hasmenu">
+                          <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-thumbs-up"></i></span><span class="pcoded-mtext">FeedBack</span></a>
+                            </li>
+      </ul>
+    
+  </div>
+</nav>
