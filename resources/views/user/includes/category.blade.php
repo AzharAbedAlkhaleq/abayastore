@@ -21,12 +21,11 @@
                 <div class="down row">
                     <div class="col-md-7  col-sm-12 px-5">
                         <div class="bg row ">
-                            <div class="col-6">
+                            <div class="col-11">
                                 <img src="{{ asset('assets/uploads/Category_ar/'.$category->image_ar)}}" class="pt-3">
                             </div>
-                            <div class="col-6 pt-5 mt-5 ">
-                                <h6 > {{ $category->small_desc_ar }}  </h6>
-                                <h4>    {{ $category->description_ar }} </h4>
+                            <div class="col-1 pt-5 mt-5 ">
+                              
                             </div>
                         </div>
 

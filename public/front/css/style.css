@@ -107,11 +107,11 @@
     margin-right: 520px;
 }
 .main .navbar-brand{
-    margin-left: 39%;
+    margin-left: 33%;
 }
 .main .navbar-brand img{
- width: 80px;
-     height: 70px;
+ width: 200px;
+     height: 110px;
 }
 .main .lgside img{
     width: 25px;
@@ -172,6 +172,7 @@ nav {
     height: 350px;
 }
 .product .box img{
+    width: 100%;
     height: 250px;
 }
 .product .box .offer {
@@ -230,7 +231,7 @@ nav {
 
 .category .swiper {
     width: 100%;
-    height: 500px;
+    height: 380px;
 }
 
 .category .swiper-slide {
@@ -244,6 +245,8 @@ nav {
 .category .top {
     position: relative;
 }
+
+
 .category .top .swiper-rtl .swiper-button-prev{
     position: absolute;
     top: 5px;
@@ -364,8 +367,8 @@ background-image: url(../images/bgislamc.jpeg);
     height: 382px;
 }
 .category .down .bg img{
-     width: 100%;
-    height: 335px;
+     width:80%;
+    height: 300px;
 }
 .category .down{
     text-align: right;
@@ -922,8 +925,15 @@ color: #000;
       border: 1px solid #e2dede; 
     color: #fff;
 }
+.desc .nav-tabs{
+    border-bottom: none;
+}
+.desc a{
+     color: #fff; 
+}
 .desc .des{
      border-bottom: 1px solid #d2e856; 
+
 }
 .reve{
     text-align: right;
