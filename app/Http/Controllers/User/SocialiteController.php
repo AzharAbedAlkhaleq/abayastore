@@ -52,10 +52,10 @@ class SocialiteController extends Controller
             }
            
         } catch (Exception $e) {
-            dd($e);
+           // dd($e);
         }
     }
- /*  public function redirectToTW()
+  public function redirectToTW()
     {
         return Socialite::driver('twitter')->redirect();
         
@@ -90,10 +90,10 @@ class SocialiteController extends Controller
             }
            
         } catch (Exception $e) {
-            dd($e->getMessage());
+            ($e->getMessage());
         }
     }
- */
+ 
 
     /************* login by facebook  ***************/
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class CategoriesController extends Controller
 {
@@ -27,26 +28,14 @@ class CategoriesController extends Controller
             $category->image_ar=$filename;
             
         }
-        if($request->hasFile('image_en')){
-            $file=$request->file('image_en');
-            $ext= $file->getClientOriginalExtension();
-            $filename= time().'.'.$ext;
-            $file->move('assets\uploads\Category_en',$filename);
-            $category->image_en=$filename;
-        }
+        
         $category->name_ar=$request->input('name_ar');
-        $category->slug_ar=$request->input('slug_ar');
+        $category->slug_ar=Str::slug($request->name_ar);
         $category->name_en=$request->input('name_en');
-        $category->slug_en=$request->input('slug_en');
-        $category->small_desc_ar=$request->input('small_desc_ar');
-        $category->small_desc_en=$request->input('small_desc_en');
-        $category->description_ar=$request->input('description_ar');
-        $category->description_en=$request->input('description_en');
+        $category->slug_en=Str::slug($request->name_en);
         $category->status=$request->input('status') == true? '1':'0';
-        $category->popular=$request->input('popular')  == true? '1':'0';
-
         $category->save();
-        return redirect()->route('categories')->with('status','Category Added Successfully!');
+        return redirect()->route('categories')->with('status','تمت عملية الإضافة');
        }
 
        //----------------------------------------Update Ctegory-----------------------------
@@ -75,33 +64,14 @@ class CategoriesController extends Controller
             $category->image_ar=$filename;
 
             }
-            if($request->hasFile('image_en')){
-                $path= 'assets/uploads/Category_en/'.$category->image_en;
-
-                if(File::exists($path))
-                {
-                    
-                     File::delete($path);
-                }
-                
-                $file=$request->file('image_en');
-                $ext= $file->getClientOriginalExtension();
-                $filename= time().'.'.$ext;
-                $file->move('assets\uploads\Category_en',$filename);
-                $category->image_en=$filename;
-            }
-            
+           
             $category->name_ar=$request->input('name_ar');
-            $category->slug_ar=$request->input('slug_ar');
+            $category->slug_ar=Str::slug($request->name_ar);
             $category->name_en=$request->input('name_en');
-            $category->slug_en=$request->input('slug_en');
-            $category->small_desc_ar=$request->input('small_desc_ar');
-            $category->small_desc_en=$request->input('small_desc_en');
-            $category->description_ar=$request->input('description_ar');
-            $category->description_en=$request->input('description_en');
+            $category->slug_en=Str::slug($request->name_en);
             $category->status=$request->input('status') == true? '1':'0';
             $category->update();
-            return redirect( route('categories'))->with('status','Category Updated Successfully!');
+            return redirect( route('categories'))->with('status','تم التعديل بنجاح!');
     
       }
          //-------------------------------------delete Category----------------------------------
@@ -116,17 +86,7 @@ class CategoriesController extends Controller
                     File::delete($path);
                }
            }
-           if($category->image_en)
-           {
-               $path= 'assets/uploads/Category_en/'.$category->image_en;
-
-               if(File::exists($path))
-               {
-                   
-                    File::delete($path);
-               }
-           }
 
            $category->delete();
-           return redirect()->back()->with('status','Category Deleted Successfully!');          }
+           return redirect()->back()->with('status','تم الحذف!');          }
     }

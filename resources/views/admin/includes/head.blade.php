@@ -26,7 +26,7 @@ xcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <link rel="icon" href="{{ asset('dashboard') }}/assets/images/favicon.ico" type="image/x-icon">
    
     <!-- vendor css -->
-    
+    <script src="https://cdn.tiny.cloud/1/ywnjssncdfmasinkweic1ecq329fm231ly7a524e6t6ks3tv/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script><script src="https://cdn.tiny.cloud/1/ywnjssncdfmasinkweic1ecq329fm231ly7a524e6t6ks3tv/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 </head>
 <body style="font-family:Andalus;

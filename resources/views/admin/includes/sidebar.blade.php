@@ -29,6 +29,29 @@
                 {{-- <li><a style="text-decoration: none" href="{{ route('categories') }}"><i  style="font-size:15px; color: red;" class="feather icon-trash"></i> &nbsp; Delete Category</a></li> --}}
               </ul>
             </li>
+
+            {{-- Size Bar --}}
+
+            <li class="nav-item  {{ Request::is('#!')? 'active':'' }}     pcoded-hasmenu">
+              <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="fas fa-window-maximize"></i></span><span class="pcoded-mtext">{{ trans('admin.sizes') }}</span></a>
+              <ul class="pcoded-submenu">
+                <li><a style="text-decoration: none" href="{{ route('sizes') }}">
+                  <i  style="font-size:15px; color:cornflowerblue;" class="feather icon-eye">
+                  </i> <span style="font-size: 18px;bottom-left:5px;"> {{ trans('admin.Show size') }} </a></li>
+                <li><a style="text-decoration: none" href="{{ route('add-size') }}"><i style="color: green; font-size:20px" class="feather icon-plus"></i> {{ trans('admin.add size') }}</a></li>
+              </ul>
+            </li>
+                {{-- Color Bar --}}
+                <li class="nav-item  {{ Request::is('#!')? 'active':'' }}     pcoded-hasmenu">
+                  <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="fas fa-paint-brush"></i></span><span class="pcoded-mtext">{{ trans('admin.colors') }}</span></a>
+                  <ul class="pcoded-submenu">
+                    <li><a style="text-decoration: none" href="{{ route('colors') }}">
+                      <i  style="font-size:15px; color:cornflowerblue;" class="feather icon-eye">
+                      </i> <span style="font-size: 18px;bottom-left:5px;"> {{ trans('admin.Show color') }} </a></li>
+                    <li><a style="text-decoration: none" href="{{ route('add-color') }}"><i style="color: green; font-size:20px" class="feather icon-plus"></i> {{ trans('admin.add color') }}</a></li>
+                  </ul>
+                </li>
+
                 <li class="nav-item {{ Request::is('#!')? 'active':'' }} pcoded-hasmenu">
                   <a href="#!"  class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-plus"></i></span><span class="pcoded-mtext">{{ trans('admin.Products') }}</span></a>
                   <ul class="pcoded-submenu">
@@ -39,9 +62,7 @@
                       <li><a style="text-decoration:none;" href="{{ url('admin/add-product') }}">
                         <i  style="color: green; font-size:20px;"  class="feather icon-plus"></i>
                         {{ trans('admin.add product') }}</a></li>
-                    {{-- <li><a style="text-decoration:none;" href="{{ url('admin/add-category') }}"><i style="color: blue;" class="feather icon-edit"></i> &nbsp; Edit product</a></li>
-                    <li><a style="text-decoration:none;" href="{{ url('admin/add-product') }}"><i style="color: red;" class="feather icon-trash"></i> &nbsp; Delete Product</a></li> --}}
-  
+                   
                   </ul>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
@@ -79,10 +100,8 @@
                           <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-percent"></i></span><span class="pcoded-mtext">{{ trans('admin.Coupon') }}</span></a>
                           <ul class="pcoded-submenu">
 
-                            <li><a style="text-decoration: none" href="{{ route('home-coupon') }}"><i  style="font-size:15px; color:cornflowerblue;" class="feather icon-eye"></i>  <span style="font-size: 18px;bottom-left:5px;"> {{ trans('admin.show coupon') }}</span></a></li>
+                            <li><a style="text-decoration: none" href="{{ route('homecoupon') }}"><i  style="font-size:15px; color:cornflowerblue;" class="feather icon-eye"></i>  <span style="font-size: 18px;bottom-left:5px;"> {{ trans('admin.show coupon') }}</span></a></li>
                             <li><a style="text-decoration:none;" href="{{ route('add-coupon') }}"><i  style="color: green; font-size:20px;"  class="feather icon-plus"></i>  <span style="font-size: 18px;bottom-left:5px;">{{ trans('admin.add coupon') }}</span></a></li>
-                            {{-- <li><a style="text-decoration:none;" href="{{ url('admin/edit-coupon/{id}/'.$coupon->id) }}"><i style="color: blue;font-size:15px;" class="feather icon-edit"></i> <span style="font-size: 18px;bottom-left:5px;"> {{ trans('admin.edit coupon') }}</span></a></li> --}}
-                            <li><a style="text-decoration:none;" href="{{ route('home-coupon') }}" ><i style="color: red; font-size:15px;" class="feather icon-trash"></i> <span style="font-size: 18px; bottom-left:5px;">{{ trans('admin.delete coupon') }}</span></a></li>
           
                           </ul> 
                         

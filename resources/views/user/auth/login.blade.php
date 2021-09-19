@@ -80,7 +80,7 @@
                                     <h5>تسجيل الدخول باستخدام</h5>
                                     <ul class=" pt-2 list-unstyled d-flex">
                                         <li class="mx-1 p-2"><a href="#"><i class=" fab fa-facebook-f"></i></a></li>
-                                        <li class="mx-1 p-2"><a href="{{-- route('login.twitter') --}}"><i class=" fab fa-twitter"></i></a></li>
+                                        <li class="mx-1 p-2"><a href="{{ route('login.twitter') }}"><i class=" fab fa-twitter"></i></a></li>
                                         <li class="mx-1 p-2"><a href="{{ route('login.google') }}"><i class=" fab fa-google-plus-g"></i></a></li>
                                     </ul>
                                 </div>

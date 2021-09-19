@@ -3,12 +3,14 @@
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EmailController;
 use App\Http\Controllers\Admin\HomeCategoriesController;
 use App\Http\Controllers\Admin\Homeslider;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\SizesController;
 use App\Http\Controllers\User\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +41,36 @@ Route::group(['middleware' => 'Lang'], function () {
             //Delete Category
             Route::delete('delete-category/{id}',[CategoriesController::class,'delete'])->name('delete-category');
 
+             //------------------------------Sizes--------------------------------------------------
+         Route::get('sizes',[SizesController::class,'index'])->name('sizes');
+            
+         //Add size
+         Route::get('add-size',[SizesController::class,'create'])->name('add-size');
+         Route::post('store-size',[SizesController::class,'store'])->name('store-size');
+
+         //update size
+         Route::get('edit-size/{id}',[SizesController::class,'edit'])->name('edit-size');
+         Route::put('update-size/{id}',[SizesController::class,'update'])->name('update-size');
+         
+         //Delete size
+             Route::delete('delete-size/{id}',[SizesController::class,'delete']);     
+
+             //------------------------------Colors--------------------------------------------------
+             Route::get('colors',[ColorController::class,'index'])->name('colors');
+            
+             //Add color
+             Route::get('add-color',[ColorController::class,'create'])->name('add-color');
+             Route::post('store-color',[ColorController::class,'store'])->name('store-color');
+    
+             //update color
+             Route::get('edit-color/{id}',[ColorController::class,'edit'])->name('edit-color');
+             Route::put('update-color/{id}',[ColorController::class,'update'])->name('update-color');
+             
+             //Delete color
+             Route::delete('delete-color/{id}',[ColorController::class,'delete']);     
+    
+
+            
         //---------------------------------------------Product-----------------------------------------
 
             Route::get('products',[ProductsController::class,'index'])->name('products');
@@ -84,7 +116,7 @@ Route::group(['middleware' => 'Lang'], function () {
          Route::delete('delete-banner/{id}',[BannerController::class,'delete']);
 
           //-----------------------------Coupons--------------------------------------------------
-          Route::get('home-coupon',[CouponController::class,'index'])->name('home-coupon');
+          Route::get('homecoupon',[CouponController::class,'index'])->name('homecoupon');
             
           //Add coupon
           Route::get('add-coupon',[CouponController::class,'create'])->name('add-coupon');
@@ -97,8 +129,6 @@ Route::group(['middleware' => 'Lang'], function () {
           //Delete coupon
           Route::delete('delete-coupon/{id}',[CouponController::class,'delete']);
           
-          //-----------------------------HomeCategories-----------------------
-          Route::get('HomeCategories',[HomeCategoriesController::class,'index'])->name('HomeCategories');
-
+          
     });
 });

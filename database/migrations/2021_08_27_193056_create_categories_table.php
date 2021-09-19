@@ -18,15 +18,15 @@ class CreateCategoriesTable extends Migration
             $table->string('name_ar');
             $table->string('slug_ar')->index()->unique();
             $table->string('name_en');
-            $table->string('small_desc_ar')->nullable();
-            $table->string('small_desc_en')->nullable();
-            $table->string('description_ar')->nullable();
-            $table->string('description_en')->nullable();
             $table->string('slug_en')->index()->unique();
             $table->tinyInteger('status')->default('0');
             $table->tinyInteger('popular')->default('0');
-            $table->string('image_ar')->nullable();
-            $table->string('image_en')->nullable();
+             //$table->string('small_desc_ar')->nullable();
+            //$table->string('small_desc_en')->nullable();
+            //$table->string('description_ar')->nullable();
+            //$table->string('description_en')->nullable();
+            $table->boolean('status')->nullable();
+            $table->string('image_ar');
             $table->timestamps();
         });
     }

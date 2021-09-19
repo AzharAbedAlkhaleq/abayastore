@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EditorController;
 use App\Http\Controllers\User\SocialiteController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\HomeController;
@@ -35,6 +36,8 @@ Route::get('auth/google', [SocialiteController::class, 'redirectToGoogle'])->nam
 Route::get('callback/google', [SocialiteController::class, 'handleCallback']);
 Route::get('category/{slug_ar}/{prod_slug_ar}',[HomeController::class,'productview']);
 
-/* Route::get('auth/twitter', [SocialiteController::class, 'redirectToTW'])->name('login.twitter');
+//--------------------------editor---------------------------
+Route::get('editor',[EditorController::class,'editor']);
+
+ Route::get('auth/twitter', [SocialiteController::class, 'redirectToTW'])->name('login.twitter');
 Route::get('callback/twitter', [SocialiteController::class, 'handleCallbackTW']);
- */

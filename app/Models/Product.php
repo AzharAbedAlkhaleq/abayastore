@@ -11,6 +11,8 @@ class Product extends Model
     protected $table= 'products';
     protected $fillable=[
       'category_id',
+      'size_id',
+      'color_id',
       'code',
       'name_ar',
       'slug_ar',
@@ -22,9 +24,9 @@ class Product extends Model
       'description_en',
       'orginal_price',
       'Selling_price',
-      'tax',
+      'quantity',
       'image_ar',
-      'image_en',
+      'gallery',
       'status',
       'trending',
       'video',
@@ -35,6 +37,16 @@ class Product extends Model
         'name_ar'=>'No Category'
       ]);
     }
+    public function color(){
+        return $this->belongsTo(Color::class,'color_id','id')->withDefault([
+          'color'=>'No Color'
+        ]);
+      }
+      public function size(){
+        return $this->belongsTo(Size::class,'size_id','id')->withDefault([
+          'size'=>'No Size'
+        ]);
+      }
     public function banner(){
       return $this->hasMany(Banner::class,'category_id','id')->default('null');
     }

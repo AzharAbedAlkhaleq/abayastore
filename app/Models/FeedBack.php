@@ -10,3 +10,4 @@ class FeedBack extends Model
     use HasFactory;
     protected $guarded = [];
 }
+

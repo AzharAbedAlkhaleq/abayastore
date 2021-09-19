@@ -57,6 +57,7 @@
 
    
 </footer>
+<script src="https://cdn.tiny.cloud/1/ywnjssncdfmasinkweic1ecq329fm231ly7a524e6t6ks3tv/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="{{ asset('front/js/jquery-3.4.1.min.js') }}"></script>
 <script src="{{ asset('front/js/wow.min.js') }}"></script>
 <script src="{{ asset('front/js/slick.min.js') }}"></script>
