@@ -5,7 +5,7 @@
   <div class="shoping_container">
 
     <!-- Open Content -->
- 
+
     <div class="shoping_container">
 
         <!-- Open Content -->
@@ -37,13 +37,13 @@
                                     <h5>4.5 <i class="fas fa-star"></i></h5>
                                     <p>1,344 التقييمات & 343 المراجعات</p>
                                 </div>
-                              
+
 
 
 
                             </div>
                         </div>
-                        
+
                         <div class="reve">
                        <div>
                             <p> جيد جدا <span class="px-2 py-1">5 <i class="fas fa-star"></i></span></p>
@@ -113,9 +113,9 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    
+
                                 </form>
-                                
+
                                 <div class="d-flex">
                                 <p class="pt-2" style="color: #8b8109;">شارك :</p>
                                       <ul class="list-unstyled d-flex">
@@ -125,15 +125,28 @@
                                           <li class="mx-1 p-2"><a href="#" ><i class="fab fa-whatsapp" style="color: #5b9b4b;border-radius: 50%;font-size:25px;"></i></a></li>
                                         </ul>
                                 </div>
-                                
+
                                 <div class="charg py-2 px-2">
                                     <p class="p1 py-2"><i class="px-2 fas fa-truck"></i>شحن مجاني لمدة 5  أيام </p>
                                     <p><i class="px-2 fas fa-arrow-left"></i> ارجاع مجاني لمدة 30 يوما لتغيير رأيك</p>
                                 </div>
                                 <div class="desc mt-4 px-3 py-2">
-                                <div class="d-flex"><h6>تفاصيل المنتج</h6><h6 class="des mx-4">الوصف</h6></div>
-                                    <p class="pt-2">ارجاع مجاني لمدة 30 يوما لتغيير رأيك شحن مجاني لمدة 5  أيام  </p>
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                          <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">تفاصيل المنتج
+                                        </a>
+                                          <a class="nav-link " id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">الوصف</a>
+                                        </div>
+                                      </nav>
+                                      <div class="tab-content pt-3" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">ارجاع مجاني لمدة 30 يوما لتغيير رأيك شحن مجاني لمدة 5 أيام
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">ارجاع مجاني لمدة 30 يوما لتغيير رأيك شحن مجاني لمدة 5 أيام
+                                        </div>
+                                      </div>
                                 </div>
+
+                                <iframe class="mt-5" width="560" height="315" src="https://www.youtube.com/embed/fMPEx0zJl7g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                             </div>
                         </div>
@@ -183,9 +196,9 @@
 
     </div>
 
-   
-           
+
+
   @include('user.includes.footer')
-  
+
 </body>
 </html>

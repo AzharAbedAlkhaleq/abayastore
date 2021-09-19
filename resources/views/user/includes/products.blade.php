@@ -15,7 +15,7 @@
             <div class="offer">
                 <p>{{ $product->Selling_price }}% <br>OFF </p>
             </div>
-            <img src="{{ asset('assets/uploads/product_ar/'.$product->image_ar)}}" style="width: 200px;height:250px;">
+            <img src="{{ asset('assets/uploads/product_ar/'.$product->image_ar)}}">
             <div class="text-right">
                 <h5>{{ $product->name_ar}}</h5>
                 <p style="color: red">{{ $product->orginal_price }} OMR</p>
