@@ -6,11 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
+use App\Models\ProductColors;
+use App\Models\ProductImage;
+use App\Models\ProductSizes;
 use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\Input;
+use function GuzzleHttp\Promise\all;
 
 class ProductsController extends Controller
 {
@@ -21,52 +25,58 @@ class ProductsController extends Controller
   }
   public function create(){
     $category=Category::all();
-    //$color=Color::all();
-   // $size=Size::all();
-      return view('admin.products.create',compact('category'));
+    $colors = Color::all();
+    $sizes = Size::all();
+      return view('admin.products.create',get_defined_vars());
   }
 
   public function store(Request $request){
+//        dd($request->all());
+  $request->validate([
+   'category_id'=>'required',
+   'code'=>'required',
+   'name_ar'=>'required|min:3|max:100|unique:categories,name_ar',
+   'name_en'=>'required|min:3|max:100|unique:categories,name_en',
+   'small_desc_ar'=>'required',
+   'small_desc_en'=>'required',
+   'description_ar'=>'required',
+   'description_en'=>'required',
+   'orginal_price'=>'required',
+   'Selling_price'=>'sometimes',
+   'quantity'=>'required',
+   'tax'=>'sometimes',
+   'image' =>'required',
+   'images' =>'required',
+   'video' =>'required',
 
-  dd($request->all());
-//  $request->validate([
-//   'name_ar'=>'required|min:3|max:100|unique:categories,name_ar',
-//   'name_en'=>'required|min:3|max:100|unique:categories,name_en',
-//   'image_ar' =>'required|image',
-//   'status'=>'required|in:1,0',
-// ],[
-// 'name_ar.required'=>'مطلوب!، الرجاء إدخال اسم المنتج',
-// 'name_ar.unique'=>' هذا الاسم موجود بالفعل ، رجاءا أدخل اسم آخر',
-// 'name_ar.min'=>' يجب ألا يقل الاسم عن ثلاثة احرف',
-// 'name_ar.max'=>' يجب ألا يزيد الاسم عن مائة حرف',
-// 'name_en.unique'=>' هذا الاسم موجود بالفعل ، رجاءا أدخل اسم آخر',
-// 'name_en.required'=>'مطلوب!، الرجاء إدخال اسم الفئة',
-// 'name_en.min'=>' يجب ألا يقل الاسم عن ثلاثة احرف',
-// 'name_en.max'=>' يجب ألا يزيد الاسم عن مائة حرف',
-// 'status.required' => 'يجب إدخال الحالة',
-// 'image_ar.required'=>'الصورة مطلوبة',
-// ]);
+   'status'=>'required|in:1,0',
+ ],[
+ 'name_ar.required'=>'مطلوب!، الرجاء إدخال اسم المنتج',
+ 'category_id.required'=>'مطلوب!، الرجاء إدخال الفئة',
+ 'code.required'=>'مطلوب!، الرجاء إدخال الكود',
+ 'small_desc_ar.required'=>'مطلوب!، الرجاء إدخال الوصف بالعربي',
+ 'small_desc_en.required'=>'مطلوب!، الرجاء إدخال الوصف باللغة الإنجليزية',
+ 'description_en.required'=>'مطلوب!، الرجاء إدخال التفاصيل باللغة الإنجليزية',
+ 'description_ar.required'=>'مطلوب!، الرجاء إدخال التفاصيل بالعربي',
+ 'name_ar.unique'=>' هذا الاسم موجود بالفعل ، رجاءا أدخل اسم آخر',
+ 'name_ar.min'=>' يجب ألا يقل الاسم عن ثلاثة احرف',
+ 'name_ar.max'=>' يجب ألا يزيد الاسم عن مائة حرف',
+ 'name_en.unique'=>' هذا الاسم موجود بالفعل ، رجاءا أدخل اسم آخر',
+ 'name_en.required'=>'مطلوب!، الرجاء إدخال اسم الفئة',
+ 'name_en.min'=>' يجب ألا يقل الاسم عن ثلاثة احرف',
+ 'name_en.max'=>' يجب ألا يزيد الاسم عن مائة حرف',
+ 'orginal_price.required'=>'يجب ادخال السعر الاصلي',
+ 'Selling_price.required'=>'يجب ادخال نسبة الخصم ',
+ 'quantity.required'=>'يجب ادخال الكمية ',
+ 'tax.required'=>'يجب ادخال الضريبة ',
+ 'image.required'=>'يجب ادخال الصورة ',
+ 'images.required'=>'يجب ادخال مجموعة الصور ',
+ 'video.required'=>'يجب ادخال فيديو ',
+ 'status.required' => 'يجب إدخال الحالة',
+ ]);
     $product= new Product();
-        if($request->hasFile('image')){
-            $file=$request->file('image');
-            $ext= $file->getClientOriginalExtension();
-            $filename = time().'.'.$ext;
-            $file->move('assets/uploads/product',$filename);
-            $product->image=$filename;
-            
-        }
-              //upload vedio 
-        if($request->hasFile('video')){
-          $file=$request->file('video');
-          $ext= $file->getClientOriginalExtension();
-          $filename= time().'.'.$ext;
-          $file->move('assets/uploads/videos',$filename);
-          $product->video=$filename;
 
-        }
-
-
-        $product->category_id=$request->input('category_id');
+        $product->category_id= $request->input('category_id');
 //$product['color_id'] = json_encode($input['color_id']);
 //$product['size_id']=json_encode($input['size_id']);
         $product->name_ar=$request->input('name_ar');
@@ -79,70 +89,120 @@ class ProductsController extends Controller
         $product->small_desc_en=$request->input('small_desc_en');
         $product->description_en=$request->input('description_en');
         $product->orginal_price=$request->input('orginal_price');
-        $product->Selling_price=$request->input('Selling_price');
         $product->quantity=$request->input('quantity');
-        $product->tax=$request->input('tax');
-        //$product->views=$request->input('views');
+        if ($request->tax != null){
+            $product->tax=$request->input('tax');
+        }else{
+            $product->tax = 5;
+        }
+        if ($request->Selling_price != null){
+            $product->Selling_price=$request->input('Selling_price');
+        }else{
+            $product->Selling_price = 0;
+        }
         $product->status=$request->input('status') == true? '1':'0';
         $product->trending=$request->input('trending')  == true? '1':'0';
-        $product->save();
+
+      if($request->hasFile('image')){
+          $filename = saveImage($request->file('image'),'assets/uploads/product');
+          $product->image_ar = $filename;
+          $product->save();
+      }
+      //upload video
+      if($request->hasFile('video')){
+          $filename = saveImage($request->file('video'),'assets/uploads/videos');
+          $product->video=$filename;
+          $product->save();
+      }
+      $product->save();
+      if ($request->hasFile('images')){
+          $images = $request->images;
+          foreach ($images as $image){
+              $product_images = new ProductImage();
+              $product_images->product_id = $product->id;
+              $file_name = saveImage($image , 'assets/uploads/product/');
+              $product_images->filename = $file_name;
+              $product_images->save();
+          }
+      }
+
+      foreach ($request->sizes as $size){
+          $product->size()->create(
+              [
+                  'product_id'=>$product->id,
+                  'size_id'=>$size
+              ]
+          );
+      }
+      foreach ($request->colors as $color){
+          $product->color()->create(
+              [
+                  'product_id'=>$product->id,
+                  'color_id'=>$size
+              ]
+          );
+      }
 
         return redirect()->route('products')->with('status','تمت الإضافة بنجاح!');
-     
+
   }
   public function edit($id){
     $category=Category::all();
-    $product=Product::find($id);
-    return view('admin.products.edit',compact('product'));
+    $product=Product::where('id',$id)->with('color','size')->first();
+      $colors = Color::all();
+      $sizes = Size::all();
+    return view('admin.products.edit',get_defined_vars());
   }
 
   //Update Produc
 public  function update(Request $request,$id)
-
 {
+    $request->validate([
+        'category_id'=>'required',
+        'code'=>'required',
+        'name_ar'=>'required|min:3|max:100|unique:categories,name_ar',
+        'name_en'=>'required|min:3|max:100|unique:categories,name_en',
+        'small_desc_ar'=>'required',
+        'small_desc_en'=>'required',
+        'description_ar'=>'required',
+        'description_en'=>'required',
+        'orginal_price'=>'required',
+        'Selling_price'=>'sometimes',
+        'quantity'=>'required',
+        'tax'=>'sometimes',
+        'status'=>'required|in:1,0',
+        'sizes'=>'required',
+        'colors'=>'required',
+    ],[
+        'name_ar.required'=>'مطلوب!، الرجاء إدخال اسم المنتج',
+        'category_id.required'=>'مطلوب!، الرجاء إدخال الفئة',
+        'code.required'=>'مطلوب!، الرجاء إدخال الكود',
+        'small_desc_ar.required'=>'مطلوب!، الرجاء إدخال الوصف بالعربي',
+        'small_desc_en.required'=>'مطلوب!، الرجاء إدخال الوصف باللغة الإنجليزية',
+        'description_en.required'=>'مطلوب!، الرجاء إدخال التفاصيل باللغة الإنجليزية',
+        'description_ar.required'=>'مطلوب!، الرجاء إدخال التفاصيل بالعربي',
+        'name_ar.unique'=>' هذا الاسم موجود بالفعل ، رجاءا أدخل اسم آخر',
+        'name_ar.min'=>' يجب ألا يقل الاسم عن ثلاثة احرف',
+        'name_ar.max'=>' يجب ألا يزيد الاسم عن مائة حرف',
+        'name_en.unique'=>' هذا الاسم موجود بالفعل ، رجاءا أدخل اسم آخر',
+        'name_en.required'=>'مطلوب!، الرجاء إدخال اسم الفئة',
+        'name_en.min'=>' يجب ألا يقل الاسم عن ثلاثة احرف',
+        'name_en.max'=>' يجب ألا يزيد الاسم عن مائة حرف',
+        'orginal_price.required'=>'يجب ادخال السعر الاصلي',
+        'Selling_price.required'=>'يجب ادخال نسبة الخصم ',
+        'quantity.required'=>'يجب ادخال الكمية ',
+        'tax.required'=>'يجب ادخال الضريبة ',
+        'image.required'=>'يجب ادخال الصورة ',
+        'images.required'=>'يجب ادخال مجموعة الصور ',
+        'video.required'=>'يجب ادخال فيديو ',
+        'status.required' => 'يجب إدخال الحالة',
+        'sizes.required'=>'يجب ادخال الاحجام',
+        'colors.required'=>'يجب ادخال الالوان',
+    ]);
 
- // dd($request->all());
- $product = product::find($id);
- $input = $request->all();
-
- //--------------------------Arabic Image-----------------------------------
- if($request->hasFile('image')){
- 
-  $path='assets/uploads/product/'.$product->image_ar;
-  if(File::exists($path))
-  {
-       File::delete($path);
-  }
-
-  $file=$request->file('image');
-  $ext= $file->getClientOriginalExtension();
-  $filename= time().'.'.$ext;
-  $file->move('assets/uploads/product',$filename);
-  $product->image=$filename;
-}
-
- 
-     
-    //--------------------video---------------------------------------
-
-     if($request->hasFile('video')){
-         $path= 'assets/uploads/videos/'.$product->video;
-
-         if(File::exists($path))
-         {
-             
-              File::delete($path);
-         }
-         
-         $file=$request->file('video');
-         $ext= $file->getClientOriginalExtension();
-         $filename= time().'.'.$ext;
-         $file->move('assets/uploads/videos',$filename);
-          $product->video=$filename;
-        }
+ $product = product::where('id',$id)->with('images','color','size')->first();
+        $input = $request->all();
         $product->category_id=$request->input('category_id');
-        $product['color_id'] = json_encode($input['color_id']);
-        $product->size_id=$request->input('size_id');
         $product->name_ar=$request->input('name_ar');
         $product->slug_ar=Str::slug($request->name_ar);
         $product->code=$request->input('code');
@@ -153,21 +213,87 @@ public  function update(Request $request,$id)
         $product->small_desc_en=$request->input('small_desc_en');
         $product->description_en=$request->input('description_en');
         $product->orginal_price=$request->input('orginal_price');
-        $product->Selling_price=$request->input('Selling_price');
         $product->quantity=$request->input('quantity');
-        $product->tax=$request->input('tax');
-        //$product->views=$request->input('views');
         $product->status=$request->input('status') == true? '1':'0';
         $product->trending=$request->input('trending')  == true? '1':'0';
-     $product->update();
-     return response()->json->redirect( route('products'))->with('success','تمت عملية التعديل بنجاح!');
+        if ($request->tax != null){
+            $product->tax=$request->input('tax');
+            $product->update();
+        }else{
+            $product->tax = 5;
+            $product->update();
+
+        }
+        if ($request->Selling_price != null){
+            $product->Selling_price=$request->input('Selling_price');
+            $product->update();
+
+        }else{
+            $product->Selling_price = 0;
+            $product->update();
+        }
+
+    if($request->hasFile('image')){
+        $path='assets/uploads/product/'.$product->image_ar;
+        if(File::exists($path))
+        {
+            File::delete($path);
+        }
+        $filename = saveImage($request->file('image'),'assets/uploads/product');
+        $product->image_ar = $filename;
+        $product->update();
+    }
+    //upload video
+    if($request->hasFile('video')){
+        $path= 'assets/uploads/videos/'.$product->video;
+        if(File::exists($path))
+        {
+            File::delete($path);
+        }
+        $filename = saveImage($request->file('video'),'assets/uploads/videos');
+        $product->video=$filename;
+        $product->update();
+    }
+    if ($request->hasFile('images')){
+        $path='assets/uploads/product/'.$product->image_ar;
+        if(File::exists($path))
+        {
+            File::delete($path);
+        }
+        $images = $request->images;
+        foreach ($images as $image){
+            $file_name = saveImage($image , 'assets/uploads/product/');
+            $product_images = $product->images()->update([
+                'filename'=>$image,
+            ]);
+        }
+    }
+
+    foreach ($request->sizes as $size){
+        $product->size()->update(
+            [
+                'product_id'=>$product->id,
+                'size_id'=>$size
+            ]
+        );
+    }
+    foreach ($request->colors as $color){
+        $product->color()->update(
+            [
+                'product_id'=>$product->id,
+                'color_id'=>$size
+            ]
+        );
+    }
+    $product->update();
+     return redirect( route('products'))->with('success','تمت عملية التعديل بنجاح!');
 
 }
 
 
   //Delete Product
   public function delete($id){
-    
+
     $product= Product::find($id);
 
     if($product->image)
@@ -175,7 +301,6 @@ public  function update(Request $request,$id)
         $path='assets/uploads/product/'.$product->image;
         if(File::exists($path))
         {
-            
              File::delete($path);
         }
     }
@@ -186,7 +311,7 @@ public  function update(Request $request,$id)
 
     //     if(File::exists($path))
     //     {
-            
+
     //          File::delete($path);
     //     }
     // }
@@ -197,7 +322,7 @@ public  function update(Request $request,$id)
 
 //     if(File::exists($path))
 //     {
-        
+
 //          File::delete($path);
 //     }
 // }
@@ -209,13 +334,12 @@ public  function update(Request $request,$id)
 
         if(File::exists($path))
         {
-            
              File::delete($path);
         }
     }
 
     $product->delete();
-    return redirect()->back()->with('status','تم الحذف!!');          
+    return redirect()->back()->with('status','تم الحذف!!');
   }
 
 }

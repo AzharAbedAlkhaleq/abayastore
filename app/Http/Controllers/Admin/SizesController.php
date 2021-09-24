@@ -13,18 +13,19 @@ class SizesController extends Controller
         return view('admin.size.index',compact('sizes'));
     }
     public function create(){
-       
+
           return view('admin.size.create');
       }
       public function store(Request $request){
-          //dd($request->all());
+//          dd($request->all());
           $request->validate([
-            'size'=>'required|unique:sizes,size|max:50|min:2',
+//            'size'=>'required|unique:sizes,size|max:50|min:2',
+            'size'=>'required',
+            'status'=>'required',
           ],[
-              'size.required'=>'مطلوب ',
+              'size.required'=>' مطلوب ادخال الحجم',
+              'status.required'=>' مطلوب ادخال الحالة',
               'size.unique' =>'اللون موجود',
-
-          
           ]);
 
          $sizes=new Size();
@@ -43,7 +44,16 @@ class SizesController extends Controller
     }
       public  function update(Request $request,$id)
       {
-          
+//          dd($request->all());
+          $request->validate([
+//            'size'=>'required|unique:sizes,size|max:50|min:2',
+              'size'=>'required',
+              'status'=>'required',
+          ],[
+              'size.required'=>' مطلوب ادخال الحجم',
+              'status.required'=>' مطلوب ادخال الحالة',
+              'size.unique' =>'اللون موجود',
+          ]);
        $size = Size::find($id);
 
        $size->size=$request->input('size');
@@ -54,7 +64,7 @@ class SizesController extends Controller
       }
       public function delete($id){
         $size= Size::find($id);
-       
+
         $size->delete();
         return redirect()->back()->with('status','تم الحذف!');          }
 }

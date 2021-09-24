@@ -21,7 +21,7 @@
                 <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
               </div>
-            
+
 
 
 
@@ -32,19 +32,19 @@
 
             <div  class="col-md-6 mb-3">
                 <label for="">{{ trans('admin.English_Name') }}</label>
-                <input style="font-family:Times New Roman; font-size:24px" type="text"  name="name_en" class="form-control"  @error('name_en') is-invalid @enderror>
+                <input style="font-family:Times New Roman; font-size:24px" type="text"  name="name_en" class="form-control @error('name_en') is-invalid @enderror"  >
                 @error('name_en')
                 <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
               </div>
-            
+
 
             {{-- <div class="col-md-6  mb-3">
                 <label for="">{{ trans('admin.english slug') }}</label>
                 <input style=" font-family:Times New Roman;font-size:24px" type="text" class="form-control" name="slug_en">
             </div>
             --}}
-           
+
             {{-- <div class=class="col-md-12 mb-3">
                 <label for=""> {{ trans('admin.Small Arabic Description') }}</label>
                 <div class="mb-3">
@@ -74,54 +74,55 @@
                 </div>
               </div>
              --}}
-    
+
             <div  class="form-group col-md-6 mb-3">
-                <label for="">{{ trans('admin.Image') }}</label> 
-                <input style="font-size:24px" type="file"  name="image_ar" class="form-control"   @error('image_ar') is-invalid @enderror>
+                <label for="">{{ trans('admin.Image') }}</label>
+                <input style="font-size:24px" type="file"  name="image_ar" class="form-control  @error('image_ar') is-invalid @enderror" accept="image/*">
                 @error('image_ar')
                 <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
               </div>
 
             {{-- <div class="form-group mb-3">
-                <label for="">{{ trans('admin.English_Image') }}</label> 
+                <label for="">{{ trans('admin.English_Image') }}</label>
                 <input type="file" style="color:#0090E7; font-size:24px" name="image_en" class="form-control">
             </div> --}}
             {{-- <div class="form-group mb-3">
                 <input type="checkbox"  name="status">
                 <label for="">{{ trans('admin.normal') }}</label>
-                
+
             </div>
-           
+
             <div class="form-group mb-3">
-               
+
                 <input type="checkbox"  name="popular">
                 <label for="">{{ trans('admin.Popular') }}</label>
             </div> --}}
             <div class="col-md-6 mb-4">
               <label >{{ trans('admin.Status') }} </label>
-                  <select style=" color:rgb(151, 35, 35);font-size:24px" class="form-control"   name="status"  @error('status') is-invalid @enderror>
+                  <select style=" color:rgb(151, 35, 35);font-size:24px"   name="status" class="form-control @error('status') is-invalid @enderror" >
                       <option style="color:rgb(151, 35, 35);" value="">{{ trans('admin.select the status') }}</option>
                       <option style="color: black" value="0">{{ trans('admin.Inactive') }}</option>
                       <option style="color: black" value="1">{{ trans('admin.Active') }}</option>
-                      @error('status')
-                      <p class="invalid-feedback">{{ $message }}</p>
-                      @enderror
+
                   </select>
-                
+                @error('status')
+                <p class="invalid-feedback">{{ $message }}</p>
+                @enderror
+
               </div>
           </div>
           {{-- <div class="form-group mb-3">
-               
+
             <input type="checkbox"  name="popular">
             <label for="">{{ trans('admin.Popular') }}</label>
         </div> --}}
-            
+
             <div class="form-group mb-5">
                 <button type="submit" class="btn btn-primary btn-lg"> {{ trans('admin. Add Category') }} </button>
             </div>
-          
+
            </div>
         </form>
-    
+
 @endsection

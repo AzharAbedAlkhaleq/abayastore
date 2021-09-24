@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\File;
 class HomeSlider extends Controller
 {
   public function index(){
-   
+
     $sliders = ModelsHomeSlider::paginate(7);
       return view('admin.homeSlider.index',compact('sliders'));
   }
@@ -20,22 +20,32 @@ public function create(){
   return view('admin.homeSlider.create');
 }
 public function store(Request $request){
- // dd($request->all());
+  $request->validate([
+      'type'=>'required',
+      'status'=>'required',
+      'title'=>'required',
+
+      'subtitle'=>'required',
+      'link'=>'required',
+      'imageSlider'=>'required',
+  ],[
+      'type.required'=>'رجاءاً, ادخل مكان السلايدر',
+      'status.required'=>'رجاءاً, ادخل  الحالة',
+      'title.required'=>'رجاءاً, ادخل وصف مطول ',
+      'subtitle.required'=>'رجاءاً, ادخل وصف ',
+      'link.required'=>'رجاءاً, ادخل الرابط',
+      'imageSlider.required'=>'رجاءاً, ادخل صورة السلايدر',
+  ]);
   $slider= new ModelsHomeSlider();
-  if($request->hasFile('imageSlider')){
-    $file=$request->file('imageSlider');
-    $ext= $file->getClientOriginalExtension();
-    $filename= time().'.'.$ext;
-    $file->move('assets/uploads/Slider',$filename);
-    $slider->imageSlider=$filename;
-    
-}
+
   $slider->type=$request->input('type');
   $slider->title=$request->input('title');
   $slider->subtitle=$request->input('subtitle');
    $slider->link=$request->input('link');
   // $slider->price=$request->input('price	');
   $slider->status=$request->input('status');
+  $filename = saveImage($request->file('imageSlider') , 'assets/uploads/Slider');
+    $slider->imageSlider=$filename;
   $slider->save();
         return redirect()->route('homeslider')->with('status','تمت الإضافة!');
 }
@@ -49,51 +59,58 @@ public function edit($id){
 
 public  function update(Request $request,$id)
 {
+    $request->validate([
+        'type'=>'required',
+        'status'=>'required',
+        'title'=>'required',
+
+        'subtitle'=>'required',
+        'link'=>'required',
+    ],[
+        'type.required'=>'رجاءاً, ادخل مكان السلايدر',
+        'status.required'=>'رجاءاً, ادخل  الحالة',
+        'title.required'=>'رجاءاً, ادخل وصف مطول ',
+        'subtitle.required'=>'رجاءاً, ادخل وصف ',
+        'link.required'=>'رجاءاً, ادخل الرابط',
+    ]);
  $slider = ModelsHomeSlider::find($id);
- 
-     if($request->hasFile('imageSlider')){
-
-      $path='assets/uploads/Slider/'.$slider->imageSlider;
-      if(File::exists($path))
-      {
-           File::delete($path);
-      }
-    }
-    //dd($request->all());
-
-      $file=$request->file('imageSlider');
-      $ext= $file->getClientOriginalExtension();
-      $filename= time().'.'.$ext;
-      $file->move('assets/uploads/slider',$filename);
-      $slider->imageSlider=$filename;
- 
       $slider->type=$request->input('type');
-
      $slider->title=$request->input('title');
      $slider->subtitle=$request->input('subtitle');
     $slider->link=$request->input('link');
-    //  $slider->price=$request->input('price');
-     $slider->status=$request->input('status');
-     $slider->update();
+    $slider->status=$request->input('status');
+    $slider->update();
+    if($request->hasFile('imageSlider')){
+        $path='assets/uploads/Slider/'.$slider->imageSlider;
+        if(File::exists($path))
+        {
+            File::delete($path);
+        }
+        $filename = saveImage($request->file('imageSlider') , 'assets/uploads/Slider');
+        $slider->imageSlider=$filename;
+        $slider->update();
+    }
+
+
      return redirect( route('homeslider'))->with('status','تمت عملية التعديل بنجاح!');
 
 }
 public function delete($id){
   $slider= ModelsHomeSlider::find($id);
-  
+
 
   if($slider->imageSlider)
   {
       $path='assets/uploads/Slider/'.$slider->imageSlider;
       if(File::exists($path))
       {
-          
+
            File::delete($path);
       }
   }
 
   $slider->delete();
-  return redirect()->back()->with('status','تم الحذف بنجاح!'); 
+  return redirect()->back()->with('status','تم الحذف بنجاح!');
 
 }
 }

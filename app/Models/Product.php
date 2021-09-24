@@ -29,7 +29,7 @@ class Product extends Model
       'status',
       'trending',
       'video',
-     
+
     ];
     public function category(){
       return $this->belongsTo(Category::class,'category_id','id')->withDefault([
@@ -37,15 +37,15 @@ class Product extends Model
       ]);
     }
     public function color(){
-        return $this->belongsTo(Color::class,'color_id','id')->withDefault([
-          'color'=>'No Color'
-        ]);
+       return $this->hasMany(ProductColors::class , 'product_id');
       }
       public function size(){
-        return $this->belongsTo(Size::class,'size_id','id')->withDefault([
-          'size'=>'No Size'
-        ]);
+          return $this->hasMany(ProductSizes::class , 'product_id');
       }
+      public function images(){
+        return $this->hasMany(ProductImage::class,'product_id');
+      }
+
     public function banner(){
       return $this->hasMany(Banner::class,'category_id','id')->default('null');
     }

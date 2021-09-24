@@ -13,7 +13,7 @@
         <button type="submit" class="btn btn-secondary" style="color: white;">{{ trans('admin.search') }}</button>
       </form>
       <table  class="table table-bordered border-primary">
-        
+
           <thead class="table-light">
               <tr style="text-align: center">
                   <th >#</th>
@@ -30,7 +30,7 @@
               </tr>
               <tbody>
                 @foreach ($products as $product )
-                    
+
                   <tr style="text-align: center">
                       <td>{{$product->id }}</td>
                       <td>{{$product->code}}</td>
@@ -39,33 +39,33 @@
                       <td>{{$product->name_ar	}}</td>
                       <td>{{ $product->name_en}}</td>
                     <td >
-                        <img style="height:70px;width:70px" src="{{ asset('assets/uploads/product/'.$product->image) }}" alt="arabic Image">  
+                        <img style="height:70px;width:70px" src="{{ asset('assets/uploads/product/'.$product->image_ar) }}" alt="arabic Image">
                     </td>
-                   
+
                     <td>
                       <?php if($product->status ==1){?>
 
                       <a href="{{ url('admin/edit-product/'.$product->id) }}" style="color:green;text-decoration:none"> {{ trans('admin.Active') }}</a>
-                      
+
                       <?php }else {?>
                         <a href="{{ url('admin/edit-product/'.$product->id) }}" style="color: gray; text-decoration:none"> {{ trans('admin.Inactive') }}</a>
-                      
+
                       <?php }?>
                       <div>
                       @if($product->trending ==1)
-                    
+
                         <input   class="form-check-input" type="checkbox" checked>  <label style="color:green">{{ trans('admin.Popular') }} </label>
                       </a>
                       @else
                      <input type="checkbox" >  <label style="color: gray">{{ trans('admin.UnPopular') }} </label></a>
                       @endif
                       </div>
-                     
+
                     </td>
                     {{-- <td>
-                      <img style="height: 70px;width:70px" src="{{ asset('assets/uploads/banner/'.$product->banner) }}" style="width: 60px" alt="English Image">  
+                      <img style="height: 70px;width:70px" src="{{ asset('assets/uploads/banner/'.$product->banner) }}" style="width: 60px" alt="English Image">
                   </td> --}}
-                     
+
                       {{-- <td>{{$product->orginal_price }}</td>
                       <td>{{$product->Selling_price}}</td>
                     --}}
@@ -84,7 +84,7 @@
                     @include('modal.delete_product')
                       {{-- <td>
                         <a href="{{ url('admin/edit-product/'.$product->id) }}"  class="btn btn-primary btn-sm">Edit</button></a>
-                         
+
                         <a href="{{ url('admin/delete-product/'.$product->id) }}" class="btn btn-danger btn-sm">Delete</button></a>
                       </td> --}}
                   </tr>
@@ -96,5 +96,5 @@
      </div>
 
 <div>
-    
+
 @endsection

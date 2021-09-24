@@ -31,36 +31,42 @@
                   <option value="">{{ trans('admin.Select the Product') }}</option>
                   @foreach ($product as $products)
                   <option value="{{ $products->id }}"> {{ $products->name_en }}</option>
-              
+
                   <option value="{{ $products->id }}">{{ $products->name_ar }}</option>
                   @endforeach
                 </select>
-              </div>    
+              </div>
                --}}
                <div class="col-md-12 mb-3">
                 <label style="color: blue; font-size:25px"> <span style="color: red">*</span> {{ trans('admin.location') }} </label>
-                <select  style=" font-size:20px"  class="form-select"  name="location">
+                <select  style=" font-size:20px"  class="form-select  @error('location') is-invalid @enderror"  name="location">
                   <option value="">{{ trans('admin.Select the location') }}</option>
-                  <option  value="top"{{$banner->type == 'top'?'selected':''}}>{{ trans('admin.top banner') }}</option>
-                   <option value="bottom" {{$banner->type == 'bottom'?'selected':''}}> {{ trans('admin.bottom banner') }}</option>
-                   <option value="right" {{$banner->type == 'right'?'selected':''}}> {{ trans('admin.right banner') }}</option>
-                  <option value="left" {{$banner->type == 'left'?'selected':''}}> {{ trans('admin.left banner') }}</option>
-                  
+                  <option  value="top"{{$banner->location == 'top'?'selected':''}}>{{ trans('admin.top banner') }}</option>
+                   <option value="bottom" {{$banner->location == 'bottom'?'selected':''}}> {{ trans('admin.bottom banner') }}</option>
+                   <option value="right" {{$banner->location == 'right'?'selected':''}}> {{ trans('admin.right banner') }}</option>
+                  <option value="left" {{$banner->location == 'left'?'selected':''}}> {{ trans('admin.left banner') }}</option>
+
                 </select>
-              </div> 
+                   @error('location')
+                   <p class="invalid-feedback">{{ $message }}</p>
+                   @enderror
+              </div>
 
               <div  class="col-md-12  mb-3">
                 <label for="">{{ trans('admin.Link') }}</label>
-                <input style=" font-family:Times New Roman; font-size:24px"  value="{{$banner->link}}"  type="text"  name="link" class="form-control">
+                <input style=" font-family:Times New Roman; font-size:24px"  value="{{$banner->link}}"  type="text"  name="link" class="form-control  @error('link') is-invalid @enderror">
+                  @error('link')
+                  <p class="invalid-feedback">{{ $message }}</p>
+                  @enderror
             </div>
-<div class="col">
-            @if($banner->banner_image)
-            <img style="width: 75px;height:75px;text-align:center;" src="{{ asset('assets/uploads/banners/'.$banner->banner_image) }}" alt="image"> 
-            @endif
-</div>
+            <div class="col">
+                        @if($banner->banner_image)
+                        <img style="width: 75px;height:75px;text-align:center;" src="{{ asset('assets/uploads/banners/'.$banner->banner_image) }}" alt="image">
+                        @endif
+            </div>
 
             <div  class="col-md-12 mb-3">
-                <label for="">{{ trans('admin.banner image') }}</label> 
+                <label for="">{{ trans('admin.banner image') }}</label>
                 <input style="color:#0090E7; font-size:24px" type="file" name="banner_image" class="form-control">
             </div>
 
@@ -78,5 +84,5 @@
 
            </div>
         </form>
-     
+
 @endsection
