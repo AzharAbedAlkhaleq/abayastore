@@ -11,8 +11,8 @@ class Product extends Model
     protected $table= 'products';
     protected $fillable=[
       'category_id',
-      'size_id',
-      'color_id',
+      // 'size_id',
+      // 'color_id',
       'code',
       'name_ar',
       'slug_ar',
@@ -25,8 +25,7 @@ class Product extends Model
       'orginal_price',
       'Selling_price',
       'quantity',
-      'image_ar',
-      'gallery',
+      'image',
       'status',
       'trending',
       'video',

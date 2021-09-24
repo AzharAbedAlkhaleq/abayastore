@@ -28,14 +28,12 @@ class CreateProductsTable extends Migration
             $table->string('description_ar')->nullable();
             $table->string('description_en')->nullable();
             $table->double('orginal_price')->nullable();
-            $table->double('Selling_price')->defualt('0');
+            $table->int('Selling_price')->defualt('0');
             $table->string('quantity')->nullable();
             $table->string('tax')->default('5');
-            $table->string('image_ar');
-            $table->string('gallery')->nullable();
+            $table->string('image');
             //$table->string('size')->nullable();
             $table->boolean('status')->nullable();
-            // $table->tinyInteger('status')->nullable();
             $table->string('trending')->nullable();
             $table->string('video')->nullable();
            // $table->integer('views');

@@ -28,8 +28,21 @@
                     
                   <tr style="text-align: center">
                       <td>{{$banner->id }}</td>
-                      <td>{{ $banner->location }}</td>  
-                      
+                      {{-- <td>{{ $banner->location }} --}}
+                        <td>
+                        @if($banner->location =='top')
+                        {{ trans('admin.top banner') }}
+                       
+                        @elseif($banner->location =='bottom')
+                        {{ trans('admin.bottom banner') }}
+                        @elseif($banner->location =='right')
+                        {{ trans('admin.right banner') }}
+                        @elseif($banner->location=='left')
+
+                        {{ trans('admin.left banner') }}
+                         @endif 
+                        </td> 
+                   
                     <td >
                         <img style="height: 80px;width:80px" src="{{ asset('assets/uploads/banners/'.$banner->banner_image) }}" style="width: 60px" alt=" Banner">  
                     </td>

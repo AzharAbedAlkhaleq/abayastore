@@ -8,8 +8,8 @@
   <div  class="card-body">
     <div style="position: relative; top: 20px; right: -20px">
         @include('admin.alerts.success')
-        <a style="margin-bottom: 20px;" href="{{ route('homebanner') }}" class="btn btn-success btn-lg"><span style="text-align: center">{{trans('admin.All Sliders') }}</span></a>
-
+        <a style="margin-bottom: 40px;" href="{{ route('homebanner') }}" class="btn btn-success btn-lg"><span style="text-align: center">{{trans('admin.main') }}</span></a>
+    </div>
         <form action="{{ route('store-banner') }}" method="POST" enctype="multipart/form-data">
             @csrf
           
@@ -41,10 +41,10 @@
                 <label style="color: blue; font-size:25px"> <span style="color: red">*</span> {{ trans('admin.location') }} </label>
                 <select  style=" font-size:20px"  class="form-select"  name="location">
                   <option value="">{{ trans('admin.Select the location') }}</option>
-                  <option >top</option>
-                   <option>right middle</option>
-                   <option>left middle</option>
-                  <option >bottom</option>
+                  <option  value="top">{{ trans('admin.top banner') }}</option>
+                   <option value="bottom"> {{ trans('admin.bottom banner') }}</option>
+                   <option value="right"> {{ trans('admin.right banner') }}</option>
+                  <option  value="left"> {{ trans('admin.left banner') }}</option>
                   
                 </select>
               </div>        

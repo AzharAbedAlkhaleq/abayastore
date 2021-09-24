@@ -20,12 +20,12 @@ class CreateCategoriesTable extends Migration
             $table->string('name_en');
             $table->string('slug_en')->index()->unique();
             $table->tinyInteger('status')->default('0');
-            $table->tinyInteger('popular')->default('0');
+            //$table->tinyInteger('popular')->default('0')->nullable();
              //$table->string('small_desc_ar')->nullable();
             //$table->string('small_desc_en')->nullable();
             //$table->string('description_ar')->nullable();
             //$table->string('description_en')->nullable();
-            $table->boolean('status')->nullable();
+            //$table->boolean('status')->nullable();
             $table->string('image_ar');
             $table->timestamps();
         });

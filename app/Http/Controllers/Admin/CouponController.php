@@ -18,23 +18,51 @@ class CouponController extends Controller
 
    }
    public function store(Request $request){
+   //  dd($request->all());
      $coupons=new Coupon();
-     $coupons->coupon_option=$request->input('coupon_option	 ');
-     $coupons->coupon_code =$request->input('coupon_code ');
-     $coupons->coupon_code =$request->input('coupon_code ');
-     $coupons->coupon_type =$request->input('coupon_type ');
-     $coupons->amount_type =$request->input('amount_type ');
-     $coupons->	amount=$request->input('amount');
-     $coupons->expiry_date =$request->input('expiry_date ');
+     $coupons->code=$request->input('code');
+     $coupons->value =$request->input('value ');
+    //  $coupons->use_time =$request->input('use_time ');
+     $coupons->start_date=$request->input('start_date ');
+     $coupons->expire_date =$request->input('expire_date');
+     $coupons->type=$request->input('type') == true? 'fixed':'percentage';
+
      $coupons->status=$request->input('status') == true? '1':'0';
      $coupons->save();
      return redirect()->route('homecoupon')->with('status','تمت الإضافة!');
 
-
-
    }
- 
+   public function edit($id){
+    $coupon = Coupon::find($id);
+    return view('admin.coupon.edit',compact('coupon'));
+   }
+   //----------------------------------------------update--------------------------------------------
+   public  function update(Request $request,$id)
+   {
+       
+    $coupon= Coupon::find($id);
 
+    $coupons=new Coupon();
+    $coupons->code=$request->input('code');
+    $coupons->value =$request->input('value');
+    // $coupons->use_time =$request->input('use_time');
+    $coupons->start_date=$request->input('start_date');
+    $coupons->expire_date =$request->input('expire_date');
+    $coupons->type=$request->input('type') == true? 'fixed':'percentage';
+
+    $coupons->status=$request->input('status') == true? '1':'0';
+    $coupon->update();
+    return redirect( route('homecoupon'))->with('status','تم التعديل بنجاح!');
+   }
+
+   //----------------------------------------------delete Coupon-------------------------------------
+   public function delete($id){
+     //dd($id);
+
+    $coupons= Coupon::find($id);
+    $coupons->delete();
+    return redirect()->back()->with('status','تم الحذف!');          
+}
 
 }
 

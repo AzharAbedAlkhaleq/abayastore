@@ -18,6 +18,14 @@ class SizesController extends Controller
       }
       public function store(Request $request){
           //dd($request->all());
+          $request->validate([
+            'size'=>'required|unique:sizes,size|max:50|min:2',
+          ],[
+              'size.required'=>'مطلوب ',
+              'size.unique' =>'اللون موجود',
+
+          
+          ]);
 
          $sizes=new Size();
           $sizes->size=$request->input('size');

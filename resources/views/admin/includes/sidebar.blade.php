@@ -108,7 +108,7 @@
                         
                         </li>
                             <li class="nav-item pcoded-hasmenu">
-                              <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file"></i></span><span class="pcoded-mtext">Reports</span></a>
+                              <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file"></i></span><span class="pcoded-mtext">{{trans('admin.Reports')}}</span></a>
                               <ul class="pcoded-submenu">
                                 <li><a href="email_inbox.html">Daily Reports</a></li>
                                 <li><a href="email_read.html"> Weekly Reports</a></li>
@@ -118,7 +118,7 @@
 
                         <li class="nav-item pcoded-hasmenu">
                          
-                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-mail" ></i></span><span class="pcoded-mtext">Email </span></a>
+                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-mail" ></i></span><span class="pcoded-mtext">{{trans('admin.Email')}} </span></a>
                          <ul class="pcoded-submenu">
                           <li><a href="email_inbox.html">Inbox</a></li>
                           <li><a href="email_read.html">Read mail</a></li>
@@ -127,7 +127,7 @@
                   
                         </li>
                         <li class="nav-item pcoded-hasmenu">
-                          <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-thumbs-up"></i></span><span class="pcoded-mtext">FeedBack</span></a>
+                          <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-thumbs-up"></i></span><span class="pcoded-mtext">{{ trans('admin.FeedBack') }}</span></a>
                             </li>
       </ul>
     

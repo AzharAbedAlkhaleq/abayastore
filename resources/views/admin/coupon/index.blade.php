@@ -16,9 +16,10 @@
             <tr style="text-align: center">
                                     <th>{{ trans('admin.Id') }}</th>
                                     <th>{{ trans('admin.code') }}</th>
-                                    <th> {{ trans('admin.coupon type') }}</th>
-                                    <th>{{ trans('admin.Amount') }}</th>
-                                    <th>{{ trans('admin.Amount Type') }}</th>
+                                    <th> {{ trans('admin.value') }}</th>
+                                    {{-- <th>{{ trans('admin.description') }}</th> --}}
+                                    {{-- <th>{{ trans('admin.use times') }}</th> --}}
+                                    <th>{{ trans('admin.start date') }}</th>
                                     <th>{{ trans('admin.Expiry Date') }}</th>
                                     <th >{{ trans('admin.Status') }}</th>
                                     <th>{{ trans('admin.Action') }}</th>
@@ -28,25 +29,29 @@
                               @foreach ($coupons as $coupon)
                                 <tr>
                                 <td>{{ $coupon->id }}</td>  
-                                <td>{{ $coupon->coupon_code }}</td> 
-                                <td>{{ $coupon->coupon_type }}</td>  
+                                <td>{{ $coupon->code}}</td> 
+                                <td>{{ $coupon->value }} </td>                                  
+                                {{-- <td>{{ $coupon->description ?? ''}}</td>   --}}
+                                {{-- <td>{{ $coupon->used_time .'/'. $coupon->use_time }}</td>   --}}
+                                <td>{{ $coupon->start_date}}</td>  
+                                <td>{{ $coupon->expire_date}}</td>  
                                 <td>
-                                    {{ $coupon->amount }}
-                                    @if(($coupon->amount_type )=='percentange')
-                                       % 
-                                       @else
-                                       OMR
-                                    @endif
-                                
-                                </td>
-                                <td>{{ $coupon->amount_type }}</td>
-                                <td>{{ $coupon->expiry_date }}</td> 
-                                <td>{{ $coupon->status==1 ? 'Active':'Inactive' }}</td>
-                                <td class="table-action">
+                                    <?php if($coupon->status ==1){?>
+            
+                                    <a href="{{ url('admin/edit-coupon/'.$coupon->id) }}" style="color:green;text-decoration:none"> {{ trans('admin.Active') }}</a>
+                                    
+                                    <?php }else {?>
+                                      <a href="{{ url('admin/edit-coupon/'.$coupon->id) }}" style="color: gray; text-decoration:none"> {{ trans('admin.Inactive') }}</a>
+                                    
+                                    <?php }?>
+            
+                                  </td>                             
+                                     <td class="table-action">
                                     {{-- <a href="#!" class="btn btn-icon btn-outline-primary"><i class="feather icon-eye"></i></a> --}}
                                     <a href="{{ url('admin/edit-coupon/'.$coupon->id) }}" class="btn btn-icon btn-outline-primary btn-sm"><i class="feather icon-edit"></i></a>
-                                    <a href="{{ url('admin/delete-coupon/'.$coupon->id) }}" class="btn btn-icon btn-outline-danger"><i class="feather icon-trash-2"></i></a>
-                                </td>
+                                    <a href="{{ url('admin/delete-coupon/'.$coupon->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#ModalDelete{{ $coupon->id }}">{{ trans('admin.delete') }} </a>
+
+                                  </td>
                                    @include('modal.delete_coupon')
                                 </tr>  
                               @endforeach
@@ -57,14 +62,6 @@
                         {{ $coupons->links() }}
                     </div>
                 </div>
-            </div>
-        </div>
-    
-    </div>
-    
-    </div>
-    
-
-                           
+           
                         
 @endsection

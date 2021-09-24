@@ -36,7 +36,10 @@ Route::group(['middleware' => 'Lang'], function () {
            
             //Update Category
             Route::get('edit-category/{id}',[CategoriesController::class,'edit'])->name('edit-category');
-            Route::put('update-category/{id}',[CategoriesController::class,'update'])->name('update-category');
+            Route::put('update-category',[CategoriesController::class,'update'])->name('update-category');
+            
+            //search Category
+            Route::get('search',[CategoriesController::class,'search'])->name('search');
             
             //Delete Category
             Route::delete('delete-category/{id}',[CategoriesController::class,'delete'])->name('delete-category');
@@ -128,6 +131,7 @@ Route::group(['middleware' => 'Lang'], function () {
           
           //Delete coupon
           Route::delete('delete-coupon/{id}',[CouponController::class,'delete']);
+          Route::get('users',[])->name('users');
           
           
     });

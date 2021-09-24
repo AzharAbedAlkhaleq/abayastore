@@ -1,5 +1,14 @@
 @extends('admin.layouts.app')
 @section('content')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="card">
     <div style="background-color:lavender" class="card-header">
         <h1 style=" color:rgb(151, 35, 35); text-align:center; font-size:50px; margin-top:20px">{{ trans('admin.edit category') }} </h1>
@@ -9,17 +18,20 @@
   <div  class="card-body">
     <div style="position: relative; top: 20px; right: -20px">
         {{-- @include('admin.alerts.success') --}}
-        <a style="margin-bottom: 40px;" href="{{ route('categories') }}" class="btn btn-primary btn-lg"><span style="text-align: center">{{ trans('admin.Categories') }}</span></a>
+        <a style="margin-bottom: 40px;" href="{{ route('categories') }}" class="btn btn-primary btn-lg"><span style="text-align: center">{{ trans('admin.main') }}</span></a>
         
-        <form action="{{ url('admin/update-category/'.$category->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('update-category') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
            <div class="row">
-         
+        <input type="hidden" name="id" value="{{ $category->id}}">
             <div  class="col-md-6 mb-3">
                 <label for="">{{ trans('admin.Arabic_Name') }}</label>
-                <input style=" font-family:Times New Roman;font-size:24px" type="text" value="{{ $category->name_ar}}"  name="name_ar" class="form-control">
-            </div>
+                <input style=" font-family:Times New Roman;font-size:24px" type="text" value="{{ $category->name_ar}}"  name="name_ar" class="form-control"  @error('name_ar') is-invalid @enderror>
+                @error('name_ar')
+                <p class="invalid-feedback">{{ $message }}</p>
+                @enderror
+              </div>
             {{-- <div  class="col-md-6  mb-3">
                 <label for="">{{ trans('admin.Arabic Slug') }}</label>
                 <input style=" font-family:Times New Roman; font-size:24px" type="text" value="{{ $category->slug_ar}}" name="slug_ar" class="form-control">
@@ -27,8 +39,11 @@
 
             <div  class="col-md-6 mb-3">
                 <label for=""> {{ trans('admin.English_Name') }}</label>
-                <input style=" font-size:24px" type="text" value="{{ $category->name_en}}"  name="name_en" class="form-control">
-            </div>
+                <input style=" font-size:24px" type="text" value="{{ $category->name_en}}"  name="name_en" class="form-control"  @error('name_en') is-invalid @enderror>
+                @error('name_en')
+                <p class="invalid-feedback">{{ $message }}</p>
+                @enderror
+              </div>
 
             {{-- <div class="col-md-6  mb-3">
                 <label for="">{{ trans('admin.english slug') }}</label>
@@ -64,11 +79,14 @@
               </div> --}}
              <div class="col-md-12 mb-4">
               <label >{{ trans('admin.Status') }} </label>
-                  <select style="color:rgb(151, 35, 35); font-size:24px"  " {{ $category->status}}" class="form-control"   name="status">
-                      <option style="color:rgb(216, 128, 128);">{{ trans('admin.select the status') }}</option>
-                      <option style="color: black" value="0">{{ trans('admin.Inactive') }}</option>
-                      <option style="color: black" value="1">{{ trans('admin.Active') }}</option>
-                  </select>
+                  <select style="color:rgb(151, 35, 35); font-size:24px"  " {{ $category->status}}" class="form-control"   name="status"  @error('status') is-invalid @enderror>
+                      <option style="color:rgb(216, 128, 128);" value="">{{ trans('admin.select the status') }}</option>
+                      <option style="color: black" value="0" {{ $category->status == 0 ?'selected':''}}>{{ trans('admin.Inactive') }}</option>
+                      <option style="color: black" value="1" {{$category->status == 1?'selected':'' }}>{{ trans('admin.Active') }}</option>
+                      @error('status')
+                      <p class="invalid-feedback">{{ $message }}</p>
+                      @enderror
+                    </select>
               </div>
           </div>
 
@@ -78,8 +96,9 @@
 
             <div  class="form-group  mb-3">
                 <label for="">{{ trans('admin.Image') }}</label> 
-                <input  style="color:#0090E7; font-size:24px" type="file"  name="image_ar" class="form-control">
-            </div>
+                <input  style="color:#0090E7; font-size:24px" type="file"  name="image_ar" class="form-control" >
+               
+              </div>
 
             {{-- @if($category->image_en)
             <img style="width: 75px;height:75px" src="{{ asset('assets/uploads/Category_en/'.$category->image_en) }}" alt="image">

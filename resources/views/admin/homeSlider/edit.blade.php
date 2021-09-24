@@ -1,73 +1,4 @@
-{{-- @extends('admin.layouts.app')
-@section('content')
 
-<h1 style=" color:rgb(151, 35, 35); text-align:center; font-size:50px;margin-top:20px"> Add Slider</h1>
-
-<div >
-
-<hr style="color:greenyellow"
-            <div class="panel-body">
-                <form action="{{ route('store-slider') }}" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                 @csrf
-                 <div class="form-group">
-                     <label class="col-md-4 control-lable"></label>
-                     <div class="col-md-4">
-                         <input type="text" placeholder="Title" class="form-control input-md">
-                     </div>
-                 </div>
-                 <div class="form-group">
-                    <label class="col-md-4 control-lable">Subtitle</label>
-                    <div class="col-md-4">
-                        <input type="text" placeholder="Subtitle" class="form-control input-md">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-lable">Price</label>
-                    <div class="col-md-4">
-                        <input type="text" placeholder="Price" class="form-control input-md">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-lable">Link</label>
-                    <div class="col-md-4">
-                        <input type="text" placeholder="Link" class="form-control input-md">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-lable">Price</label>
-                    <div class="col-md-4">
-                        <input type="number" placeholder="price" class="form-control input-md">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-lable">Image </label>
-                    <div class="col-md-4">
-                        <input type="file"  class="input-file">
-                    </div>
-                </div>
-                
-                
-                    <div class="form-group mb-3">
-                        <button  type="submit" class="btn btn-primary btn-le"> Add Slider
-                        </button>
-                    </div>
-                </div>
-                </form>
-
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-</div>
-
-
-    
-</div>
-
-@endsection --}}
 @extends('admin.layouts.app')
 @section('content')
 <div class="card">
@@ -79,18 +10,19 @@
     <div  class="card-body">
         <div style="position: relative; top: 20px; right: -20px">
             @include('admin.alerts.success')
-            <a style="margin-bottom: 20px;" href="{{ route('homeslider') }}" class="btn btn-success btn-lg"><span style="text-align: center">{{ trans('admin.SliderHome') }}</span></a>
+            <a style="margin-bottom: 20px;" href="{{ route('homeslider') }}" class="btn btn-success btn-lg"><span style="text-align: center">{{ trans('admin.main') }}</span></a>
 
         <form action="{{ url('admin/update-slider/'.$slider->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
            <div class="row">
             <div class="col-md-12 mb-3">
-                <label style="color: #0090E7">   {{ trans('admin.choose the slider') }} </label>
+                <label style="color: #0090E7">   {{ trans('admin.slider Position') }} </label>
                     <select class="form-control" name="type">
-                      
-                        <option >{{ trans('admin.top') }}</option>
-                        <option >{{ trans('admin.bottom') }}</option>
+                        <option style="color:rgb(216, 128, 128); " value="">{{ trans('admin.choose the slider position') }}</option>
+
+                        <option value="top" {{$slider->type == 'top'?'selected':'' }}>{{ trans('admin.top') }}</option>
+                        <option value="bottom"{{$slider->type == 'bottom'?'selected':'' }}>{{ trans('admin.bottom') }}</option>
                     </select>
                 </div>
             <div  class="col-md-12  mb-3">
@@ -102,7 +34,7 @@
                 <input   value="{{ $slider->subtitle}}"style=" font-family:Times New Roman; font-size:24px" type="text"  name="subtitle" class="form-control">
             </div>
 
-            <div  class="col-md-12 mb-3">
+            <div  class="col-md-6 mb-3">
                 <label for="">{{ trans('admin.Link') }}</label>
                 <input  value="{{ $slider->link}}" style="font-family:Times New Roman; font-size:24px" type="text"  name="link" class="form-control">
             </div>
@@ -113,11 +45,13 @@
 
 
 
-            <div class="col-md-4 mb-3">
+            <div class="col-md-6 mb-3">
                 <label >{{ trans('admin.Status') }} </label>
-                    <select  class="form-control" name="status">
-                        <option value="0">{{ trans('admin.Inactive') }}</option>
-                        <option value="1">{{ trans('admin.Active') }}</option>
+                    <select style=" font-family:Times New Roman; font-size:24px"  class="form-control" name="status">
+                        <option style="color:rgb(216, 128, 128); " value="">{{ trans('admin.select the status') }}</option>
+
+                        <option value="0" {{$slider->status == 0?'selected':'' }}>{{ trans('admin.Inactive') }}</option>
+                        <option value="1"{{$slider->status == 1?'selected':'' }}>{{ trans('admin.Active') }}</option>
                     </select>
                 </div>
             </div>
@@ -132,7 +66,7 @@
 
         
 
-            <div  class="form-group mb-3">
+            <div  class="form-group mb-5">
                 <button type="submit" class="btn btn-primary btn-lg"> {{ trans('admin.edit') }} </button>
             </div>
           

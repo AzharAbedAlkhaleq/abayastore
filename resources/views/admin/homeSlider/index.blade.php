@@ -35,22 +35,40 @@
                                     <th>{{ trans('admin.subtitle') }}</th>
                                     <th>{{ trans('admin.Link') }}</th>
                                     <th>{{ trans('admin.Status') }}</th>
-                                    <th> {{ trans('admin.Slider Image') }}</th>
-                                   
-                                    <th>Action</th>
+                                    <th> {{ trans('admin.imageSlider') }}</th>
+                                    <th>{{ trans('admin.Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                               @foreach ($sliders as $slider)
-                                <tr>
-                                <td>{{ $slider->id }}</td>  
-                                <td>{{ $slider->type }}</td>
+                                <tr style="text-align: center">
+                                <td>{{ $slider->id }}</td> 
+
+                                <td>
+                                    @if($slider->type =='top')
+                                   <span style="color: blue"> {{ trans('admin.top') }}
+                                   </span>
+                                    @else
+                                    {{ trans('admin.bottom') }}
+                                     @endif
+                                    {{-- {{ $slider->type }}</td> --}}
                                
                                 <td>{{ $slider->title }}</td> 
                                 <td>{{ $slider->subtitle }}</td>  
                                 {{-- <td>{{ $slider->price }}</td> --}}
                                 <td>{{ $slider->link }}</td> 
-                                <td>{{ $slider->status==1 ? 'Active':'Inactive' }}</td>
+                                <td>
+                                    <?php if($slider->status ==1){?>
+            
+                                    <a href="{{ url('admin/edit-slider/'.$slider->id) }}" style="color:green;text-decoration:none"> {{ trans('admin.Active') }}</a>
+                                    
+                                    <?php }else {?>
+                                      <a href="{{ url('admin/edit-slider/'.$slider->id) }}" style="color: gray; text-decoration:none"> {{ trans('admin.Inactive') }}</a>
+                                    
+                                    <?php }?>
+            
+                                  </td>
+                                {{-- <td>{{ $slider->status==1 ? 'Active':'Inactive' }}</td> --}}
                                 
                                 <td>
                                     <img src="{{ asset('assets/uploads/Slider/'.$slider->imageSlider) }}" style="width: 100px;height:90px" alt="English Image">  

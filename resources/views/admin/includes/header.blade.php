@@ -24,7 +24,7 @@
                 </div>
             </li>
         </ul>
-        <ul class="navbar-nav ml-auto">
+        {{-- <ul class="navbar-nav ml-auto">
             <li>
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
@@ -51,8 +51,8 @@
                             </li>
                             <li class="n-title">
                                 <p class="m-b-0">EARLIER</p>
-                            </li>
-                            <li class="notification">
+                            </li> --}}
+                            {{-- <li class="notification">
                                 <div class="media">
                                     <img class="img-radius" src="{{ asset('dashboard') }}/assets/user/avatar-2.jpg" alt="Generic placeholder image">
                                     <div class="media-body">
@@ -109,7 +109,7 @@
             </li>
         </ul>
     </div>
-    
+     --}}
 
 </header>
 <!-- [ Header ] end -->

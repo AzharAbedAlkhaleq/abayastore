@@ -12,16 +12,16 @@
         <form action="{{ route('store-color') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="from-group col mb-3"> 
-            <a style="margin-bottom: 20px;" href="{{ route('colors') }}" class="btn btn-primary btn-lg"><span style="text-align: center">{{ trans('admin.colors') }}</span></a>
+            <a style="margin-bottom: 20px;" href="{{ route('colors') }}" class="btn btn-primary btn-lg"><span style="text-align: center">{{ trans('admin.main') }}</span></a>
 
             </div>
               <div  class=" from-group col-md-6  mb-3">
                 <label for="">{{ trans('admin.add color') }}</label>
-                <input style="font-family:Times New Roman; " type="text"  name="color" class="form-control">
+                <input style="font-family:Times New Roman; " type="text"  name="color" class="form-control"  @error ('color') is-invalid @enderror>
+             @error('color')
+                <p class="invalid-feedback">{{ $message }}</p>
+                @enderror
             </div>
-
-
-    
 
           <div class="from-group col-md-6 mb-4">
             <label >{{ trans('admin.Status') }} </label>

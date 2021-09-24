@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\EditorController;
+use App\Http\Controllers\FirebaseController;
+use App\Http\Controllers\paymentController;
 use App\Http\Controllers\User\SocialiteController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\VerificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +20,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::post('sendSMSCode', [VerificationController::class , 'sendSMSCode'])->name('sendSMSCode');
+Route::post('verifySMSCode', ['uses' => 'VerificationController@verifySMSCode']);
 //Route::group(['prefix' => 'user'], function () {
 
     Route::get('login', [AuthController::class, 'login'])->name('login');
-    //Route::post('login', [AuthController::class, 'auth']);
+    Route::post('login', [AuthController::class, 'auth']);
  
 Route::get('/',[HomeController::class,'index'])->name('user');
 Route::get('user/categories',[HomeController::class,'category']);
@@ -41,3 +45,7 @@ Route::get('editor',[EditorController::class,'editor']);
 
  Route::get('auth/twitter', [SocialiteController::class, 'redirectToTW'])->name('login.twitter');
 Route::get('callback/twitter', [SocialiteController::class, 'handleCallbackTW']);
+
+//FireBase Mobile OTP Uth
+Route::get('firebase-auth',[FirebaseController::class,'index']);
+Route::get('pay',[paymentController::class,'pay']);

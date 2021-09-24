@@ -18,7 +18,17 @@ class ColorController extends Controller
       }
       public function store(Request $request){
           //dd($request->all());
+//           $request->validate([
+//             'color'=>'required|min:3|max:100|unique:colors,color',
+//             // 'status'=>'required|in:1,0',
+//           ],[
+//           'color.required'=>'مطلوب!، الرجاء إدخال اللون',
+//           'color.min'=>' يجب ألا يقل اللون عن ثلاثة احرف',
+//           'color.max'=>' يجب ألا يزيد اللون عن مائة حرف',
+//           'color.unique'=>' هذا اللون موجود بالفعل ، رجاءا أدخل لون آخر',
 
+//           ]);
+// //dd($request->all());
          $color=new Color();
           $color->color=$request->input('color');
 

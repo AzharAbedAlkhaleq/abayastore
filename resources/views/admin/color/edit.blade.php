@@ -24,8 +24,8 @@
       <label >{{ trans('admin.Status') }} </label>
           <select style=" color:rgb(151, 35, 35);font-size:24px" class="form-control"   name="status">
               <option style="color:rgb(151, 35, 35);">{{ trans('admin.select the status') }}</option>
-              <option style="color: black" value="0">{{ trans('admin.Inactive') }}</option>
-              <option style="color: black" value="1">{{ trans('admin.Active') }}</option>
+              <option style="color: black" value="0" {{ $color->status == 0 ?'selected':''}}>{{ trans('admin.Inactive') }}</option>
+              <option style="color: black" value="1" {{$color->status == 1?'selected':'' }}>{{ trans('admin.Active') }}</option>
           </select>
       </div>
       

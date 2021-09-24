@@ -7,7 +7,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h4  style="text-align: center" class="modal-title" > {{ trans('admin.Delete Product!') }}</h4>
+              <h4  style="text-align: center" class="modal-title" > {{ trans('admin.delete banner') }}</h4>
               <button type="button" class="btn-close btn btn-primary" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
               </button>

@@ -4,12 +4,14 @@
     <div class="card-header">
         <h1 style=" color:rgb(151, 35, 35); text-align:center; font-size:50px;margin-top:20px"> {{trans('admin.Products')}} </h1>
     </div>
-    <div>
-     <div class="card-body">
-     <div>
-        <a style="margin-bottom:15px;" href="{{url('admin/add-product') }}" class="btn btn-success "><i class="feather icon-plus"></i>{{trans('admin.add product')}}</a>
-   
-     </div>
+    <div class="card-body">
+      <a style="margin-bottom:25px;" href="{{url('admin/add-product') }}" class="btn btn-success "><i class="feather icon-plus"></i>{{trans('admin.add product')}}</a>
+
+    {{-- <div style="margin-bottom: 20px; margin-top:20px"> --}}
+      <form  action="{{ route('search') }}"  method="get">
+        <input style=" margin-top:30;margin-bottom:25px;" type="text" name="search" placeholder="ابحث بالاسم" style="color:blue;">
+        <button type="submit" class="btn btn-secondary" style="color: white;">{{ trans('admin.search') }}</button>
+      </form>
       <table  class="table table-bordered border-primary">
         
           <thead class="table-light">
@@ -37,7 +39,7 @@
                       <td>{{$product->name_ar	}}</td>
                       <td>{{ $product->name_en}}</td>
                     <td >
-                        <img style="height: 70px;width:70px" src="{{ asset('assets/uploads/product_ar/'.$product->image_ar) }}" style="width: 60px" alt="arabic Image">  
+                        <img style="height:70px;width:70px" src="{{ asset('assets/uploads/product/'.$product->image) }}" alt="arabic Image">  
                     </td>
                    
                     <td>

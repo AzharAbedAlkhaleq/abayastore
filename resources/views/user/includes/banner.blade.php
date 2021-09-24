@@ -3,7 +3,7 @@
         <div class="col-md-6 col-sm-12 pt-2">
             <div class="">
                 <?php  
-                $banners=App\Models\Banner::where('location','right middle')->latest()->first();  
+                $banners=App\Models\Banner::where('location','right')->latest()->first();  
          ?>
 
 <a href="{{ $banners->link }}" target="_blanket">
@@ -15,7 +15,7 @@
         <div class="col-md-6 col-sm-12 pt-2">
             <div class="">
                 <?php  
-                $banners=App\Models\Banner::where('location','left middle')->latest()->first();  
+                $banners=App\Models\Banner::where('location','left ')->latest()->first();  
          ?>
 <a href="{{ $banners->link }}" target="_blanket">
 <img src="{{ asset('assets/uploads/banners/'.$banners->banner_image)}}" class="" width="543px" height="243px">

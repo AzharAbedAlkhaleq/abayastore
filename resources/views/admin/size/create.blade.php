@@ -12,7 +12,7 @@
         <form action="{{ route('store-size') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="from-group col mb-3"> 
-            <a style="margin-bottom: 20px;" href="{{ route('sizes') }}" class="btn btn-primary btn-lg"><span style="text-align: center">{{ trans('admin.sizes') }}</span></a>
+            <a style="margin-bottom: 20px;" href="{{ route('sizes') }}" class="btn btn-primary btn-lg"><span style="text-align: center">{{ trans('admin.main') }}</span></a>
 
             </div>
               <div  class=" from-group col-md-6  mb-3">
@@ -26,7 +26,7 @@
           <div class="from-group col-md-6 mb-4">
             <label >{{ trans('admin.Status') }} </label>
                 <select style=" color:rgb(151, 35, 35);font-size:24px" class="form-control"   name="status">
-                    <option style="color:rgb(151, 35, 35);">{{ trans('admin.select the status') }}</option>
+                    <option style="color:rgb(151, 35, 35);" value="">{{ trans('admin.select the status') }}</option>
                     <option style="color: black" value="0">{{ trans('admin.Inactive') }}</option>
                     <option style="color: black" value="1">{{ trans('admin.Active') }}</option>
                 </select>
@@ -41,3 +41,4 @@
         </form>
      
 @endsection
+

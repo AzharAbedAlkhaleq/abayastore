@@ -8,7 +8,7 @@
   <div  class="card-body">
     <div style="position: relative; top: 20px; right: -20px">
         @include('admin.alerts.success')
-        <a style="margin-bottom: 20px;" href="{{ route('homebanner') }}" class="btn btn-success btn-lg"><span style="text-align: center">{{trans('admin.All Sliders') }}</span></a>
+        <a style="margin-bottom: 20px;" href="{{ route('homebanner') }}" class="btn btn-success btn-lg"><span style="text-align: center">{{trans('admin.main') }}</span></a>
 
         <form action="{{ url('admin/update-banner/'.$banner->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -37,28 +37,27 @@
                 </select>
               </div>    
                --}}
-              <div class="col-md-12 mb-3">
+               <div class="col-md-12 mb-3">
                 <label style="color: blue; font-size:25px"> <span style="color: red">*</span> {{ trans('admin.location') }} </label>
-                <select value="{{ $banner->location }}" style=" font-size:20px"  class="form-select"    name="location">
-                  <option >{{ trans('admin.Select the location') }}</option>
-                  <option >top</option>
-                   <option>right middle</option>
-                   <option>left middle</option>
-                  <option >bottom</option>
+                <select  style=" font-size:20px"  class="form-select"  name="location">
+                  <option value="">{{ trans('admin.Select the location') }}</option>
+                  <option  value="top"{{$banner->type == 'top'?'selected':''}}>{{ trans('admin.top banner') }}</option>
+                   <option value="bottom" {{$banner->type == 'bottom'?'selected':''}}> {{ trans('admin.bottom banner') }}</option>
+                   <option value="right" {{$banner->type == 'right'?'selected':''}}> {{ trans('admin.right banner') }}</option>
+                  <option value="left" {{$banner->type == 'left'?'selected':''}}> {{ trans('admin.left banner') }}</option>
                   
                 </select>
-              </div>        
-             
+              </div> 
 
               <div  class="col-md-12  mb-3">
                 <label for="">{{ trans('admin.Link') }}</label>
                 <input style=" font-family:Times New Roman; font-size:24px"  value="{{$banner->link}}"  type="text"  name="link" class="form-control">
             </div>
-
+<div class="col">
             @if($banner->banner_image)
             <img style="width: 75px;height:75px;text-align:center;" src="{{ asset('assets/uploads/banners/'.$banner->banner_image) }}" alt="image"> 
             @endif
- 
+</div>
 
             <div  class="col-md-12 mb-3">
                 <label for="">{{ trans('admin.banner image') }}</label> 

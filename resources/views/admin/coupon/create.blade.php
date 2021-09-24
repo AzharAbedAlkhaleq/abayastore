@@ -16,41 +16,59 @@
             @csrf
            <div class="row">
 
-            <div class="form-check form-group  mb-3">
-               <div
-                <label for="">{{ trans('admin.coupon option') }}</label>
-               </div >
-                <input class="form-check-input" type="radio" name="coupon_option" value="Automatic">
-                <label class="form-check-label" >
-               Automatic  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </label>
-             
-           
-                <input class="form-check-input" type="radio" name="coupon_option" value="Manual">
-                <label class="form-check-label" ">
-                Manual
-                </label>
-              </div>
-
-            <div  class="col-md-12  mb-3">
-                <label for="">SubTitle</label>
-                <input style=" font-family:Times New Roman; font-size:24px" type="text"  name="subtitle" class="form-control">
+            
+            <div  class="col-md-4  mb-3">
+                <label for="">{{ trans('admin.code') }}</label>
+                <input style=" font-family:Times New Roman; font-size:20px" type="text"  name="code" class="form-control">
             </div>
 
-            <div class="col-md-4 mb-5">
-                <label >Status </label>
-                    <select class="form-control">
+            <div class="col-md-4 mb-3">
+                <label >{{ trans('admin.type') }} </label>
+                    <select style=" font-family:Times New Roman; font-size:20px" class="form-control" name="type">
+                        <option style="color:rgb(151, 35, 35);">{{ trans('admin.select the type') }}</option>
+                        <option value="{{ trans('admin.fixed') }}"{{ old('type')=='fixed'? 'slected':null }}>{{ trans('admin.fixed') }}</option>
+                        <option value="{{ trans('admin.percentage') }}"{{ old('type')=='percentage'? 'slected':null }}>{{ trans('admin.percentage') }}</option>
+                    </select>
+                </div>
+
+            <div class="col-md-4 mb-3">
+                <label >{{ trans('admin.Status') }} </label>
+                    <select  style=" font-family:Times New Roman; font-size:20px" class="form-control" name="status">
+                        <option style="color:rgb(151, 35, 35);">{{ trans('admin.select the status') }}</option>
                         <option value="1">{{ trans('admin.Active') }}</option>
                         <option value="0">{{ trans('admin.Inactive') }}</option>
                     </select>
                 </div>
-            </div>
+                <div  class="col-md-4  mb-3">
+                    <label for="">{{ trans('admin.value') }}</label>
+                    <input style=" font-family:Times New Roman; font-size:20px" type="number"  name="value" class="form-control">
+                </div>
+                  
+                    <div  class="col-md-4  mb-3">
+                        <label for="">{{ trans('admin.start Date') }}</label>
+                        <input style=" font-family:Times New Roman; font-size:20px" type="date"  name="start_date" class="form-control">
+                    </div>
+                    <div  class="col-md-4  mb-3">
+                        <label for="">{{ trans('admin.Expiry Date') }}</label>
+                        <input style=" font-family:Times New Roman; font-size:20px" type="date"  name="expire_date" class="form-control">
+                    </div>
+                    {{-- <label for=""> {{ trans('admin.description') }}</label>
+                    <div class="mb-3">
+                      <textarea  style="font-size: 28px; font-family:'Times New Roman', Times, serif" type="text" name="description" class="form-control" id="descrpt">
+                      </textarea>
+                    </div> --}}
+                 
+                    
+                    {{-- <div  class="col-md-4  mb-5">
+                        <label for="">{{ trans('admin.use times') }}</label>
+                        <input style=" font-family:Times New Roman; font-size:20px" type="number"  name="use_time" class="form-control">
+                    </div> --}}
+                   
+                    <div class="col mb-5">
+                        <button type="submit" class="btn btn-primary btn-lg"> {{ trans('admin.add coupon') }} </button>
+                    </div>
 
-            <div style="position: relative;bottom: 20px; right: -400px" class="form-group mb-3">
-                <button type="submit" class="btn btn-primary btn-lg"> {{ trans('admin.add coupon') }} </button>
-            </div>
           
-           </div>
         </form>
      
 

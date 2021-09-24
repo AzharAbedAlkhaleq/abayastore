@@ -1,9 +1,14 @@
 @extends('admin.layouts.app')
 @section('content')
-<div class=>
+<div class="">
 
         <h1 style=" color:rgb(131, 71, 71); text-align:center; font-size:35px; margin-top:20px">  {{ trans('admin.Categories') }} </h1>
-    
+        <div style="margin-bottom: 20px; margin-top:20px">
+        <form  action="{{ route('search') }}"  method="get">
+          <input type="text" name="search" placeholder="ابحث بالاسم" style="color:blue;">
+          <button type="submit" class="btn btn-secondary" style="color: white;">{{ trans('admin.search') }}</button>
+        </form>
+        </div>
       <table  class="table table-bordered border-primary">
 
             <a style="margin-bottom:15px" href="{{url('admin/add-category') }}" class="btn btn-success "><i class="feather icon-plus"></i>{{ trans('admin. Add Category') }}</a>
@@ -47,7 +52,7 @@
                         
                          <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#ModalDelete{{ $category->id }}">{{ trans('admin.delete') }} </a>
                     </td>
-@include('modal.delete')
+                     @include('modal.delete')
                   </tr>
                     @endforeach
                  
