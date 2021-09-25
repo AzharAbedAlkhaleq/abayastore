@@ -43,7 +43,7 @@
      background-color: #e8e7e4;
 }
 .about_us .row .boxx{
-    text-align: right; 
+    text-align: right;
       height: 400px
 }
 .about_us_main .batha{
@@ -68,17 +68,17 @@
 .about_us .row .img img{
     width: 100%;
     height: 400px;
-        
+
 }
 @media (max-width: 768px) {
     .about_us .row .boxx{
-    text-align: right; 
+    text-align: right;
      height: 100%;
 }
    .about_us .row .img img{
     width: 100%;
     height: 400px;
-        
+
 }
     .about_us_main .batha .bx{
          border-left: none;
@@ -92,7 +92,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    
+
 */
     background-color: #000;
     color: #fff:
@@ -119,7 +119,7 @@
 }
 .main .lgside  .hart i{
     font-size: 25px;
-} 
+}
 .main .lgside  i{
     font-size: 20px;
 }
@@ -148,7 +148,7 @@ nav {
 @media (min-width: 768px) {
 .bar .box {
     border-left: 1px solid #bebdbd;
-}   
+}
 }
 
 .bar .box p {
@@ -237,7 +237,7 @@ nav {
 .category .swiper-slide {
     background-position: center;
     background-size: cover;
- 
+
 }
 .category .swiper-slide img {
     display: block;
@@ -266,7 +266,7 @@ nav {
 .mainslider .swiper-slide {
     background-position: center;
     background-size: cover;
- 
+
 }
 .mainslider .swiper-slide img {
     display: block;
@@ -274,7 +274,7 @@ nav {
         position: relative;
     height: 100%;
 
-    
+
 }
 
 .mainslider{
@@ -306,7 +306,7 @@ nav {
 }
 .mainslider .swiper {
     height: 400px;
-    
+
     }
     .mainslider  a{
          top: 52%;
@@ -320,7 +320,7 @@ nav {
         width: 100%;
  height: 400px;
 }
-    
+
 }
 .slider .swiper {
     width: 100%;
@@ -356,12 +356,12 @@ nav {
             border: 1px solid #a09e9e;
     padding: 13px;
 }
-.categorytable .down .col-md-7 .bg{
-background-image: url(../images/bgislamc.jpeg);
-     background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-}
+/*.categorytable .down .col-md-7 .bg{*/
+/*background-image: url(../images/bgislamc.jpeg);*/
+/*     background-repeat: no-repeat;*/
+/*    background-position: center;*/
+/*    background-size: contain;*/
+/*}*/
 .category .advimg img{
     width: 100%;
     height: 382px;
@@ -494,11 +494,11 @@ color: #f44218;
 .step-form-1 button{
     position: absolute;
     right: 0;
-    top: 260px;
+    bottom: 50px;
     width: 200px;
     background-color: #d64f4f;
     color: #fff;
-    
+
     border-radius: 5px;
 }
 .phone a{
@@ -531,7 +531,7 @@ color: #f44218;
     width: 300px;
     background-color: #d64f4f;
     color: #fff;
-    
+
     border-radius: 5px;
 }
 .leftside .brd{
@@ -551,15 +551,15 @@ color: #f44218;
     width: 300px;
     background-color: #d64f4f;
     color: #fff;
-    
+
     border-radius: 5px;
 }
 .step-form-4 button{
      width: 250px;
     background-color: #d64f4f;
     color: #fff;
-    
-    border-radius: 5px; 
+
+    border-radius: 5px;
 }
 .step-form-3 input[type=text]{
  border: none;
@@ -716,8 +716,8 @@ color: #f44218;
     color: #626a6a;
     text-decoration-line: underline;
     text-decoration-color: #ded02b;
-    
-       
+
+
 
 }
 .shoping_container  .bg-shoping{
@@ -830,7 +830,7 @@ height: 300px;
 }
 .products_main .products .rightside{
 text-align: right;
-    border:1px solid #cdcecb; 
+    border:1px solid #cdcecb;
 }
 .products_main .products .leftside{
     text-align: right;
@@ -842,7 +842,7 @@ text-align: right;
     color: #464545;
 }
 .products_main .products .leftside .product{
-        border-top:1px solid #dbe0e0; 
+        border-top:1px solid #dbe0e0;
 }
 .products_main .products .leftside .product p a i{
 color: #000;
@@ -888,11 +888,11 @@ color: #000;
     content: '★ ';
 }
 .products_main .rates  .rate > input:checked ~ label {
-    color: #ffc700;    
+    color: #ffc700;
 }
 .products_main .rates  .rate:not(:checked) > label:hover,
 .products_main .rates  .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
+    color: #deb217;
 }
 .products_main .rates  .rate > input:checked + label:hover,
 .products_main .rates  .rate > input:checked + label:hover ~ label,
@@ -906,7 +906,7 @@ color: #000;
     width: 20px;
 }
 .marka p{
-    border-bottom: 1px solid #cdcecb; 
+    border-bottom: 1px solid #cdcecb;
 }
 .product_rated {
     text-align: right;
@@ -916,23 +916,23 @@ color: #000;
     color:#313030;
 }
 .charg .p1{
-        border-bottom: 1px solid #fff; 
+        border-bottom: 1px solid #fff;
 }
 .charg i{
     font-size: 25px;
 }
 .desc{
-      border: 1px solid #e2dede; 
+      border: 1px solid #e2dede;
     color: #fff;
 }
 .desc .nav-tabs{
     border-bottom: none;
 }
 .desc a{
-     color: #fff; 
+     color: #fff;
 }
 .desc .des{
-     border-bottom: 1px solid #d2e856; 
+     border-bottom: 1px solid #d2e856;
 
 }
 .reve{
@@ -947,7 +947,7 @@ color: #000;
     text-align: right;
 }
 .main_cart .rightside .row{
-      border: 1px solid #dededb; 
+      border: 1px solid #dededb;
 }
 .main_cart .leftside .up .h4{
     background: #e89867;
@@ -963,7 +963,7 @@ color: #000;
 }
 .contactus .top h2{
     text-decoration-line: underline;
-    text-decoration-color: #b29554; 
+    text-decoration-color: #b29554;
 }
 .contactus .top p{
     color: #8a8b8d;
@@ -987,7 +987,7 @@ position: absolute;
     border-radius: 40px;
     color: #464545;
     }
-  
+
     .step-form-1 button{
     position: absolute;
     right: 0;
@@ -995,7 +995,7 @@ position: absolute;
     width: 200px;
     background-color: #d64f4f;
     color: #fff;
-    
+
     border-radius: 5px;
 }
     .step-form-2 .namee input[type=text]{
@@ -1009,7 +1009,7 @@ position: absolute;
     width: 300px;
     background-color: #d64f4f;
     color: #fff;
-    
+
     border-radius: 5px;
 }
     .step-form-3 button{
@@ -1019,14 +1019,14 @@ position: absolute;
     width: 300px;
     background-color: #d64f4f;
     color: #fff;
-    
+
     border-radius: 5px;
 }
     .step-form-4 button{
      width: 100px;
     background-color: #d64f4f;
     color: #fff;
-    
-    border-radius: 5px; 
+
+    border-radius: 5px;
 }
 }

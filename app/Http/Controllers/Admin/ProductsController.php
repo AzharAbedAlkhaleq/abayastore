@@ -281,7 +281,7 @@ public  function update(Request $request,$id)
         $product->color()->update(
             [
                 'product_id'=>$product->id,
-                'color_id'=>$size
+                'color_id'=>$color
             ]
         );
     }

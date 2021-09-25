@@ -24,7 +24,7 @@ class BannerController extends Controller
       public function store(Request $request){
 
        $request->validate([
-           'link'=>'required',
+//           'link'=>'required',
            'location'=>'required',
            'banner_image'=>'required',
        ],[
@@ -38,7 +38,7 @@ class BannerController extends Controller
         $banner->location=$request->input('location');
           if($request->hasFile('banner_image')){
               $filename = saveImage($request->file('banner_image'),'assets/uploads/banners/');
-              $banner->banner_image=$filename;
+              $banner->banner_image = $filename;
               $banner->save();
           }
         $banner->save();
@@ -55,17 +55,13 @@ class BannerController extends Controller
       public  function update(Request $request,$id)
 {
     $request->validate([
-        'link'=>'required',
+//        'link'=>'required',
         'location'=>'required',
     ],[
         'link.required'=>'يجب ادخال الرابط' ,
         'location.required'=>'يجب ادخال موقع الاعلان' ,
     ]);
  $banner =Banner::find($id);
-
-
-
-
      $banner->location=$request->input('location');
     $banner->link=$request->input('link');
      $banner->update();

@@ -3,8 +3,12 @@
         <div class="advimg col-md-3 col-sm-12">
             <?php
             $banners=App\Models\Banner::where('location','bottom')->latest()->first();
-     ?>
+            ?>
+            @if($banners)
             <img src="{{ asset('assets/uploads/banners/'.$banners->banner_image)}}" class="w-100">
+                @else
+                    <img src="{{ asset('dashboard/1631697847.jpg')}}" width="543px" height="243px">
+                @endif
         </div>
         {{-- @foreach ( $categories as $category ) --}}
         <div class="col-md-9 col-sm-12">
@@ -25,7 +29,7 @@
                                 <img src="{{ asset('assets/uploads/Category_ar/'.$category->image_ar)}}" class="pt-3">
                             </div>
                             <div class="col-1 pt-5 mt-5 ">
-                              
+
                             </div>
                         </div>
 

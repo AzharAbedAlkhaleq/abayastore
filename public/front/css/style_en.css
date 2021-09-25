@@ -4,7 +4,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    
+
 */
     background-color: #000;
     color: #fff:
@@ -31,7 +31,7 @@
 }
 .main .lgside  .hart i{
     font-size: 25px;
-} 
+}
 .main .lgside  i{
     font-size: 20px;
 }
@@ -60,7 +60,7 @@ nav {
 @media (min-width: 768px) {
 .bar .box {
     border-right: 1px solid #bebdbd;
-}   
+}
 }
 
 .bar .box p {
@@ -149,7 +149,7 @@ nav {
 .mainslider .swiper-slide {
     background-position: center;
     background-size: cover;
- 
+
 }
 .mainslider .swiper-slide img {
     display: block;
@@ -157,7 +157,7 @@ nav {
         position: relative;
     height: 100%;
 
-    
+
 }
 
 .mainslider{
@@ -182,7 +182,7 @@ nav {
 }
 .mainslider .swiper {
     height: 400px;
-    
+
     }
      .mainslider  a{
          top: 52%;
@@ -196,7 +196,7 @@ nav {
         width: 100%;
  height: 400px;
 }
-    
+
 }
 .slider .swiper {
     width: 100%;
@@ -232,12 +232,12 @@ nav {
             border: 1px solid #a09e9e;
     padding: 13px;
 }
-.categorytable .down .col-md-7 .bg{
-background-image: url(../images/bgislamc.jpeg);
-     background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-}
+/*.categorytable .down .col-md-7 .bg{*/
+/*background-image: url(../images/bgislamc.jpeg);*/
+/*     background-repeat: no-repeat;*/
+/*    background-position: center;*/
+/*    background-size: contain;*/
+/*}*/
 .category .advimg img{
     width: 100%;
     height: 382px;
@@ -370,11 +370,11 @@ color: #f44218;
 .step-form-1 button{
     position: absolute;
     left: 0;
-    top: 260px;
+    bottom: 50px;
     width: 200px;
     background-color: #d64f4f;
     color: #fff;
-    
+
     border-radius: 5px;
 }
 .phone a{
@@ -406,7 +406,7 @@ color: #f44218;
     width: 300px;
     background-color: #d64f4f;
     color: #fff;
-    
+
     border-radius: 5px;
 }
 .leftside{
@@ -429,15 +429,15 @@ color: #f44218;
     width: 300px;
     background-color: #d64f4f;
     color: #fff;
-    
+
     border-radius: 5px;
 }
 .step-form-4 button{
      width: 250px;
     background-color: #d64f4f;
     color: #fff;
-    
-    border-radius: 5px; 
+
+    border-radius: 5px;
 }
 .step-form-3 input[type=text]{
  border: none;
@@ -695,7 +695,7 @@ height: 300px;
 }
 .products_main .products .rightside{
 text-align: left;
-    border:1px solid #cdcecb; 
+    border:1px solid #cdcecb;
 }
 .products_main .products .leftside{
     text-align: left;
@@ -707,7 +707,7 @@ text-align: left;
     color: #464545;
 }
 .products_main .products .leftside .product{
-        border-top:1px solid #dbe0e0; 
+        border-top:1px solid #dbe0e0;
 }
 .products_main .products .leftside .product p a i{
 color: #000;
@@ -753,11 +753,11 @@ color: #000;
     content: '★ ';
 }
 .products_main .rates  .rate > input:checked ~ label {
-    color: #ffc700;    
+    color: #ffc700;
 }
 .products_main .rates  .rate:not(:checked) > label:hover,
 .products_main .rates  .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
+    color: #deb217;
 }
 .products_main .rates  .rate > input:checked + label:hover,
 .products_main .rates  .rate > input:checked + label:hover ~ label,
@@ -771,7 +771,7 @@ color: #000;
     width: 20px;
 }
 .marka p{
-    border-bottom: 1px solid #cdcecb; 
+    border-bottom: 1px solid #cdcecb;
 }
 @media (max-width: 850px) {
 
@@ -801,7 +801,7 @@ position: absolute;
     width: 200px;
     background-color: #d64f4f;
     color: #fff;
-    
+
     border-radius: 5px;
 }
     .step-form-2 .namee input[type=text]{
@@ -815,7 +815,7 @@ position: absolute;
     width: 300px;
     background-color: #d64f4f;
     color: #fff;
-    
+
     border-radius: 5px;
 }
     .step-form-3 button{
@@ -825,15 +825,15 @@ position: absolute;
     width: 300px;
     background-color: #d64f4f;
     color: #fff;
-    
+
     border-radius: 5px;
 }
     .step-form-4 button{
      width: 100px;
     background-color: #d64f4f;
     color: #fff;
-    
-    border-radius: 5px; 
+
+    border-radius: 5px;
 }
 }
 
