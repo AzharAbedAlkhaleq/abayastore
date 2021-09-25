@@ -44,7 +44,6 @@
 
                     <td>
                       <?php if($product->status ==1){?>
-
                       <a href="{{ url('admin/edit-product/'.$product->id) }}" style="color:green;text-decoration:none"> {{ trans('admin.Active') }}</a>
 
                       <?php }else {?>
@@ -92,6 +91,7 @@
               </tbody>
           </thead>
       </table>
+
       {{ $products->links() }}
      </div>
 
