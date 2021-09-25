@@ -109,7 +109,7 @@
                 <div class="product row pt-2">
                  @foreach ($arrival_products as $arrival_product )
                  <div class="col-md-4 col-sm-2 text-center">
-                    <img src="{{ asset('assets/uploads/product_ar/'.$arrival_product->image_ar) }}" alt="women">
+                    <img src="{{ asset('assets/uploads/product/'.$arrival_product->image_ar) }}" alt="women">
                     <h6 class="pt-3 pb-2">{{$arrival_product->name_ar }}</h6>
                     <p><a href="#" class="px-2"><i class="far fa-heart"></i></a> OMR {{ $arrival_product->orginal_price }}</p>
                 </div>

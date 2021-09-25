@@ -37,7 +37,7 @@
                     <div class="col-md-5 col-sm-12 right">
                         @foreach($category->product as $product)
                         <div class="rightdown row pt-3">
-                            <div class="col-4"> <img src="{{ asset('assets/uploads/product_ar/'.$product->image_ar)}}" ></div>
+                            <div class="col-4"> <img src="{{ asset('assets/uploads/product/'.$product->image_ar)}}" ></div>
                             <div class="col-8 ">
                                 <h4>{{$product->name_ar}}</h4>
                                 <h6 style="color: red">OMR {{$product->orginal_price}}</h6>
