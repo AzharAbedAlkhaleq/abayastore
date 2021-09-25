@@ -1,8 +1,8 @@
 <form action="{{ url('admin/delete-coupon/'.$coupon->id) }}" id="delete_cop" method="POST" enctype="multipart/form-data">
   @csrf
   @method('delete')
-  
-  
+
+
   <div class="modal fade" id="ModalDelete{{ $coupon->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -12,7 +12,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
           </div>
-  
+
           <div class="modal-body">
             {{ trans('admin.Do you sure you want to delete?').$coupon->id }}
             {{-- <b>{{   }}</b>? --}}
@@ -24,12 +24,12 @@
         </div>
       </div>
     </div>
-  
+
   </form>
   <script>
     // Get the modal
     var modal = document.getElementById('id01');
-  
+
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
       if (event.target == modal) {
@@ -37,4 +37,3 @@
       }
     }
     </script>
-    

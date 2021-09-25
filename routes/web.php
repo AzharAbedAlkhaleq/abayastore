@@ -26,7 +26,7 @@ Route::post('verifySMSCode', ['uses' => 'VerificationController@verifySMSCode'])
 
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'auth']);
- 
+
 Route::get('/',[HomeController::class,'index'])->name('user');
 Route::get('user/categories',[HomeController::class,'category']);
 Route::get('user/products/',[HomeController::class,'product']);
@@ -48,6 +48,7 @@ Route::get('callback/twitter', [SocialiteController::class, 'handleCallbackTW'])
 
 //FireBase Mobile OTP Uth
 Route::get('firebase-auth',[FirebaseController::class,'index']);
+<<<<<<< HEAD
 
 
 //-----------------------------------------Payment GateWay----------------------------------
@@ -56,3 +57,8 @@ Route::get('payment',[paymentController::class,'pay'])->name('payment');
 Route::get('payment/success',[paymentController::class,'paySuccess'])->name('payment.success');
 Route::get('payment/cancel',[paymentController::class,'payCancel'])->name('payment.cancel');
 
+=======
+Route::get('pay',[paymentController::class,'pay']);
+Route::get('success',[paymentController::class,'success'])->name('pay.success');
+Route::get('cancel',[paymentController::class,'cancel'])->name('pay.cancel');
+>>>>>>> 062456b69f98e5a464ad2b510573e7f2473d681d

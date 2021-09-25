@@ -1,8 +1,6 @@
 <form action="{{ url('admin/delete-banner/'.$banner->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('delete')
-    
-    
     <div class="modal fade" id="ModalDelete{{ $banner->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -12,7 +10,7 @@
                   <span aria-hidden="true">&times;</span>
               </button>
             </div>
-    
+
             <div class="modal-body">
                 {{ trans('admin.Do you sure you want to delete?' ).($banner->id) }}
             {{-- <b>{{  $product->id }}</b>? --}}
@@ -24,12 +22,12 @@
           </div>
         </div>
       </div>
-    
+
     </form>
     <script>
       // Get the modal
       var modal_banner= document.getElementById('id01');
-    
+
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
         if (event.target == modal_banner) {
@@ -37,4 +35,3 @@
         }
       }
       </script>
-      

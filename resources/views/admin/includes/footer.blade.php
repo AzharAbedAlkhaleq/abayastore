@@ -54,18 +54,34 @@
 
 <!-- Required Js -->
 
-<script src="{{ asset('dashboard') }}/assets/js/vendor-all.min.js"></script>
-<script src="{{ asset('dashboard') }}/assets/js/plugins/bootstrap.min.js"></script>
-<script src="{{ asset('dashboard') }}/assets/js/ripple.js"></script>
-<script src="{{ asset('dashboard') }}/assets/js/pcoded.min.js"></script>
-<script src="{{ asset('dashboard') }}/assets/js/menu-setting.min.js"></script>
+<script src="{{ asset('dashboard/assets/js/vendor-all.min.js') }}"></script>
+<script src="{{ asset('dashboard/assets/js/select2.min.js') }}"></script>
+<script src="{{ asset('dashboard/assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('dashboard/assets/js/plugins/bootstrap.min.js') }}"></script>
+<script src="{{ asset('dashboard/assets/js/ripple.js') }}"></script>
+<script src="{{ asset('dashboard/assets/js/pcoded.min.js') }}"></script>
+<script src="{{ asset('dashboard/assets/js/menu-setting.min.js') }}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @if(session('status'))
+
 <script>
-swal("{{ session('status') }}"); 
+swal("{{ session('status') }}");
 </script>
 @endif
+<script>
+    var expanded = false;
 
+    function showCheckboxes() {
+        var checkboxes = document.getElementById("checkboxes");
+        if (!expanded) {
+            checkboxes.style.display = "block";
+            expanded = true;
+        } else {
+            checkboxes.style.display = "none";
+            expanded = false;
+        }
+    }
+</script>
 </body>
 
 </html>

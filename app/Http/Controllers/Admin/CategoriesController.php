@@ -19,12 +19,12 @@ class CategoriesController extends Controller
           return view('admin.category.create');
       }
       public function store(Request $request){
-         // dd($request->all());
+//          dd($request->all());
          $request->validate([
            'name_ar'=>'required|min:3|max:100|unique:categories,name_ar',
            'name_en'=>'required|min:3|max:100|unique:categories,name_en',
            'image_ar' =>'required|image',
-           'status'=>'required|in:1,0',
+           'status'=>'required',
          ],[
          'name_ar.required'=>'مطلوب!، الرجاء إدخال اسم الفئة',
          'name_ar.unique'=>' هذا الاسم موجود بالفعل ، رجاءا أدخل اسم آخر',
@@ -39,14 +39,10 @@ class CategoriesController extends Controller
          ]);
         $category= new Category();
         if($request->hasFile('image_ar')){
-            $file=$request->file('image_ar');
-            $ext= $file->getClientOriginalExtension();
-            $filename= time().'.'.$ext;
-            $file->move('assets\uploads\Category_ar',$filename);
-            $category->image_ar=$filename;
-            
+            $filename = saveImage($request->file('image_ar'),'assets/uploads/Category_ar');
+            $category->image_ar = $filename;
         }
-        
+
         $category->name_ar=$request->input('name_ar');
         $category->slug_ar=Str::slug($request->name_ar);
         $category->name_en=$request->input('name_en');
@@ -57,20 +53,20 @@ class CategoriesController extends Controller
        }
 
        //----------------------------------------Update Ctegory-----------------------------
-       
+
        public function edit($id){
            $category = Category::find($id);
 
            return view('admin.category.edit',compact('category'));
        }
-       
+
        public  function update(Request $request)
        {
-          
+//           dd($request->all());
+
         $request->validate([
             'name_ar'=>'required|min:3|max:100',
             'name_en'=>'required|min:3|max:100',
-            // 'image_ar' =>'required|image'
             'status'=>'required|in:1,0',
           ],[
           'name_ar.required'=>'مطلوب!، الرجاء إدخال اسم الفئة',
@@ -84,36 +80,31 @@ class CategoriesController extends Controller
           'status.required' => 'يجب إدخال الحالة',
         //   'image_ar.required'=>'الصورة مطلوبة',
           ]);
-           
+
         $category = Category::where('id',$request->id)->first();
-        //dd($category);  
-     
+        //dd($category);
+
+
         if($request->hasFile('image_ar')){
- 
+
+
             $path='assets/uploads/Category_ar/'.$category->image_ar;
             if(File::exists($path))
             {
                  File::delete($path);
             }
-
-            $file=$request->file('image_ar');
-            $ext= $file->getClientOriginalExtension();
-            $filename= time().'.'.$ext;
-            $file->move('assets\uploads\Category_ar',$filename);
-            $category->image_ar=$filename;
-
+            $filename = saveImage($request->file('image_ar'),'assets/uploads/Category_ar');
+            $category->image_ar = $filename;
             }
-           
+
             $category->name_ar = $request->input('name_ar');
-            $category->slug_ar=Str::slug($request->name_ar);
+            $category->slug_ar = Str::slug($request->name_ar);
             $category->name_en=$request->input('name_en');
             $category->slug_en=Str::slug($request->name_en);
-            // $category->trending=$request->input('trending')  == true? '1':'0';
-
             $category->status=$request->input('status') == true? '1':'0';
             $category->update();
             return redirect( route('categories'))->with('status','تم التعديل بنجاح!');
-    
+
       }
          //-------------------------------------delete Category----------------------------------
           public function delete($id){
@@ -123,14 +114,13 @@ class CategoriesController extends Controller
                $path='assets/uploads/Category_ar/'.$category->image_ar;
                if(File::exists($path))
                {
-                   
+
                     File::delete($path);
                }
            }
-
            $category->delete();
-           return redirect()->back()->with('status','تم الحذف!');      
-          
+           return redirect()->back()->with('status','تم الحذف!');
+
           }
 
           public function search(Request $request){
@@ -140,4 +130,3 @@ class CategoriesController extends Controller
 
           }
     }
-    
