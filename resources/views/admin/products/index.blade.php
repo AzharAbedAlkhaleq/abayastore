@@ -28,6 +28,7 @@
                   <th > {{ trans('admin.Status') }}</th>
                   <th >{{ trans('admin.Action') }}</th>
               </tr>
+          </thead>
               <tbody>
                 @foreach ($products as $product )
 
