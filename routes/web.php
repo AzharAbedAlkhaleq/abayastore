@@ -48,4 +48,11 @@ Route::get('callback/twitter', [SocialiteController::class, 'handleCallbackTW'])
 
 //FireBase Mobile OTP Uth
 Route::get('firebase-auth',[FirebaseController::class,'index']);
-Route::get('pay',[paymentController::class,'pay']);
+
+
+//-----------------------------------------Payment GateWay----------------------------------
+
+Route::get('payment',[paymentController::class,'pay'])->name('payment');
+Route::get('payment/success',[paymentController::class,'paySuccess'])->name('payment.success');
+Route::get('payment/cancel',[paymentController::class,'payCancel'])->name('payment.cancel');
+
