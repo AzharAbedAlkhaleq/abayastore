@@ -127,20 +127,17 @@ class ProductsController extends Controller
       }
 
       foreach ($request->sizes as $size){
-          $product->size()->create(
-              [
-                  'product_id'=>$product->id,
-                  'size_id'=>$size
-              ]
-          );
+          $new_size = new ProductSizes();
+          $new_size->product_id = $product->id;
+          $new_size->size_id = $size;
+          $new_size->save();
+
       }
-      foreach ($request->colors as $color){
-          $product->color()->create(
-              [
-                  'product_id'=>$product->id,
-                  'color_id'=>$size
-              ]
-          );
+      foreach ($request->colors as $new_color){
+          $new_colors = new ProductColors();
+          $new_colors->product_id = $product->id;
+          $new_colors->color_id = $new_color;
+          $new_colors->save();
       }
 
         return redirect()->route('products')->with('status','تمت الإضافة بنجاح!');
@@ -199,7 +196,6 @@ public  function update(Request $request,$id)
         'sizes.required'=>'يجب ادخال الاحجام',
         'colors.required'=>'يجب ادخال الالوان',
     ]);
-
  $product = product::where('id',$id)->with('images','color','size')->first();
         $input = $request->all();
         $product->category_id=$request->input('category_id');
@@ -268,23 +264,33 @@ public  function update(Request $request,$id)
             ]);
         }
     }
+    if ($request->has('sizes')){
+        $old_sizes = ProductSizes::where('product_id',$product->id)->get();
+        foreach ($old_sizes as $old){
+            $old->delete();
+        }
+        foreach ($request->sizes as $size){
+            $new_size = new ProductSizes();
+            $new_size->product_id = $product->id;
+            $new_size->size_id = $size;
+            $new_size->save();
 
-    foreach ($request->sizes as $size){
-        $product->size()->update(
-            [
-                'product_id'=>$product->id,
-                'size_id'=>$size
-            ]
-        );
+        }
     }
-    foreach ($request->colors as $color){
-        $product->color()->update(
-            [
-                'product_id'=>$product->id,
-                'color_id'=>$color
-            ]
-        );
-    }
+
+  if ($request->has('colors')){
+      $old_colors = ProductColors::where('product_id',$product->id)->get();
+      foreach ($old_colors as $old){
+          $old->delete();
+      }
+      foreach ($request->colors as $new_color){
+          $new_colors = new ProductColors();
+          $new_colors->product_id = $product->id;
+          $new_colors->color_id = $new_color;
+          $new_colors->save();
+      }
+
+  }
     $product->update();
      return redirect( route('products'))->with('success','تمت عملية التعديل بنجاح!');
 

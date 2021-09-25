@@ -132,7 +132,7 @@
                     <label >الالوان</label>
                     <div class="mb-3">
                         @foreach($colors as $color)
-                            <input class="@error('colors') is-invalid @enderror " name="colors[]" type="checkbox" id="{{$color->id}}" value="{{$color->id }}" {{in_array($color->id,$product->color()->pluck('id')->toArray()) ? 'checked' :''}}>
+                            <input class="@error('colors') is-invalid @enderror " name="colors[]" type="checkbox" id="{{$color->id}}" value="{{$color->id }}" {{in_array($color->id,$product->color()->pluck('color_id')->toArray()) ? 'checked' :''}}>
                             <label class="form-check-label" for="{{$color->id}}">{{$color->color}}</label>
                         @endforeach
                             @error('colors')
@@ -144,7 +144,7 @@
                     <label for="descrpt">الاحجام</label>
                     <div class="mb-3">
                         @foreach($sizes as $size)
-                            <input class=" @error('sizes') is-invalid @enderror " name="sizes[]" type="checkbox" id="size_{{$size->id}}" value="{{$size->id }}" {{in_array($size->id , $product->size()->pluck('id')->toArray()) ? 'checked' :''}}>
+                            <input class=" @error('sizes') is-invalid @enderror " name="sizes[]" type="checkbox" id="size_{{$size->id}}" value="{{$size->id }}" {{in_array($size->id , $product->size()->pluck('size_id')->toArray()) ? 'checked' :''}}>
                             <label class="form-check-label" for="size_{{$size->id}}">{{$size->size}}</label>
                         @endforeach
                             @error('sizes')
@@ -242,7 +242,6 @@
                     <p class="invalid-feedback">{{ $message }}</p>
                     @enderror
                 </div>
-
                 <div class="col mb-3">
                     @error('trending')
                     <p class="invalid-feedback">{{ $message }}</p>
@@ -251,7 +250,7 @@
                     <label for="">{{ trans('admin.Popular') }}</label>
                 </div>
                 <div class="form-group mb-5">
-                    <button type="submit" class="btn btn-primary  btn-lg"> {{ trans('admin.add product') }} </button>
+                    <button type="submit" class="btn btn-primary  btn-lg"> {{ trans('admin.edit product') }} </button>
                 </div>
 
             </div>

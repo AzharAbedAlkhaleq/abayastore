@@ -4,7 +4,7 @@ function saveImage($image, $folder){
     //save photo in folder
     $file_extension = $image-> getClientOriginalExtension();
     $file_name = md5(uniqid().time()).'.'.$file_extension;
-    $path = $folder;
+    $path =public_path($folder);
     $image-> move($path,$file_name);
     return $file_name;
 }
