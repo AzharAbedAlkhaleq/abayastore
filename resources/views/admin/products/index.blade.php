@@ -85,9 +85,9 @@
                   @endforeach
               </tbody>
       </table>
-        @include('modal.delete_product')
       {{ $products->links() }}
      </div>
+@include('modal.delete_product')
 
 
 
