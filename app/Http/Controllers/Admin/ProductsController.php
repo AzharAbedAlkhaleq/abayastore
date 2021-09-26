@@ -35,8 +35,8 @@ class ProductsController extends Controller
   $request->validate([
    'category_id'=>'required',
    'code'=>'required',
-   'name_ar'=>'required|min:3|max:100|unique:categories,name_ar',
-   'name_en'=>'required|min:3|max:100|unique:categories,name_en',
+   'name_ar'=>'required|min:3|max:100|unique:products,name_ar',
+   'name_en'=>'required|min:3|max:100|unique:products,name_en',
    'small_desc_ar'=>'required',
    'small_desc_en'=>'required',
    'description_ar'=>'required',

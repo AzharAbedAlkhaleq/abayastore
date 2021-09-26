@@ -116,7 +116,7 @@
 
             <div class="col-md-4 col-sm-2 text-center">
                 <a href="{{ url('category/'.$category->slug_ar.'/'.$prod->slug_ar) }}">
-                    <img src="{{ asset('assets/uploads/product_ar/'.$prod->image_ar)}}" alt="women">
+                    <img src="{{ asset('assets/uploads/product/'.$prod->image_ar)}}" alt="women">
 
                 </a>
                 <h6 class="pt-3 pb-2">{{ $prod->name_ar }}</h6>

@@ -9,11 +9,10 @@
 
     {{-- <div style="margin-bottom: 20px; margin-top:20px"> --}}
       <form  action="{{ route('search') }}"  method="get">
-        <input style=" margin-top:30;margin-bottom:25px;" type="text" name="search" placeholder="ابحث بالاسم" style="color:blue;">
+        <input style=" margin-top:30;margin-bottom:25px; color:blue;" type="text" name="search" placeholder="ابحث بالاسم">
         <button type="submit" class="btn btn-secondary" style="color: white;">{{ trans('admin.search') }}</button>
       </form>
       <table  class="table table-bordered border-primary">
-
           <thead class="table-light">
               <tr style="text-align: center">
                   <th >#</th>
@@ -28,9 +27,9 @@
                   <th > {{ trans('admin.Status') }}</th>
                   <th >{{ trans('admin.Action') }}</th>
               </tr>
+          </thead>
               <tbody>
                 @foreach ($products as $product )
-
                   <tr style="text-align: center">
                       <td>{{$product->id }}</td>
                       <td>{{$product->code}}</td>
@@ -41,24 +40,19 @@
                     <td >
                         <img style="height:70px;width:70px" src="{{ asset('assets/uploads/product/'.$product->image_ar) }}" alt="arabic Image">
                     </td>
-
                     <td>
                       <?php if($product->status ==1){?>
-
                       <a href="{{ url('admin/edit-product/'.$product->id) }}" style="color:green;text-decoration:none"> {{ trans('admin.Active') }}</a>
-
                       <?php }else {?>
                         <a href="{{ url('admin/edit-product/'.$product->id) }}" style="color: gray; text-decoration:none"> {{ trans('admin.Inactive') }}</a>
-
                       <?php }?>
                       <div>
-                      @if($product->trending ==1)
-
-                        <input   class="form-check-input" type="checkbox" checked>  <label style="color:green">{{ trans('admin.Popular') }} </label>
-                      </a>
-                      @else
-                     <input type="checkbox" >  <label style="color: gray">{{ trans('admin.UnPopular') }} </label></a>
-                      @endif
+                          @if($product->trending ==1)
+                            <input  class="form-check-input" type="checkbox" checked>  <label style="color:green">{{ trans('admin.Popular') }} </label>
+                            </a>
+                          @else
+                          <input type="checkbox" >  <label style="color: gray">{{ trans('admin.UnPopular') }} </label></a>
+                         @endif
                       </div>
 
                     </td>
@@ -81,7 +75,7 @@
 
                         {{-- <a href="{{ url('admin/delete-product/'.$product->id) }}" class="btn btn-icon btn-outline-danger btn-sm"><i class="feather icon-trash-2"></i></a> --}}
                     </td>
-                    @include('modal.delete_product')
+
                       {{-- <td>
                         <a href="{{ url('admin/edit-product/'.$product->id) }}"  class="btn btn-primary btn-sm">Edit</button></a>
 
@@ -90,11 +84,11 @@
                   </tr>
                   @endforeach
               </tbody>
-          </thead>
       </table>
       {{ $products->links() }}
      </div>
+@include('modal.delete_product')
 
-<div>
+
 
 @endsection

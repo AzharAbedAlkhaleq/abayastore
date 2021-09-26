@@ -8,7 +8,7 @@
     @include('user.includes.products')
     <div class="slider container my-3">
         <!-- Swiper -->
-       
+
        @include('user.includes.swipper')
         <!-- end slider -->
 
@@ -16,8 +16,8 @@
     <!-- end adv -->
   @include('user.includes.category')
     <!-- end category -->
-    
+
    @include('user.includes.footer')
-  
+
 </body>
 </html>
