@@ -31,7 +31,11 @@
                     </select>
                 </li>
             </div>
+            
+
+           
         </ul>
+        <a href="{{ route('auth.logout') }}" style="font-size:25px;" class="btn btn-gray px-5 py-3">logout</a>
         {{-- <ul class="navbar-nav ml-auto">
             <li>
                 <div class="dropdown">

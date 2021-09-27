@@ -1,5 +1,5 @@
 <div class="mainslider">
-    <a href="{{ route('shopping') }}" class="btn btn-lg"> تسوق الان </a>
+    <a href="{{ route('user.categories') }}" class="btn btn-lg"> تسوق الان </a>
     
     <div class="swiper mySwiper">
    

@@ -12,13 +12,22 @@
      @foreach ($products as $product )
      <div class="col-md-3 col-sm-6 pt-2">
         <div class="box p-3">
+            @if($product->Selling_price > 0)
             <div class="offer">
                 <p>{{ $product->Selling_price }}% <br>OFF </p>
-            </div>
+            </div>   
+            @endif
+            
             <img src="{{  asset('assets/uploads/product/'.$product->image_ar)}}">
             <div class="text-right">
-                <h5>{{ $product->name_ar}}</h5>
-                <span style="color: red" class="float-end">{{ $product->orginal_price }} OMR</span>
+                <a href="{{ route('shopping',$product->id) }}"> <h5>{{ $product->name_ar}}</h5></a>
+                @if($product->Selling_price > 0)
+                <del> <span style="color: red" class="float-end">{{ $product->orginal_price }} OMR</span></del>
+
+                        @else
+                        <span style="color: red" class="float-end">{{ $product->orginal_price }} OMR</span>
+
+                        @endif
             </div>
 
         </div>

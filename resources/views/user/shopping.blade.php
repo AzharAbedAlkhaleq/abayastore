@@ -15,15 +15,16 @@
 
                     <div class="col-md-6 col-sm-12 mt-5">
                         <div class="card mb-3">
-                            <img class="card-img " src="images/women.jpeg" alt="Card image cap" id="product-detail" height="400">
+                            <img class="card-img " src="{{ asset('assets/uploads/product/'.$product->image_ar) }}" alt="Card image cap" id="product-detail" height="400">
                         </div>
 
                         <div class="swiper mySwiper2">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"> <img class="card-img " src="images/women.jpeg" alt="Card image cap" id="product-detail"></div>
-                                <div class="swiper-slide"> <img class="card-img " src="images/women.jpeg" alt="Card image cap" id="product-detail"></div>
-                                <div class="swiper-slide"> <img class="card-img " src="images/women.jpeg" alt="Card image cap" id="product-detail"></div>
+                                @foreach ($product->images as $image )
+                                <div class="swiper-slide"> <img class="card-img " src="{{ asset('assets/uploads/product/'.$image->filename) }}" alt="Card image cap" id="product-detail"></div>
 
+                                @endforeach
+                       
                             </div>
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
@@ -68,17 +69,27 @@
                         <div class=" ">
                             <div class="card-body">
                                 <h1 class="h2">عباية</h1>
-                                <p class=" py-2"><del>OMR 25.00</del>  OMR 20.00 </p>
+                                <p class=" py-2">
+                                    @if($product->Selling_price >0)
+                                    <del>OMR {{ $product-> orginal_price}}</del>  OMR {{ $product->Selling_price }} </p>
+
+                                    @else
+                                    OMR {{ $product->orginal_price }}   </p>
+
+                                    @endif
+                                    
                                 <p>موقع عباية لبيع جميع انواع العبايات</p>
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
                                         <h6>الالوان المتاحة :</h6>
                                     </li>
+                                    @foreach ($product->color as $color )
                                     <li class="list-inline-item">
-                                        <p class="text-muted"><span class="b btn  btn-sm size" style="background-color: bluel;height: 20px;width: 20px;"></span><span class="mx-2 btn  btn-sm size" style="background-color:blueviolet;height: 20px;width: 20px;"></span></p>
+                                        <p class="text-muted"><span class="b btn  btn-sm size" style="">{{ $color->color->color  }}</span></p>
                                     </li>
+                                    @endforeach
+                                  
                                 </ul>
-
 
                                 <form action="" method="GET">
                                     <input type="hidden" name="product-title" value="Activewear">
@@ -88,8 +99,10 @@
                                                 <li class="list-inline-item">الحجم :
                                                     <input type="hidden" name="product-size" id="product-size" value="S">
                                                 </li>
-
-                                                <li class="list-inline-item"><span class="btn  btn-sm size">XL</span></li>
+                                                  @foreach ($product->size as $size )
+                                                  <li class="list-inline-item"><span class="btn  btn-sm size">{{ $size->size->size }}</span></li>
+       
+                                                  @endforeach      
                                             </ul>
                                         </div>
 
@@ -165,30 +178,15 @@
             <div class=" container ">
                 <h4 class="py-4">قد يعجبك أيضا</h4>
                 <div class="row">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="box px-3 text-center">
-                            <img src="images/women.jpeg" alt="women">
-                            <h5 class="pt-4 ">عباية</h5>
-                        </div>
+                 @foreach ( $related_products as $related_product )
+                 <div class="col-md-3 col-sm-6">
+                    <div class="box px-3 text-center">
+                        <img src="{{ asset('assets/uploads/product/'.$related_product->image_ar) }}" alt="women">
+                        <h5 class="pt-4 "> <a href="{{route('shopping',$related_product->id) }}">{{$related_product->name_ar}}</a></h5>
                     </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="box px-3 text-center">
-                            <img src="images/women.jpeg" alt="women">
-                            <h5 class="pt-4 ">عباية</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="box px-3 text-center">
-                            <img src="images/women.jpeg" alt="women">
-                            <h5 class="pt-4 ">عباية</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="box px-3 text-center">
-                            <img src="images/women.jpeg" alt="women">
-                            <h5 class="pt-4 ">عباية</h5>
-                        </div>
-                    </div>
+                </div>
+                 @endforeach
+                 
                 </div>
             </div>
         </div>

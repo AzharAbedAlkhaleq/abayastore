@@ -1,6 +1,11 @@
 <header>
     <div class="main">
-        <a class="navbar-brand px-5 " href="#"><img  style="margin-top:30px"   src="{{ asset('front/images/logo.jpeg') }}" class="brand"></a>
+        
+        <a class=" px-5 " href="#">
+            <div class="navbar-brand">
+            <img  style="margin-top:30px"   src="{{ asset('front/images/logo.jpeg') }}" class="brand">
+            </div>
+        </a>
         <nav class="navbar navbar-expand-lg  ">
             <div class="">
 

@@ -80,23 +80,24 @@
                     <div class="step-form-1 active" id="step-form-1">
                         <div class="row text-right pt-5 mt-3">
                             <div class="col-md-3 col-sm-12   aa ">
-                                <div class="phone d-flex mb-3">
+                                <div class="phone  mb-3">
                                     <div class="alert alert-danger" id="error" style="display: none;"></div>
 
-                                    <h5>Add Phone Number</h5>
                                     <div class="alert alert-success" id="successAuth" style="display: none;"></div>
 
-                                    <input type="text" name="phone" id="number" placeholder="+968 ********" class="">
+                                    <input type="text" name="phone" id="number" placeholder="+968 ******** ادخل رقم الهاتف " class="">
 
                                     <div id="recaptcha-container"></div>
 
                                     <a href="#" class="btn btn-lg px-2" onclick="sendOTP();"> ارسال</a>
                                 </div>
 
-                                <div class="justify-content-between">
+                                   
+                                   
+                                <div class="phone justify-content-between">
                                     <div class="alert alert-success" id="successOtpAuth" style="display: none;"></div>
                                     <input type="text" name="otp" id="verification" placeholder="ادخل رمز التحقق" class="">
-                                    <a href="#" class="mt-5 px-2"  onclick="verify();"> اعادة ارسال</a>
+                                    <a href="#" class="mt-5 px-2 btn btn-lg"  onclick="verify();"> اعادة ارسال</a>
 
                                 </div>
 
@@ -110,7 +111,7 @@
                                 </div>
 
                             </div>
-                            {{-- <div class="col-md-4 col-sm-12 mx-4 px-5">
+                             <div class="col-md-4 col-sm-12 mx-4 px-5">
                                 <h5 class="px-2">مزايا تسجيل الدخول الخاص بنا </h5>
                                 <ul class="lii list-unstyled">
                                     <li><i class="fas fa-car"></i> متابعة الطلب بسهولة </li>
@@ -118,11 +119,11 @@
                                     <li><i class="fas fa-star"></i> قائمة الطلبات و المراجعات والتقييم </li>
 
                                 </ul>
-                            </div> --}}
-                            {{-- <div class="col-md-4 col-sm-12">
+                            </div> 
+                             <div class="col-md-4 col-sm-12">
                                 <p><i class="fas fa-shield-alt"></i> مدفوعات أمنة ومأمونة . تقوم بارجاع <br> المنتحات الاصلية 100%</p>
                             </div>
-                        </div> --}}
+                        </div> 
                         <div class="">
                             <button type="button" class="button next-button py-1">استمرار</button>
                         </div>

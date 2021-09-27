@@ -9,7 +9,7 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\VerificationController;
 use Illuminate\Support\Facades\Route;
 
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+// use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,16 +29,16 @@ Route::post('verifySMSCode', ['uses' => 'VerificationController@verifySMSCode'])
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'auth']);
 
-Route::group([
-    'prefix' => LaravelLocalization::setLocale(),
-	'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-], function() {
+// Route::group([
+//     'prefix' => LaravelLocalization::setLocale(),
+// 	'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+// ], function() {
 
 
     Route::get('/',[HomeController::class,'index'])->name('user');
-    Route::get('user/categories',[HomeController::class,'category']);
+    Route::get('user/categories',[HomeController::class,'category'])->name('user.categories');
     Route::get('user/products/',[HomeController::class,'product']);
-    Route::get('shopping',[HomeController::class,'shopping'])->name('shopping');
+    Route::get('shopping/{id}',[HomeController::class,'shopping'])->name('shopping');
     Route::get('arrival',[HomeController::class,'arrival'])->name('arrival');
     Route::get('cart',[HomeController::class,'cart'])->name('cart');
     Route::get('aboutUs',[HomeController::class,'aboutUs'])->name('aboutUs');
@@ -46,7 +46,7 @@ Route::group([
     Route::get('view-category/{slug_ar}',[HomeController::class,'viewcategory']);
     Route::get('category/{slug_ar}/{prod_slug_ar}',[HomeController::class,'productview']);
 
-});
+// });
 //--------------------------editor---------------------------
 Route::get('editor',[EditorController::class,'editor']);
 

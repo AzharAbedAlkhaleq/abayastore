@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="{{ asset('front') }}/css/slick-theme.css">
     <link rel="stylesheet" href="{{ asset('front') }}/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('front') }}/css/font-awesome.min.css">
-    @if (app()->getLocale() == 'ar')
+    {{-- @if (app()->getLocale() == 'ar') --}}
     <link rel="stylesheet" href="{{ asset('front') }}/css/bootstrap-rtl.css">
     <link rel="stylesheet" href="{{ asset('front') }}/css/style.css">
-    @else
+    {{-- @else --}}
     
-    <link rel="stylesheet" href="{{ asset('front') }}/css/style_en.css">
+    {{-- <link rel="stylesheet" href="{{ asset('front') }}/css/style_en.css"> --}}
 
-    @endif
+    {{-- @endif --}}
 </head>
 

@@ -18,7 +18,7 @@ Route::group(['middleware' => 'Lang'], function () {
 
     Route::group(['prefix' => 'admin'], function () {
 
-        Route::get('login', [AuthController::class, 'login']);
+        Route::get('login', [AuthController::class, 'login'])->name('auth.login-view');
         Route::post('login', [AuthController::class, 'auth']);
 
         Route::group(['middleware' => 'admin:admin'], function () {
@@ -135,6 +135,10 @@ Route::group(['middleware' => 'Lang'], function () {
         //-------------------------------Show Users-----------------------------
           Route::get('users',[UserController::class,'users'])->name('users');
           
+
+          Route::middleware('auth:admin')->group(function(){
+            Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
+        });
           
     });
 });

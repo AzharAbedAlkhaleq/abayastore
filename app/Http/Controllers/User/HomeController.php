@@ -40,8 +40,12 @@ class HomeController extends Controller
     public function product(){
         return view('user.products');
     }
-    public function shopping(){
-        return view('user.shopping');
+    public function shopping($id){
+       
+        $product = Product::where('id',$id)->with('images','color.color','size.size')->first();
+        $related_products = Product::where('category_id',$product->category->id)->take(4)->get();
+        
+        return view('user.shopping',get_defined_vars());
     }
     public function arrival(){
         $arrival_products=Product::orderby('created_at','DESC')->get()->take(9);
