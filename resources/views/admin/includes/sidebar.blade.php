@@ -15,7 +15,7 @@
          
         </li>
         <li class="nav-item pcoded-hasmenu">
-          <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">{{ trans('admin.Users') }}</span></a>
+          <a href="{{ route('users') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">{{ trans('admin.Users') }}</span></a>
             </li>
             {{-- //category --}}
             <li class="nav-item  {{ Request::is('#!')? 'active':'' }}     pcoded-hasmenu">

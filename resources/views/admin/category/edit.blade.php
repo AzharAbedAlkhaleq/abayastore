@@ -91,37 +91,22 @@
               </div>
           </div>
 
-           @if($category->image)
-           <img style="width: 75px;height:75px" src="{{ asset('assets/uploads/Category_ar/'.$category->image) }}" alt="image">
+           @if($category->image_ar)
+           <img style="width: 75px;height:75px" src="{{ asset('assets/uploads/Category_ar/'.$category->image_ar) }}" alt="image">
            @endif
 
             <div  class="form-group  mb-3">
                 <label for="">{{ trans('admin.Image') }}</label>
-                <input  style="color:#0090E7; font-size:24px" type="file"  name="image" class="form-control" >
+                <input  style="color:#0090E7; font-size:24px" type="file"  name="image_ar" class="form-control" >
 
               </div>
 
-            {{-- @if($category->image_en)
-            <img style="width: 75px;height:75px" src="{{ asset('assets/uploads/Category_en/'.$category->image_en) }}" alt="image">
-
-            @endif
-            <div class="form-group mb-3">
-                <label for="">{{ trans('admin.English_Image') }}</label>
-                <input type="file" style="color:#0090E7; font-size:20px" name="image_en" class="form-control">
-            </div> --}}
-
 
             {{-- <div class="col-md-6 mb-3">
-                <input type="checkbox" {{ $category->status =="1" ? 'checked':''}} name="status">
-                <label for="">{{ trans('admin.normal') }}</label>
-
-            </div>
-
-            <div class="col-md-6 mb-3">
 
                 <input type="checkbox" {{ $category->popular =="1" ? 'checked':''}} name="popular">
                 <label for="">{{ trans('admin.Popular') }}</label>
-            </div> --}}
+            </div>  --}}
 
             <div class="form-group mb-5">
                 <button type="submit" class="btn btn-primary btn-lg"> {{ trans('admin.edit category') }}</button>

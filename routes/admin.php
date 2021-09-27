@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\HomeCategoriesController;
 use App\Http\Controllers\Admin\Homeslider;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\SizesController;
-use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'Lang'], function () {
@@ -87,7 +87,7 @@ Route::group(['middleware' => 'Lang'], function () {
             Route::put('update-product/{id}',[ProductsController::class,'update'])->name('update-product');
 
              //Delete product
-             Route::delete('delete-product/{id}',[ProductsController::class,'delete'])->name('delete-product');
+             Route::delete('delete-product/{id}',[ProductsController::class,'delete']);
             
              //------------------------------HomeSlider--------------------------------------------------
              Route::get('homeslider',[Homeslider::class,'index'])->name('homeslider');
@@ -131,7 +131,9 @@ Route::group(['middleware' => 'Lang'], function () {
           
           //Delete coupon
           Route::delete('delete-coupon/{id}',[CouponController::class,'delete']);
-          Route::get('users',[])->name('users');
+        
+        //-------------------------------Show Users-----------------------------
+          Route::get('users',[UserController::class,'users'])->name('users');
           
           
     });

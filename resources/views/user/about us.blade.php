@@ -9,7 +9,7 @@
 
     <div class="mainimg">
         <div class="container text-center pt-5">
-            <h3 class="mt-5">من نحن</h3>
+            <h3 class="mt-5">{{  __('About us') }}</h3>
 
         </div>
     </div>

@@ -19,13 +19,12 @@ class SizesController extends Controller
       public function store(Request $request){
 //          dd($request->all());
           $request->validate([
-//            'size'=>'required|unique:sizes,size|max:50|min:2',
-            'size'=>'required',
+           'size'=>'required|unique:sizes,size',
             'status'=>'required',
           ],[
               'size.required'=>' مطلوب ادخال الحجم',
               'status.required'=>' مطلوب ادخال الحالة',
-              'size.unique' =>'اللون موجود',
+              'size.unique' =>' هذا الحجم موجود ، الرجاء إدخال حجم آخر',
           ]);
 
          $sizes=new Size();

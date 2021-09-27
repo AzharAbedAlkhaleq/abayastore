@@ -1,33 +1,26 @@
 <!DOCTYPE html>
     <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-    <title>Abaya Lotus</title>
-
-<title>Abaya Lotus</title>
-
 <head>
     <meta charset="utf-8" />
     <meta data-brackets-id='7728' name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>abaya Lotus</title>
-    <link rel="stylesheet" href="{{ asset('front') }}/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('front') }}/css/bootstrap-rtl.css">
-    <link rel="stylesheet" href="{{ asset('front') }}/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('front') }}/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('front') }}/css/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="{{ asset('front') }}/css/animate.css">
-    <link rel="stylesheet" href="{{ asset('front') }}/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="{{ asset('front') }}/css/slick.css">
-    <link rel="stylesheet" href="{{ asset('front') }}/css/slick-theme.css">
+    <title>صفحة الدخول</title>
+        <link rel="stylesheet" href="{{ asset('front') }}/css/all.min.css">
+        <link rel="stylesheet" href="{{ asset('front') }}/css/bootstrap-rtl.css">
+        <link rel="stylesheet" href="{{ asset('front') }}/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('front') }}/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ asset('front') }}/css/style.css">
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="{{ asset('front') }}/css/animate.css">
+        <link rel="stylesheet" href="{{ asset('front') }}/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="{{ asset('front') }}/css/slick.css">
+        <link rel="stylesheet" href="{{ asset('front') }}/css/slick-theme.css">
+    </head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-
 <body>
-<<<<<<< HEAD
+
   @include('user.includes.header') 
-  
-  
   
   <div class="mainimg_signup ">
     <div class="container d-flex justify-content-between py-3">
@@ -271,7 +264,7 @@
                         </div>
                         <div class="">
                             <button type="button" class="button next-button py-1">الغاء</button>
-=======
+
 @include('user.includes.header')
 
 
@@ -514,26 +507,24 @@
                             <div class="">
                                 <button type="button" class="button next-button py-1">الغاء</button>
                             </div>
->>>>>>> 062456b69f98e5a464ad2b510573e7f2473d681d
                         </div>
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
+
         </div>
     </form>
    
-=======
+
     </form>
 
->>>>>>> 062456b69f98e5a464ad2b510573e7f2473d681d
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
 <script>
     var firebaseConfig = {
-<<<<<<< HEAD
+
 apiKey: "AIzaSyDIUD1F3KP6eLQ6iRyPgCv-GrGntxDypw0",
 authDomain: "abaya-c8b7c.firebaseapp.com",
 projectId: "abaya-c8b7c",
@@ -542,17 +533,9 @@ messagingSenderId: "657247402231",
 appId: "1:657247402231:web:11d61dd92e793585c23bf2",
 measurementId: "G-VQ8HJKT9QV"
 };
-=======
-        apiKey: "AIzaSyDIUD1F3KP6eLQ6iRyPgCv-GrGntxDypw0",
-        authDomain: "abaya-c8b7c.firebaseapp.com",
-        projectId: "abaya-c8b7c",
-        storageBucket: "abaya-c8b7c.appspot.com",
-        messagingSenderId: "657247402231",
-        appId: "1:657247402231:web:11d61dd92e793585c23bf2",
-        measurementId: "G-VQ8HJKT9QV"
-    };
->>>>>>> 062456b69f98e5a464ad2b510573e7f2473d681d
-    firebase.initializeApp(firebaseConfig);
+
+firebase.initializeApp(firebaseConfig);
+
 </script>
 <script type="text/javascript">
     window.onload = function () {

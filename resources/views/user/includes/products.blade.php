@@ -18,7 +18,7 @@
             <img src="{{  asset('assets/uploads/product/'.$product->image_ar)}}">
             <div class="text-right">
                 <h5>{{ $product->name_ar}}</h5>
-                <p style="color: red">{{ $product->orginal_price }} OMR</p>
+                <span style="color: red" class="float-end">{{ $product->orginal_price }} OMR</span>
             </div>
 
         </div>

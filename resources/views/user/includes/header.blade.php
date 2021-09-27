@@ -14,11 +14,9 @@
                             <li class="nav-item active">
                                 <a class="nav-link " href="{{ url('/') }}">الرئيسية <span class="sr-only"></span></a>
                             </li>
+                          
                             <li class="nav-item active">
-                                <a class="nav-link mx-1" href="{{ route('shopping') }}">التسوق <span class="sr-only"></span></a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link mx-1" href="{{ url('user/categories') }}">الفئات <span class="sr-only"></span></a>
+                                <a class="nav-link mx-1" href="{{ url('user/categories') }}">التسوق <span class="sr-only"></span></a>
                             </li>
                             <li class="nav-item active">
                                 <a class="nav-link mx-1" href="{{ route('arrival') }}">العبايات الجديدة <span class="sr-only"></span></a>
@@ -41,7 +39,7 @@
                            
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                
-                                <img src="{{\Illuminate\Support\Facades\Auth::user()->picture}}" class="rounded-circle" alt="...">
+                                <img src=" {{\Illuminate\Support\Facades\Auth::user()->picture}} " class="rounded-circle" alt="...">
                             </a>
                             <div class="dropdown-menu li" aria-labelledby="navbarDropdown">
                                 {{\Illuminate\Support\Facades\Auth::user()->name}}
@@ -57,9 +55,10 @@
                         <a class="px-2" href="{{ route('login') }}">تسجيل دخول</a>
                         @endif
                         <div class="lang">
-                            <select class="px-2 py-1">
-                                <option value="en" selected>العربية</option>
-                                <option value="ar">English</option>
+                           <select onchange="window.location=this.value">
+                                @foreach (LaravelLocalization::getSupportedLocales() as $code => $locale)
+                                <option value="{{ LaravelLocalization::getLocalizedURL($code) }}" @if ($code == app()->getLocale())selected @endif>{{ $locale['native'] }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <a href="{{ route('cart') }}">

@@ -23,6 +23,14 @@
                     </button>
                 </div>
             </li>
+            <li>
+                <div class="lang">
+                    <select class="px-2 py-1 m-2">
+                        <option value="en" selected>العربية</option>
+                        <option value="ar">English</option>
+                    </select>
+                </li>
+            </div>
         </ul>
         {{-- <ul class="navbar-nav ml-auto">
             <li>

@@ -49,7 +49,7 @@
                                      <td class="table-action">
                                     {{-- <a href="#!" class="btn btn-icon btn-outline-primary"><i class="feather icon-eye"></i></a> --}}
                                     <a href="{{ url('admin/edit-coupon/'.$coupon->id) }}" class="btn btn-icon btn-outline-primary btn-sm"><i class="feather icon-edit"></i></a>
-                                    <a class="btn btn-danger" data-toggle="modal" data-target="#ModalDelete{{ $coupon->id }}">{{ trans('admin.delete') }} </a>
+                                    <a class="btn btn-icon btn-outline-danger btn-sm" data-toggle="modal" data-target="#ModalDelete{{ $coupon->id }}"><i class="feather icon-trash-2"></i> </a>
 
                                   </td>
                                    @include('modal.delete_coupon')

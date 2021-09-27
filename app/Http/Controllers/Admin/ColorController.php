@@ -19,7 +19,7 @@ class ColorController extends Controller
       public function store(Request $request){
 //          dd($request->all());
            $request->validate([
-             'color'=>'required',
+             'color'=>'required|unique:colors,color',
               'status'=>'required',
            ],[
            'color.required'=>'مطلوب!، الرجاء إدخال اللون',
@@ -27,7 +27,7 @@ class ColorController extends Controller
 
 //           'color.min'=>' يجب ألا يقل اللون عن ثلاثة احرف',
 //           'color.max'=>' يجب ألا يزيد اللون عن مائة حرف',
-//           'color.unique'=>' هذا اللون موجود بالفعل ، رجاءا أدخل لون آخر',
+           'color.unique'=>' هذا اللون موجود بالفعل ، رجاءا أدخل لون آخر',
 
            ]);
             $color=new Color();

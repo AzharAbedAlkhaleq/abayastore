@@ -6,7 +6,7 @@
         
         <div class="mainimg">
         <div class="container text-center pt-5">
-            <h3 class="mt-5">التصنيفات</h3>
+            <h3 class="mt-5">الفئات</h3>
          
             </div>
         </div>

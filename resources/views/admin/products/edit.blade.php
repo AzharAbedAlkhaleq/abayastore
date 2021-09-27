@@ -128,30 +128,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-md-6 ">
-                    <label >الالوان</label>
-                    <div class="mb-3">
-                        @foreach($colors as $color)
-                            <input class="@error('colors') is-invalid @enderror " name="colors[]" type="checkbox" id="{{$color->id}}" value="{{$color->id }}" {{in_array($color->id,$product->color()->pluck('color_id')->toArray()) ? 'checked' :''}}>
-                            <label class="form-check-label" for="{{$color->id}}">{{$color->color}}</label>
-                        @endforeach
-                            @error('colors')
-                            <p class="invalid-feedback">{{ $message }}</p>
-                            @enderror
-                    </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="descrpt">الاحجام</label>
-                    <div class="mb-3">
-                        @foreach($sizes as $size)
-                            <input class=" @error('sizes') is-invalid @enderror " name="sizes[]" type="checkbox" id="size_{{$size->id}}" value="{{$size->id }}" {{in_array($size->id , $product->size()->pluck('size_id')->toArray()) ? 'checked' :''}}>
-                            <label class="form-check-label" for="size_{{$size->id}}">{{$size->size}}</label>
-                        @endforeach
-                            @error('sizes')
-                            <p class="invalid-feedback">{{ $message }}</p>
-                            @enderror
-                    </div>
-                </div>
+               
                 <div  class="col-md-3 mb-3">
                     <label for="">{{ trans('admin.Orginal Price') }} (OMR) </label>
                     <input style="font-family:Times New Roman; font-size:24px" type="number"  name="orginal_price" class="form-control @error('orginal_price') is-invalid @enderror" value="{{$product->orginal_price}}">
@@ -203,9 +180,12 @@
                   </div>
                 </div> --}}
 
+                @if($product->image_ar)
+                <img style="width: 75px;height:75px" src="{{ asset('assets/uploads/product/'.$product->image_ar) }}" alt="image">
+                @endif
                 <div  class="form-group mb-3">
                     <label for="">{{ trans('admin.Image') }}</label>
-                    <input style="color:#0090E7; font-size:24px" type="file"  name="image" class="form-control  @error('image') is-invalid @enderror" accept="image/*">
+                    <input style="color:#0090E7; font-size:24px" type="file"  name="image_ar" class="form-control  @error('image') is-invalid @enderror" accept="image/*">
                     @error('image')
                     <p class="invalid-feedback">{{ $message }}</p>
                     @enderror
@@ -226,10 +206,32 @@
 
                 <div  class="form-group mb-3">
                     <label for="">{{ trans('admin.choose Video') }}</label>
-                    <input style="color:#0090E7; font-size:24px" type="file"  name="video" class="form-control  @error('video') is-invalid @enderror" accept="video/*">
-                    @error('video')
-                    <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
+                    <input style="color:#0090E7; font-size:24px" type="file"  name="video" class="form-control   accept="video/*">
+                   
+                </div>
+                <div class="col-md-6 ">
+                    <label >{{ trans('admin.color') }}</label>
+                    <div class="mb-3">
+                        @foreach($colors as $color)
+                            <input class="@error('colors') is-invalid @enderror " name="colors[]" type="checkbox" id="{{$color->id}}" value="{{$color->id }}" {{in_array($color->id,$product->color()->pluck('color_id')->toArray()) ? 'checked' :''}}>
+                            <label class="form-check-label" for="{{$color->id}}">{{$color->color}}</label>
+                        @endforeach
+                            @error('colors')
+                            <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="descrpt">{{ trans('admin.size') }}</label>
+                    <div class="mb-3">
+                        @foreach($sizes as $size)
+                            <input class=" @error('sizes') is-invalid @enderror " name="sizes[]" type="checkbox" id="size_{{$size->id}}" value="{{$size->id }}" {{in_array($size->id , $product->size()->pluck('size_id')->toArray()) ? 'checked' :''}}>
+                            <label class="form-check-label" for="size_{{$size->id}}">{{$size->size}}</label>
+                        @endforeach
+                            @error('sizes')
+                            <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
+                    </div>
                 </div>
                 <div class="col-md-12 mb-4">
                     <label >{{ trans('admin.Status') }} </label>

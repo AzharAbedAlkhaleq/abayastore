@@ -14,7 +14,7 @@
             @csrf
          @method('PUT')
 
-         <div  class=" from-group col-md-6  mb-3">
+         <div  class="col-md-6  mb-3">
           <label for="">{{ trans('admin.add size') }}</label>
           <input style="font-family:Times New Roman; " type="text" value="{{ $size->size }}" name="size" class="form-control @error('size') is-invalid @enderror">
              @error('size')
@@ -25,7 +25,7 @@
 
 
 
-    <div class="from-group col-md-6 mb-4">
+    <div class="col-md-6 mb-4">
       <label >{{ trans('admin.Status') }} </label>
           <select style=" color:rgb(151, 35, 35);font-size:24px" class="form-control  @error('status') is-invalid @enderror"   name="status">
               <option style="color:rgb(151, 35, 35);" value="">{{ trans('admin.select the status') }}</option>

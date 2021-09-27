@@ -20,7 +20,7 @@ class CouponController extends Controller
    public function store(Request $request){
 
      $request->validate([
-         'code'=>'required',
+         'code'=>'required|unique:coupons,code',
          'type'=>'required',
          'status'=>'required',
          'value'=>'required',
@@ -33,12 +33,14 @@ class CouponController extends Controller
          'value.required'=>'يحب ادخال القيمة',
          'start_date.required'=>'يحب ادخال تاريخ الابتداء',
          'expire_date.required'=>'يحب ادخال تاريخ الإنتهاء',
+         'code.unique'=> 'هذا الكود موجود ، الرجاء إدخال كود آخر'
      ]);
+    //  dd($request->all());
      $coupons=new Coupon();
      $coupons->code=$request->input('code');
-     $coupons->value =$request->input('value ');
+     $coupons->value =$request->input('value');
     //  $coupons->use_time =$request->input('use_time ');
-     $coupons->start_date=$request->input('start_date ');
+     $coupons->start_date=$request->input('start_date');
      $coupons->expire_date =$request->input('expire_date');
      $coupons->type=$request->input('type') == true? 'fixed':'percentage';
 
@@ -70,8 +72,7 @@ class CouponController extends Controller
            'start_date.required'=>'يحب ادخال تاريخ الابتداء',
            'expire_date.required'=>'يحب ادخال تاريخ الإنتهاء',
        ]);
-    $coupon= Coupon::find($id);
-    $coupons=new Coupon();
+    $coupons= Coupon::find($id);
     $coupons->code=$request->input('code');
     $coupons->value =$request->input('value');
     // $coupons->use_time =$request->input('use_time');
@@ -79,7 +80,7 @@ class CouponController extends Controller
     $coupons->expire_date =$request->input('expire_date');
     $coupons->type=$request->input('type') == true? 'fixed':'percentage';
     $coupons->status=$request->input('status') == true? '1':'0';
-    $coupon->update();
+    $coupons->update();
     return redirect( route('homecoupon'))->with('status','تم التعديل بنجاح!');
    }
 

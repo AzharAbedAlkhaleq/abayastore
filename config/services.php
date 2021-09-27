@@ -36,9 +36,9 @@ return [
         'redirect' => 'http://AbayaStore.test/login/facebook/callback',
     ],
     'google' => [
-        'client_id' => '772694927132-t0miqpgbpbe87jtegti8rf9giho4b0hr.apps.googleusercontent.com',
-        'client_secret' => 'OMxO8BWZCpNtKh7I9e2TB8YG',
-        'redirect' => 'http://localhost:8000/callback/google',
+        'client_id' => env('GOOGLE_API_KEY'),
+        'client_secret' => env('GOOGLE_API_SECRET'),
+        'redirect' => env('GOOGLE_CALLBACK_URL'),
     ],
 
     'twitter' => [

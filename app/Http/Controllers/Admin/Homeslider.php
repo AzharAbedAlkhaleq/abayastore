@@ -11,7 +11,7 @@ class HomeSlider extends Controller
 {
   public function index(){
 
-    $sliders = ModelsHomeSlider::paginate(7);
+    $sliders = ModelsHomeSlider::paginate(5);
       return view('admin.homeSlider.index',compact('sliders'));
   }
 
@@ -23,17 +23,11 @@ public function store(Request $request){
   $request->validate([
       'type'=>'required',
       'status'=>'required',
-      'title'=>'required',
-
-      'subtitle'=>'required',
-      'link'=>'required',
+    
       'imageSlider'=>'required',
   ],[
       'type.required'=>'رجاءاً, ادخل مكان السلايدر',
       'status.required'=>'رجاءاً, ادخل  الحالة',
-      'title.required'=>'رجاءاً, ادخل وصف مطول ',
-      'subtitle.required'=>'رجاءاً, ادخل وصف ',
-      'link.required'=>'رجاءاً, ادخل الرابط',
       'imageSlider.required'=>'رجاءاً, ادخل صورة السلايدر',
   ]);
   $slider= new ModelsHomeSlider();
@@ -62,16 +56,11 @@ public  function update(Request $request,$id)
     $request->validate([
         'type'=>'required',
         'status'=>'required',
-        'title'=>'required',
-
-        'subtitle'=>'required',
-        'link'=>'required',
+      
     ],[
         'type.required'=>'رجاءاً, ادخل مكان السلايدر',
         'status.required'=>'رجاءاً, ادخل  الحالة',
-        'title.required'=>'رجاءاً, ادخل وصف مطول ',
-        'subtitle.required'=>'رجاءاً, ادخل وصف ',
-        'link.required'=>'رجاءاً, ادخل الرابط',
+        
     ]);
  $slider = ModelsHomeSlider::find($id);
       $slider->type=$request->input('type');

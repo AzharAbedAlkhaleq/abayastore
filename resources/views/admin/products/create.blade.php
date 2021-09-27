@@ -13,12 +13,12 @@
         <form action="{{ route('store-product') }}" method="POST" id="framework_form " enctype="multipart/form-data">
             @csrf
             <div class="mb-3 row">
-              <div class="col-md-6 mb-3">
+              <div class="col-md-3 mb-3">
                 <label style="color: blue; font-size:25px"> <span style="color: red">*</span> {{ trans('admin.Categories') }} </label>
                 <select  style=" font-size:20px"  class="form-select @error('category_id') is-invalid @enderror"   name="category_id">
                   <option value="">{{ trans('admin.Select the Category') }}</option>
                   @foreach ($category as $category)
-                  <option value="{{ $category->id }}"> {{ $category->name_en }}</option>
+                  {{-- <option value="{{ $category->id }}"> {{ $category->name_en }}</option> --}}
                   <option value="{{ $category->id }}">{{ $category->name_ar }}</option>
                   @endforeach
                 </select>
@@ -26,7 +26,7 @@
                   <p class="invalid-feedback">{{ $message }}</p>
                   @enderror
               </div>
-              <div  class="col-md-6  mb-3">
+              <div  class="col-md-3  mb-3">
                 <label for="">{{ trans('admin.code') }}</label>
                 <input style=" font-family:Times New Roman; " type="text"  name="code" class="form-control @error('code') is-invalid @enderror">
                   @error('code')
@@ -34,7 +34,7 @@
                   @enderror
             </div>
 
-              <div  class="col-md-6  mb-3">
+              <div  class="col-md-3  mb-3">
                 <label for="">{{ trans('admin.Arabic_Name') }}</label>
                 <input style="font-family:Times New Roman; " type="text"  name="name_ar" class="form-control @error('name_ar') is-invalid @enderror">
                   @error('name_ar')
@@ -43,7 +43,7 @@
             </div>
 
 
-            <div  class="col-md-6 mb-3">
+            <div  class="col-md-3 mb-3">
               <label for="">{{ trans('admin.English_Name') }}</label>
               <input style="font-family:Times New Roman; " type="text"  name="name_en" class="form-control @error('name_en') is-invalid @enderror">
                 @error('name_en')
@@ -52,7 +52,7 @@
           </div>
 
           {{-- <div class="col-md-6 mb-4">
-            <label >{{ trans('admin.size') }} </label>
+            <label > </label>
 
             <select style=" color:rgb(151, 35, 35);font-size:22px"  id="framework"  class="form-control"  multiple="multiple"  name="size_id[]">
                     <option style="color:rgb(151, 35, 35);">{{ trans('admin.select the size') }}</option>
@@ -121,28 +121,7 @@
                 @enderror
             </div>
           </div>
-          <div class="col-md-6 ">
-            <label >الالوان</label>
-            <div class="mb-3">
-                @foreach($colors as $color)
-                    <input class="" name="colors[]" type="checkbox" id="{{$color->id}}" value="{{$color->id }}">
-                    <label class="form-check-label" for="{{$color->id}}">{{$color->color}}</label>
-                @endforeach
-            </div>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="descrpt">الاحجام</label>
-            <div class="mb-3">
-                @foreach($sizes as $size)
-                    <input class="" name="sizes[]" type="checkbox" id="size_{{$size->id}}" value="{{$size->id }}">
-                    <label class="form-check-label" for="size_{{$size->id}}">{{$size->size}}</label>
-                @endforeach
-
-                @error('description_en')
-                <p class="invalid-feedback">{{ $message }}</p>
-                @enderror
-            </div>
-          </div>
+     
 
 
             <div  class="col-md-3 mb-3">
@@ -198,8 +177,8 @@
 
             <div  class="form-group mb-3">
                 <label for="">{{ trans('admin.Image') }}</label>
-                <input style="color:#0090E7; font-size:24px" type="file"  name="image" class="form-control  @error('image') is-invalid @enderror" accept="image/*">
-                @error('image')
+                <input style="color:#0090E7; font-size:24px" type="file"  name="image_ar" class="form-control  @error('image_ar') is-invalid @enderror" accept="image/*">
+                @error('image_ar')
                 <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
             </div>
@@ -219,10 +198,8 @@
 
             <div  class="form-group mb-3">
               <label for="">{{ trans('admin.choose Video') }}</label>
-              <input style="color:#0090E7; font-size:24px" type="file"  name="video" class="form-control  @error('video') is-invalid @enderror" accept="video/*">
-                @error('video')
-                <p class="invalid-feedback">{{ $message }}</p>
-                @enderror
+              <input style="color:#0090E7; font-size:24px" type="file"  name="video" class="form-control   accept="video/*">
+               
           </div>
           <div class="col-md-12 mb-4">
             <label >{{ trans('admin.Status') }} </label>
@@ -235,7 +212,27 @@
               <p class="invalid-feedback">{{ $message }}</p>
               @enderror
             </div>
-
+            <div class="col-md-6 ">
+              <label >{{ trans('admin.color') }}</label>
+              <div class="mb-3">
+                  @foreach($colors as $color)
+                      <input class="" name="colors[]" type="checkbox" id="{{$color->id}}" value="{{$color->id }}">
+                      <label class="form-check-label" for="{{$color->id}}">{{$color->color}}</label>
+                  @endforeach
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="descrpt">{{ trans('admin.size') }}</label>
+              <div class="mb-3">
+                  @foreach($sizes as $size)
+                      <input class="" name="sizes[]" type="checkbox" id="size_{{$size->id}}" value="{{$size->id }}">
+                      <label class="form-check-label" for="size_{{$size->id}}">{{$size->size}}</label>
+                  @endforeach
+                  @error('size')
+                  <p class="invalid-feedback">{{ $message }}</p>
+                  @enderror
+              </div>
+            </div>
             <div class="col mb-3">
                 @error('trending')
                 <p class="invalid-feedback">{{ $message }}</p>

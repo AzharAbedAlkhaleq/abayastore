@@ -50,7 +50,7 @@
                          <a href="{{ url('admin/edit-category/'.$category->id) }}"  class="btn btn-primary">{{ trans('admin.edit') }} </a>
 
 
-                         <a class="btn btn-danger" data-toggle="modal" data-target="#ModalDelete{{ $category->id }}">{{ trans('admin.delete') }} </a>
+                         <a class="btn btn-danger" data-toggle="modal" data-target="#ModalDelete{{ $category->id }}"><span style="color: white"> {{ trans('admin.delete') }} </span> </a>
                     </td>
                      @include('modal.delete')
                   </tr>

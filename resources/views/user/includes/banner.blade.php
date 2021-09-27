@@ -6,12 +6,13 @@
                 $banners=App\Models\Banner::where('location','right')->latest()->first();
          ?>
 @if($banners)
+
 <a href="{{ $banners->link }}" target="_blanket">
-    <img src="{{ asset('assets/uploads/banners/'.$banners->banner_image)}}" width="543px" height="243px">
+    <img src="{{ asset('assets/uploads/banners/'.$banners->banner_image)}}" >
 </a>
                     @else
                         <a href="#" target="_blanket">
-                            <img src="{{ asset('dashboard/1631697847.jpg')}}" width="543px" height="243px">
+                            <img src="{{ asset('dashboard/1631697847.jpg')}}" >
                         </a>
                 @endif
 </div>

@@ -8,9 +8,17 @@ use App\Models\Category;
 use App\Models\HomeSlider;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class HomeController extends Controller
 {
+    protected $viewPostfix = '';
+    public function __construct()
+    {
+        if (App::getLocale() == 'en') {
+            $this->viewPostfix = '_en';
+        }
+    }
     
     public function index(){
       $products=Product::take(8)->get();

@@ -25,7 +25,7 @@ class SocialiteController extends Controller
         
            
            try{
-                $user = Socialite::driver('google')->user();
+            $user = Socialite::driver('google')->user();
            
             $finduser = User::where('social_id', $user->id)->first();
        
@@ -38,11 +38,10 @@ class SocialiteController extends Controller
             }else{
                 $newUser = User::create([
                     'name' => $user->name,
-                
                     'email' => $user->email,
                     'social_id'=> $user->id,
                     'social_type'=> 'google',
-                     'picture'=>$user->avatar,
+                    'picture'=>$user->avatar,
                     'password' => encrypt(Str::random(8))
                 ]);
       

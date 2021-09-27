@@ -21,8 +21,8 @@
                 <label style="color: #0090E7">  {{ trans('admin.slider Position') }} </label>
                     <select class="form-control @error('type') is-invalid @enderror" name="type">
                         <option style="color:rgb(151, 35, 35);" value=""> {{ trans('admin.choose the slider') }}</option>
-                        <option >top</option>
-                        <option >bottom</option>
+                        <option value="top" >{{ trans('admin.top') }}</option>
+                        <option value="bottom" >{{ trans('admin.bottom') }}</option>
                     </select>
                 @error('type')
                 <p class="invalid-feedback">{{ $message }}</p>
@@ -43,31 +43,25 @@
             <div class="col-md-6 mb-3">
                 <label for=""> {{ trans('admin.title') }}</label>
                 <div class="mb-3">
-                  <textarea  style="font-size: 28px; font-family:'Times New Roman', Times, serif"   type="text" name="title" class="form-control  @error('title') is-invalid @enderror" >
+                  <textarea  style="font-size: 28px; font-family:'Times New Roman', Times, serif"   type="text" name="title" class="form-control" >
                   </textarea>
-                    @error('title')
-                    <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
+                    
                 </div>
               </div>
             <div class="col-md-6 mb-3">
                 <label for=""> {{ trans('admin.subtitle') }}</label>
                 <div class="mb-3">
-                  <textarea  style="font-size: 28px; font-family:'Times New Roman', Times, serif"   type="text" name="subtitle" class="form-control @error('subtitle') is-invalid @enderror" >
+                  <textarea  style="font-size: 28px; font-family:'Times New Roman', Times, serif"   type="text" name="subtitle" class="form-control" >
 
                   </textarea>
-                    @error('subtitle')
-                    <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
+                   
                 </div>
               </div>
 
             <div  class="col-md-12 mb-3">
                 <label for="">{{ trans('admin.Link') }}</label>
-                <input placeholder="{{ trans('admin.without') }}" style="font-family:Times New Roman; font-size:24px" type="text"  name="link" class="form-control @error('link') is-invalid @enderror">
-                @error('link')
-                <p class="invalid-feedback">{{ $message }}</p>
-                @enderror
+                <input placeholder="{{ trans('admin.without') }}" style="font-family:Times New Roman; font-size:24px" type="text"  name="link" class="form-control ">
+                
             </div>
 
 

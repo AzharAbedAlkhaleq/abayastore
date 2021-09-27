@@ -36,28 +36,17 @@
                 <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
                 </div>
-
-            <div class="col-md-4 mb-3">
-                <label >{{ trans('admin.Status') }} </label>
-                    <select  style=" font-family:Times New Roman; font-size:20px" class="form-control @error('status') is-invalid @enderror" name="status">
-                        <option style="color:rgb(151, 35, 35);" value="">{{ trans('admin.select the status') }}</option>
-                        <option value="1">{{ trans('admin.Active') }}</option>
-                        <option value="0">{{ trans('admin.Inactive') }}</option>
-                    </select>
-                @error('status')
-                <p class="invalid-feedback">{{ $message }}</p>
-                @enderror
-                </div>
                 <div  class="col-md-4  mb-3">
                     <label for="">{{ trans('admin.value') }}</label>
-                    <input style=" font-family:Times New Roman; font-size:20px" type="number"  name="value" class="form-control @error('value') is-invalid @enderror">
+                    <input style=" font-family:Times New Roman; font-size:20px" type="text"  name="value" class="form-control @error('value') is-invalid @enderror">
                     @error('value')
                     <p class="invalid-feedback">{{ $message }}</p>
                     @enderror
                 </div>
 
+
                     <div  class="col-md-4  mb-3">
-                        <label for="">{{ trans('admin.start Date') }}</label>
+                        <label for="">{{ trans('admin.start date') }}</label>
                         <input style=" font-family:Times New Roman; font-size:20px" type="date"  name="start_date" class="form-control  @error('start_date') is-invalid @enderror">
                         @error('start_date')
                         <p class="invalid-feedback">{{ $message }}</p>
@@ -70,6 +59,18 @@
                         <p class="invalid-feedback">{{ $message }}</p>
                         @enderror
                     </div>
+                    <div class="col-md-4 mb-3">
+                        <label >{{ trans('admin.Status') }} </label>
+                            <select  style=" font-family:Times New Roman; font-size:20px" class="form-control @error('status') is-invalid @enderror" name="status">
+                                <option style="color:rgb(151, 35, 35);" value="">{{ trans('admin.select the status') }}</option>
+                                <option value="1">{{ trans('admin.Active') }}</option>
+                                <option value="0">{{ trans('admin.Inactive') }}</option>
+                            </select>
+                        @error('status')
+                        <p class="invalid-feedback">{{ $message }}</p>
+                        @enderror
+                        </div>
+               
                     {{-- <label for=""> {{ trans('admin.description') }}</label>
                     <div class="mb-3">
                       <textarea  style="font-size: 28px; font-family:'Times New Roman', Times, serif" type="text" name="description" class="form-control" id="descrpt">
