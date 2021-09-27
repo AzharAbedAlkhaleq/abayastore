@@ -35,14 +35,60 @@
 
                     </div>
                                 
+ 
 
-                     
-                     
-                     
-                     
-                     
-                     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     
+                     
+                     
+                     
+                     
+                     
+                     
+
                     <div class="col-md-5 col-sm-12 right">
                         @foreach($category->product as $product)
                         <div class="rightdown row pt-3">
