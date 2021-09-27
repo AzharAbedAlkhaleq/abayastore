@@ -52,6 +52,11 @@
                         </div>
                     @else
                     
+
+
+
+
+                    
                         <a class="px-2" href="{{ route('login') }}">تسجيل دخول</a>
                         @endif
                         <div class="lang">
