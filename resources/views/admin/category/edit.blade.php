@@ -91,13 +91,13 @@
               </div>
           </div>
 
-           @if($category->image_ar)
-           <img style="width: 75px;height:75px" src="{{ asset('assets/uploads/Category_ar/'.$category->image_ar) }}" alt="image">
+           @if($category->image)
+           <img style="width: 75px;height:75px" src="{{ asset('assets/uploads/Category_ar/'.$category->image) }}" alt="image">
            @endif
 
             <div  class="form-group  mb-3">
                 <label for="">{{ trans('admin.Image') }}</label>
-                <input  style="color:#0090E7; font-size:24px" type="file"  name="image_ar" class="form-control" >
+                <input  style="color:#0090E7; font-size:24px" type="file"  name="image" class="form-control" >
 
               </div>
 

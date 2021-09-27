@@ -1,7 +1,177 @@
-*{
-    font-family: 'Times New Roman', Times, serif
-    ;
+/*cart style*/
+
+
+.paymentpage .left{
+    position: relative;
+      background-color: #ffffff;
+    padding: 2vh;
+    text-align: right;
 }
+.paymentpage .paymentimg{
+    position: absolute;
+    top: 10px;
+    left: 5px;
+}
+
+.paymentpage .card-top {
+    padding: 0.7rem 5rem
+}
+
+.paymentpage .card-top a {
+
+    margin-top: 0.7rem
+}
+
+.paymentpage #logo {
+    font-family: 'Dancing Script';
+    font-weight: bold;
+    font-size: 1.6rem
+}
+
+.paymentpage .card-body {
+    padding: 0 5rem 5rem 5rem;
+    background-size: cover;
+    background-repeat: no-repeat
+}
+
+@media(max-width:768px) {
+   .paymentpage  .card-body {
+        padding: 0 1rem 1rem 1rem;
+        background-size: cover;
+        background-repeat: no-repeat
+    }
+
+    .paymentpage .card-top {
+        padding: 0.7rem 1rem
+    }
+}
+
+
+
+.paymentpage .upper {
+    padding: 1rem 0;
+    justify-content: space-evenly
+}
+
+.paymentpage #three {
+    border-radius: 1rem;
+    width: 22px;
+    height: 22px;
+    margin-right: 3px;
+    border: 1px solid blue;
+    text-align: center;
+    display: inline-block
+}
+
+.paymentpage #payment {
+    margin: 0;
+    color: blue
+}
+
+
+.paymentpage form span {
+    color: rgb(179, 179, 179)
+}
+
+.paymentpage form {
+    padding: 2vh 0
+}
+
+.paymentpage input {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247)
+}
+
+.paymentpage input:focus::-webkit-input-placeholder {
+    color: transparent
+}
+
+.header {
+    font-size: 1.5rem
+}
+
+
+
+.paymentpage .left img {
+    width: 2rem
+}
+
+.paymentpage .left .col-4 {
+    padding-left: 0
+}
+
+.paymentpage .right .item {
+    padding: 0.3rem 0
+}
+
+.paymentpage .right {
+    background-color: #ffffff;
+    padding: 2vh;
+    text-align: right;
+}
+
+.paymentpage .col-8 {
+    padding: 0 1vh
+}
+
+.paymentpage .lower {
+    line-height: 2;
+      text-align: right;
+}
+
+.paymentpage .btn {
+    background-color: rgb(90, 217, 34);
+    border-color:  rgb(90, 217, 34);
+    color: white;
+    width: 100%;
+    font-size: 0.7rem;
+    margin: 4vh 0 1.5vh 0;
+    padding: 1.5vh;
+    border-radius: 0
+}
+
+.paymentpage .btn:focus {
+    box-shadow: none;
+    outline: none;
+    box-shadow: none;
+    color: white;
+    -webkit-box-shadow: none;
+    -webkit-user-select: none;
+    transition: none
+}
+
+.paymentpage .btn:hover {
+    color: white
+}
+
+.paymentpage a {
+    color: black
+}
+
+.paymentpage a:hover {
+    color: black;
+    text-decoration: none
+}
+
+input[type=checkbox] {
+    width: unset;
+    margin-bottom: unset
+}
+
+.paymentpage #cvv {
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.575), rgba(255, 255, 255, 0.541)), url("https://img.icons8.com/material-outlined/24/000000/help.png");
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: center
+}
+
+.paymentpage #cvv:hover {}
+
+/*end cart style*/
 .about_us_main .mainimg{
     background-image: url(../images/bgislamc.jpeg);
     background-position: center;
@@ -68,7 +238,10 @@
 .about_us .row .img img{
     width: 100%;
     height: 400px;
+<<<<<<< HEAD
+=======
 
+>>>>>>> 062456b69f98e5a464ad2b510573e7f2473d681d
 }
 @media (max-width: 768px) {
     .about_us .row .boxx{
@@ -107,11 +280,11 @@
     margin-right: 520px;
 }
 .main .navbar-brand{
-    margin-left: 33%;
+    margin-left: 39%;
 }
 .main .navbar-brand img{
- width: 200px;
-     height: 110px;
+ width: 80px;
+     height: 70px;
 }
 .main .lgside img{
     width: 25px;
@@ -172,7 +345,6 @@ nav {
     height: 350px;
 }
 .product .box img{
-    width: 100%;
     height: 250px;
 }
 .product .box .offer {
@@ -231,7 +403,7 @@ nav {
 
 .category .swiper {
     width: 100%;
-    height: 380px;
+    height: 500px;
 }
 
 .category .swiper-slide {
@@ -245,8 +417,6 @@ nav {
 .category .top {
     position: relative;
 }
-
-
 .category .top .swiper-rtl .swiper-button-prev{
     position: absolute;
     top: 5px;
@@ -367,8 +537,8 @@ nav {
     height: 382px;
 }
 .category .down .bg img{
-     width:80%;
-    height: 300px;
+     width: 100%;
+    height: 335px;
 }
 .category .down{
     text-align: right;
@@ -925,6 +1095,10 @@ color: #000;
       border: 1px solid #e2dede;
     color: #fff;
 }
+<<<<<<< HEAD
+.desc .des{
+     border-bottom: 1px solid #d2e856; 
+=======
 .desc .nav-tabs{
     border-bottom: none;
 }
@@ -934,6 +1108,7 @@ color: #000;
 .desc .des{
      border-bottom: 1px solid #d2e856;
 
+>>>>>>> 062456b69f98e5a464ad2b510573e7f2473d681d
 }
 .reve{
     text-align: right;
