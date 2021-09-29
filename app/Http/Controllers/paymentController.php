@@ -28,7 +28,10 @@ public function pay(){
 //          "metadata"=> [
 //          ]
     ]);
-  dd($respone);
+  if(data_get($respone, 'result') == 'success') {
+    return redirect()->away(data_get($respone, 'redirect'));
+  } 
+  dd("error");
 
 }
 

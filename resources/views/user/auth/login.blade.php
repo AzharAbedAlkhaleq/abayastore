@@ -85,11 +85,11 @@
 
                                     <div class="alert alert-success" id="successAuth" style="display: none;"></div>
 
-                                    <input type="text" name="phone" id="number" placeholder="+968 ******** ادخل رقم الهاتف " class="">
+                                    <input type="text" name="phone" id="number" placeholder=" (+968) ادخل رقم الهاتف " class="">
 
                                     <div id="recaptcha-container"></div>
 
-                                    <a href="#" class="btn btn-lg px-2" onclick="sendOTP();"> ارسال</a>
+                                    <a href="" class="btn btn-lg px-2" onclick="sendOTP();"> ارسال</a>
                                 </div>
 
                                    
@@ -97,7 +97,7 @@
                                 <div class="phone justify-content-between">
                                     <div class="alert alert-success" id="successOtpAuth" style="display: none;"></div>
                                     <input type="text" name="otp" id="verification" placeholder="ادخل رمز التحقق" class="">
-                                    <a href="#" class="mt-5 px-2 btn btn-lg"  onclick="verify();"> اعادة ارسال</a>
+                                    <a href="#" class="mt-7 px-2 btn btn-lg"  onclick="verify();"> تحقق</a>
 
                                 </div>
 

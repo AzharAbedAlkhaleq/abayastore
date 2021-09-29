@@ -119,7 +119,14 @@
                     <img src="{{ asset('assets/uploads/product/'.$prod->image_ar)}}" alt="women">
 
                 </a>
-                <h6 class="pt-3 pb-2">{{ $prod->name_ar }}</h6>
+                <h6 class="pt-3 pb-2">
+                    <a style="text-decoration: none;" href="{{ route('shopping',$prod->id) }}">
+
+
+                    {{ $prod->name_ar }}
+                
+                    </a>
+                </h6>
                 <p><a href="#" class="px-2"><i class="far fa-heart"></i></a> OMR {{ $prod->orginal_price  }} </p>
             </div>
 

@@ -14,10 +14,10 @@
                 <div class="col-6 col-md-2 ">
                     <h4>معلومة</h4>
                     <ul class="list-unstyled">
-                        <li><a href="#">من نحن</a></li>
+                        <li><a href="{{ route('aboutUs') }}">من نحن</a></li>
                         <li><a href="#">خدمة الزبائن</a></li>
                         <li><a href="#">سياسة الخصوصية</a></li>
-                        <li><a href="#">تواصل معنا</a></li>
+                        <li><a href="{{ route('contact') }}">تواصل معنا</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-2">

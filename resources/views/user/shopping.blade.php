@@ -68,7 +68,7 @@
                     <div class="col-md-6 mt-5 col-sm-12 rightside">
                         <div class=" ">
                             <div class="card-body">
-                                <h1 class="h2">عباية</h1>
+                                <h1 class="h2">{{ $product->name_ar }}</h1>
                                 <p class=" py-2">
                                     @if($product->Selling_price >0)
                                     <del>OMR {{ $product-> orginal_price}}</del>  OMR {{ $product->Selling_price }} </p>
@@ -78,7 +78,7 @@
 
                                     @endif
                                     
-                                <p>موقع عباية لبيع جميع انواع العبايات</p>
+                                <p>موقع عباية لوتس لبيع جميع انواع العبايات</p>
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
                                         <h6>الالوان المتاحة :</h6>
@@ -146,15 +146,15 @@
                                 <div class="desc mt-4 px-3 py-2">
                                     <nav>
                                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                          <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">تفاصيل المنتج
+                                          <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"> تفاصيل المنتج
                                         </a>
                                           <a class="nav-link " id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">الوصف</a>
                                         </div>
                                       </nav>
                                       <div class="tab-content pt-3" id="nav-tabContent">
-                                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">ارجاع مجاني لمدة 30 يوما لتغيير رأيك شحن مجاني لمدة 5 أيام
+                                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"> {{ $product->description_ar }}
                                         </div>
-                                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">ارجاع مجاني لمدة 30 يوما لتغيير رأيك شحن مجاني لمدة 5 أيام
+                                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">{{ $product->small_desc_ar}}
                                         </div>
                                       </div>
                                 </div>
@@ -182,7 +182,7 @@
                  <div class="col-md-3 col-sm-6">
                     <div class="box px-3 text-center">
                         <img src="{{ asset('assets/uploads/product/'.$related_product->image_ar) }}" alt="women">
-                        <h5 class="pt-4 "> <a href="{{route('shopping',$related_product->id) }}">{{$related_product->name_ar}}</a></h5>
+                        <h5 class="pt-4 "> <a style="text-decoration: none;" href="{{route('shopping',$related_product->id) }}">{{$related_product->name_ar}}</a></h5>
                     </div>
                 </div>
                  @endforeach
