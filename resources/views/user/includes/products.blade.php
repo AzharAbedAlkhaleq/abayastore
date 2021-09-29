@@ -20,7 +20,7 @@
             
             <img src="{{  asset('assets/uploads/product/'.$product->image_ar)}}">
             <div class="text-right">
-                <a style="text-decoration: none;" href="{{ route('shopping',$product->id) }}"> <h5>{{ $product->name_ar}}</h5></a>
+                <a style="text-decoration: none;color:black; text-align:center;" href="{{ route('shopping',$product->id) }}"> <h5>{{ $product->name_ar}}</h5></a>
                 @if($product->Selling_price > 0)
                 <del> <span style="color: red" class="float-end">{{ $product->orginal_price }} OMR</span></del>
 

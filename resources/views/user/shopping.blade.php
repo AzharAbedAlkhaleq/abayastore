@@ -118,11 +118,11 @@
                                             <ul class="list-inline pb-3">
                                                 <li class="list-inline-item text-right">
                                                     الكمية
-                                                    <input type="hidden" name="product-quanity" id="product-quanity" value="1">
+                                                    <input type="hidden" name="product-quanity qty-input" id="product-quanity" value="1">
                                                 </li>
-                                                <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
+                                                <li class="list-inline-item"><span class="btn btn-success decrement-btn" id="btn-minus">-</span></li>
                                                 <li class="list-inline-item  w"><span class="badge bg-secondary" id="var-value">1</span></li>
-                                                <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li>
+                                                <li class="list-inline-item"><span class="btn btn-success increment-btn " id="btn-plus">+</span></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -182,7 +182,7 @@
                  <div class="col-md-3 col-sm-6">
                     <div class="box px-3 text-center">
                         <img src="{{ asset('assets/uploads/product/'.$related_product->image_ar) }}" alt="women">
-                        <h5 class="pt-4 "> <a style="text-decoration: none;" href="{{route('shopping',$related_product->id) }}">{{$related_product->name_ar}}</a></h5>
+                        <h5 class="pt-4 "> <a style="text-decoration: none; color:black" href="{{route('shopping',$related_product->id) }}">{{$related_product->name_ar}}</a></h5>
                     </div>
                 </div>
                  @endforeach

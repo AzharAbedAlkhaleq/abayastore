@@ -115,12 +115,12 @@
             @foreach ($category_products as $prod)
 
             <div class="col-md-4 col-sm-2 text-center">
-                <a href="{{ url('category/'.$category->slug_ar.'/'.$prod->slug_ar) }}">
+                {{-- <a href="{{ url('category/'.$category->slug_ar.'/'.$prod->slug_ar) }}"> --}}
                     <img src="{{ asset('assets/uploads/product/'.$prod->image_ar)}}" alt="women">
 
-                </a>
+                {{-- </a> --}}
                 <h6 class="pt-3 pb-2">
-                    <a style="text-decoration: none;" href="{{ route('shopping',$prod->id) }}">
+                    <a style="text-decoration: none; color:black;" href="{{ route('shopping',$prod->id) }}">
 
 
                     {{ $prod->name_ar }}
