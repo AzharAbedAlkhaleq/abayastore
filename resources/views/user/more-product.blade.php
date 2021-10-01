@@ -113,23 +113,23 @@
                 </div>
 
                 <div class="product row pt-2">
-            @foreach ($more_products as $prod)
+            @foreach ($more_products as $m_prod)
 
             <div class="col-md-4 col-sm-2 text-center">
                 {{-- <a href="{{ url('category/'.$category->slug_ar.'/'.$prod->slug_ar) }}"> --}}
-                    <a style="text-decoration: none; color:black;" href="{{ route('shopping',$prod->id) }}">
+                    <a style="text-decoration: none; color:black;" href="{{ route('shopping',$m_prod->id) }}">
 
-                    <img src="{{ asset('assets/uploads/product/'.$prod->image_ar)}}" alt="women">
+                    <img src="{{ asset('assets/uploads/product/'.$m_prod->image_ar)}}" alt="women">
 
                 {{-- </a> --}}
                 <h6 class="pt-3 pb-2">
 
 
-                    {{ $prod->name_ar }}
+                    {{ $m_prod->name_ar }}
                 
                     </a>
                 </h6>
-                <p><a href="#" class="px-2"><i class="far fa-heart"></i></a> OMR {{ $prod->orginal_price  }} </p>
+                <p><a href="#" class="px-2"><i class="far fa-heart"></i></a> OMR {{ $m_prod->orginal_price  }} </p>
             </div>
 
                 

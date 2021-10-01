@@ -9,11 +9,39 @@
     background-color: #000;
     color: #fff:
 }
-
+.forms .rights{
+    text-align: left;
+}
+.forms .rights button{
+    color: #fff;
+}
+.contactus .top h2{
+    text-decoration-line: underline;
+    text-decoration-color: #b29554; 
+}
+.contactus .top p{
+    color: #8a8b8d;
+}
+.forms .lefts{
+    text-align: center;
+    color: #fff;
+    background-color: #d33232;
+}
 .main ul li a {
     color: #fff;
 }
-
+.main_cart{
+    text-align: left;
+}
+.main_cart .rightside .row{
+      border: 1px solid #dededb; 
+}
+.main_cart .leftside .up .h4{
+    background: #e89867;
+    width: 100%;
+    text-align: center;
+    color: #716f6f;
+}
 .main .lgside {
     color: #fff;
     margin-left: 520px;
@@ -583,14 +611,12 @@ color: #f44218;
     border-bottom: 1px solid #bebdbd;
 }
 }
-.shoping_container  .relatedproduct .box{
-    border-style: groove;
-}
-.shoping_container  .relatedproduct h4{
-    color: #626a6a;
+.shoping_container  .bg-shoping{
+    background-color: #000;
+    color: #fff;
 }
 .shoping_container  .relatedproduct{
-    text-align: right;
+    text-align: left;
 }
 .shoping_container  .relatedproduct .box img{
    height: 250px;

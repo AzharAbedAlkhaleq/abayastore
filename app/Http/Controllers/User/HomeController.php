@@ -22,11 +22,9 @@ class HomeController extends Controller
     // }
     
     public function index(){
-      $products=Product::orderby('created_at','DESC')->where('status',1)->take(8)->get();
+      $products=Product::orderby('created_at','DESC')->inRandomOrder()->where('status',1)->take(8)->get();
       $categories=Category::with('product')->get();  
-       //$banners=Banner::where('location','top')->latest()->first();  
-        //$banner=Banner::all();  
-        
+      
       $Cproduct=Product::take(3)->where('trending',1)->with('category')->get();
      //$Cproduct=Product::with('category')->get();
        $tops=HomeSlider::where('status',1)->where('type','top')->take(3)->get();
