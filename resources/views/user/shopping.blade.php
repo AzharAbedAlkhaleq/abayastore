@@ -6,7 +6,7 @@
 
     <!-- Open Content -->
 
-    <div class="shoping_container">
+    <div class="shoping_container product_data">
 
         <!-- Open Content -->
         <section class="bg-shoping">
@@ -71,7 +71,7 @@
                                 <h1 class="h2">{{ $product->name_ar }}</h1>
                                 <p class=" py-2">
                                     @if($product->Selling_price >0)
-                                    <del>OMR {{ $product-> orginal_price}}</del>  OMR {{ $product->Selling_price }} </p>
+                                    <del>OMR {{ $product-> orginal_price}}</del>  <span style="color: red">  &nbsp;&nbsp;&nbsp;&nbsp; OMR   {{ ($product-> orginal_price)- ( ($product-> orginal_price) * ($product->Selling_price)/100) }} </ </p>
 
                                     @else
                                     OMR {{ $product->orginal_price }}   </p>
@@ -107,22 +107,24 @@
                                         </div>
 
                                     </div>
+                                    
                                     <div class="row pb-3 pt-2">
                                         <div class="d-grid btn1">
                                             <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy"> <i class="mx-2 fas fa-bolt"></i> اشتري </button>
                                         </div>
                                         <div class="d-grid mx-3 btn2">
-                                            <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard"> <i class="mx-2 fas fa-shopping-cart"></i>اضافة الي السلة</button>
+                                            <button type="submit" class="btn btn-success btn-lg addToCart" name="submit" value="addtocard"> <i class="mx-2 fas fa-shopping-cart"></i><a href="{{ url('addcart',$product->id) }}" style="text-decoration: none;color:white;"> إضافة إلي السلة</a></button>
                                         </div>
                                         <div class="col-auto">
                                             <ul class="list-inline pb-3">
                                                 <li class="list-inline-item text-right">
-                                                    الكمية
-                                                    <input type="hidden" name="product-quanity qty-input" id="product-quanity" value="1">
-                                                </li>
+                                                    <label style="font-size: 24px;mb-5"> الكمية</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="number" name="quantity" value="1" min="1" max="10" class="btn btn-secondary "  style="width: 100px; mx-3">
+                                                {{-- </li>
                                                 <li class="list-inline-item"><span class="btn btn-success decrement-btn" id="btn-minus">-</span></li>
-                                                <li class="list-inline-item  w"><span class="badge bg-secondary" id="var-value">1</span></li>
-                                                <li class="list-inline-item"><span class="btn btn-success increment-btn " id="btn-plus">+</span></li>
+                                                <li class="list-inline-item  w"><span class="badge bg-secondary qty-input" id="var-value">1</span></li>
+                                                <li class="list-inline-item"><span class="btn btn-success increment-btn " id="btn-plus">+</span></li> --}}
                                             </ul>
                                         </div>
                                     </div>
@@ -158,8 +160,11 @@
                                         </div>
                                       </div>
                                 </div>
+                                <video width="560" height="315" controls>
+                                    <source src="{{ asset('assets/uploads/videos/'.$product->video) }}" type="video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                  </video>
 
-                                <iframe class="mt-5" width="560" height="315" src="https://www.youtube.com/embed/fMPEx0zJl7g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                {{-- <iframe class="mt-5" width="" height="315" src="https://www.youtube.com/embed/fMPEx0zJl7g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
 
                             </div>
                         </div>
@@ -194,9 +199,54 @@
 
     </div>
 
+    @section('scripts')
 
+<script>
+    $(document).ready(function(){
+
+//--------------------addToCart------------------------------------
+        $('.addToCart').click(function(e){
+       e.preventDefault();
+       var product_id =$(this).closest('.product_data').find('.prod_id').val();
+       var product_qty =$(this).closest('.product_data').find('.qty-input').val();
+       alert();
+      });
+
+//-----------------------make increment for the product quantity------------------------------
+    
+     $('.increment-btn').click(function(e){
+       e.preventDefault();
+       var inc_value = $('.qty-input').val();
+       var value = parseInt(inc_value,10);
+       value = isNaN(value) ? 0 : value ;
+       if(value < 10) 
+       {
+           value++;
+           $('.qty-input').val(value);
+       }
+      });
+
+//------------------------------decreament the quantity-----------------------------
+      $('.decrement-btn').click(function(e){
+       e.preventDefault();
+       var dec_value = $('.qty-input').val();
+       var value = parseInt(dec_value,10);
+       value = isNaN(value) ? 0 : value ;
+       if(value > 1) 
+       {
+           value--;
+           $('.qty-input').val(value);
+       }
+
+      });
+
+      });
+
+</script>
+ @endsection
 
   @include('user.includes.footer')
 
 </body>
 </html>
+

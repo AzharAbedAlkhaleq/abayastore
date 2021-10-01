@@ -104,10 +104,10 @@
                 <div class="d-flex list">
                     <h6>رتب حسب : </h6>
                     <ul class="list-unstyled d-flex listss">
-                        <li class="px-3 mx-2">الأكثر طلبا</li>
-                        <li class="px-3 mx-2">السعر من الاقل الي الاعلي</li>
-                        <li class="px-3 mx-2">السعر من الاعلي الي الاقل</li>
-                        <li class="px-3 mx-2">الاحدث اولا </li>
+                    <a href="{{ URL::current()."?sort=popularity"}}" style="text-decoration: none">  <li class="px-3 mx-2">الأكثر طلبا</li></a>
+                    <a href="{{ URL::current()."?sort=price_asc"}}"  style="text-decoration: none">  <li class="px-3 mx-2">السعر من الاقل الي الاعلي</li></a>
+                    <a href="{{ URL::current()."?sort=price_desc"}}"  style="text-decoration: none">  <li class="px-3 mx-2">السعر من الاعلي الي الاقل</li></a>
+                    <a href="{{ URL::current()."?sort=newest"}}"  style="text-decoration: none"> <li class="px-3 mx-2">الاحدث اولا </li></a>
                     </ul>
                 </div>
 
@@ -116,11 +116,12 @@
 
             <div class="col-md-4 col-sm-2 text-center">
                 {{-- <a href="{{ url('category/'.$category->slug_ar.'/'.$prod->slug_ar) }}"> --}}
+                    <a style="text-decoration: none; color:black;" href="{{ route('shopping',$prod->id) }}">
+
                     <img src="{{ asset('assets/uploads/product/'.$prod->image_ar)}}" alt="women">
 
                 {{-- </a> --}}
                 <h6 class="pt-3 pb-2">
-                    <a style="text-decoration: none; color:black;" href="{{ route('shopping',$prod->id) }}">
 
 
                     {{ $prod->name_ar }}

@@ -5,7 +5,7 @@
 
                 <i class="fire fas fa-fire-alt"></i>
                 <h5>العبائات الرائجة</h5>
-                <a href="#"> المزيد من العبايات <i class="fas fa-arrow-left"></i></a>
+                <a  style="text-decoration: none;"  href="{{ route('moreProduct') }}"> المزيد من العبايات <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
 
@@ -17,17 +17,18 @@
                 <p>{{ $product->Selling_price }}% <br>OFF </p>
             </div>   
             @endif
-            
+            <a style="text-decoration: none;color:black; text-align:right;" href="{{ route('shopping',$product->id) }}">
             <img src="{{  asset('assets/uploads/product/'.$product->image_ar)}}">
             <div class="text-right">
-                <a style="text-decoration: none;color:black; text-align:center;" href="{{ route('shopping',$product->id) }}"> <h5>{{ $product->name_ar}}</h5></a>
-                @if($product->Selling_price > 0)
-                <del> <span style="color: red" class="float-end">{{ $product->orginal_price }} OMR</span></del>
+         <h5>{{ $product->name_ar}}</h5></a>
+                <p class=" py-2" style="text-align: right;">
+                @if($product->Selling_price >0)
+                                    <del>OMR {{ $product-> orginal_price}}</del>  <span style="color: red;text-align:right; ">  &nbsp;&nbsp;&nbsp;&nbsp; OMR   {{ ($product-> orginal_price)- ( ($product-> orginal_price) * ($product->Selling_price)/100) }} </span> </p>
 
-                        @else
-                        <span style="color: red" class="float-end">{{ $product->orginal_price }} OMR</span>
+                                    @else
+                                    OMR {{ $product->orginal_price }}   </p>
 
-                        @endif
+                                    @endif
             </div>
 
         </div>
@@ -57,7 +58,7 @@
 
                                </div>
              <div class="more text-center py-3">
-                <a href="#" class="">    <i class="pt-1 fas fa-sync"></i> تحميل المزيد</a>
+                <a style="text-decoration: none" href="{{ route('moreProduct') }}" class="">    <i class="pt-1 fas fa-sync"></i> تحميل المزيد</a>
                 </div>
             </div>
 

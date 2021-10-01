@@ -35,7 +35,7 @@
 
            
         </ul>
-        <a href="{{ route('auth.logout') }}" style="font-size:25px;" class="btn btn-gray px-5 py-3">logout</a>
+        <a href="{{ route('auth.logout') }}" style="font-size:20px;" class="btn btn-secondary px-3 ">logout</a>
         {{-- <ul class="navbar-nav ml-auto">
             <li>
                 <div class="dropdown">

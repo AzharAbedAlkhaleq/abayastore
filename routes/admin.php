@@ -26,7 +26,7 @@ Route::group(['middleware' => 'Lang'], function () {
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         // Route::get('/email',[EmailController::class,'index']);
         
-        //---------------------------------------------Category-----------------------------------------
+        //---------------------------------------------Products-----------------------------------------
         
             Route::get('categories',[CategoriesController::class,'index'])->name('categories');
             
@@ -89,6 +89,9 @@ Route::group(['middleware' => 'Lang'], function () {
              //Delete product
              Route::delete('delete-product/{id}',[ProductsController::class,'delete']);
             
+              //search Products
+              Route::get('search',[ProductsController::class,'search'])->name('search');
+             
              //------------------------------HomeSlider--------------------------------------------------
              Route::get('homeslider',[Homeslider::class,'index'])->name('homeslider');
             

@@ -9,6 +9,7 @@ use App\Models\HomeSlider;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,8 @@ class HomeController extends Controller
     // }
     
     public function index(){
-      $products=Product::take(8)->get();
-      $categories=Category::with('product')->get();       
+      $products=Product::orderby('created_at','DESC')->where('status',1)->take(8)->get();
+      $categories=Category::with('product')->get();  
        //$banners=Banner::where('location','top')->latest()->first();  
         //$banner=Banner::all();  
         
@@ -33,6 +34,29 @@ class HomeController extends Controller
 
         return view('user.includes.home',compact('products','tops','bottom','Cproduct','categories'));
     }
+    
+    public function moreProduct(){
+     
+        $more_products=Product::where('trending',1)->take(9)->get();   
+        if(FacadesRequest::get('sort')== 'newest'){
+          $more_products=Product::orderby('created_at','DESC')->get()->take(9);  
+        }
+        elseif(FacadesRequest::get('sort')== 'price_desc'){
+            $more_products=Product::orderby('orginal_price','DESC')->get()->take(9);  
+
+        }
+        elseif(FacadesRequest::get('sort')== 'price_asc'){
+            $more_products=Product::orderby('orginal_price','ASC')->get()->take(9);  
+        }
+        else
+        {
+            $more_products=Product::where('trending',1)->get()->take(9);  
+   
+        }
+        
+        return view('user.more-product',compact('more_products'));
+
+    }
     public function category(){
         $categories=Category::orderby('created_at','DESC')->get()->take(9);
         return view('user.category',compact('categories'));
@@ -41,6 +65,7 @@ class HomeController extends Controller
         return view('user.products');
     }
     public function shopping($id){
+        
        
         $product = Product::where('id',$id)->with('images','color.color','size.size')->first();
         $related_products = Product::where('category_id',$product->category->id)->take(4)->get();
@@ -51,11 +76,33 @@ class HomeController extends Controller
         $arrival_products=Product::orderby('created_at','DESC')->get()->take(9);
         return view('user.arrival',compact('arrival_products'));
     }
+    //-------------------------------------------------------------=======================
+
      public function viewcategory($slug_ar){
          if(Category::where('slug_ar',$slug_ar)->exists()){
            $category=Category::where('slug_ar',$slug_ar)->first();
-             $category_products=Product::where('category_id',$category->id)->where('status',0)->take(9)->get();
-           return view('user.view_product',compact('category','category_products'));
+
+    //    if((Request::get('sort'))=='price_asc'){
+    //     $category_products=Product::where('category_id',$category->id)->orderBy('orginal_price','ASC')->where('status',0)->take(9)->get();
+    //    }
+             $category_products=Product::where('category_id',$category->id)->where('status',1)->take(9)->get();
+             if(FacadesRequest::get('sort')== 'newest'){
+                 $category_products=Product::orderby('created_at','DESC')->get()->take(9);  
+              }
+              elseif(FacadesRequest::get('sort')== 'price_desc'){
+                   $category_products=Product::orderby('orginal_price','DESC')->get()->take(9);  
+      
+              }
+              elseif(FacadesRequest::get('sort')== 'price_asc'){
+                   $category_products=Product::orderby('orginal_price','ASC')->get()->take(9);  
+              }
+              else
+              {
+                   $category_products=Product::where('trending',1)->get()->take(9);  
+         
+              }
+             return view('user.view_product',compact('category','category_products'));
+
 
         }
        else{

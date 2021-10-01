@@ -29,6 +29,7 @@ class CreateProductsTable extends Migration
             $table->string('description_en')->nullable();
             $table->double('orginal_price')->nullable();
             $table->int('Selling_price')->defualt('0');
+            $table->int('result')->defualt('0');
             $table->string('quantity')->nullable();
             $table->string('tax')->default('5');
             $table->string('image');

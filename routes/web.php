@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\EditorController;
 use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\paymentController;
@@ -45,6 +46,8 @@ Route::post('verifySMSCode', ['uses' => 'VerificationController@verifySMSCode'])
     Route::get('contact',[HomeController::class,'contact'])->name('contact');
     Route::get('view-category/{slug_ar}',[HomeController::class,'viewcategory']);
     Route::get('category/{slug_ar}/{prod_slug_ar}',[HomeController::class,'productview']);
+    Route::post('addcart/{id}',[CartController::class,'addcart']);
+    Route::get('moreProduct',[HomeController::class,'moreProduct'])->name('moreProduct');
 
 // });
 //--------------------------editor---------------------------

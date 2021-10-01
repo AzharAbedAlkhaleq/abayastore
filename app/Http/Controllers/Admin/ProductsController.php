@@ -153,46 +153,46 @@ class ProductsController extends Controller
   //Update Produc
 public  function update(Request $request,$id)
 {
-    $request->validate([
-        'category_id'=>'required',
-        'code'=>'required|unique:products,code',
-        'name_ar'=>'required|min:3|max:100|unique:products,name_ar',
-        'name_en'=>'required|min:3|max:100|unique:products,name_en',
-        'small_desc_ar'=>'required',
-        'small_desc_en'=>'required',
-        'description_ar'=>'required',
-        'description_en'=>'required',
-        'orginal_price'=>'required',
-        'Selling_price'=>'sometimes',
-        'quantity'=>'required',
-        'tax'=>'sometimes',
-        'image_ar' =>'required',
-        'images' =>'required',
-        'status'=>'required|in:1,0',
-      ],[
-      'name_ar.required'=>'مطلوب!، الرجاء إدخال اسم المنتج',
-      'category_id.required'=>'مطلوب!، الرجاء إدخال الفئة',
-      'code.required'=>'مطلوب!، الرجاء إدخال الكود',
-      'code.unique'=>'الرقم موجود , الرجاء إدخال رقم آخر',
-      'small_desc_ar.required'=>'مطلوب!، الرجاء إدخال الوصف بالعربي',
-      'small_desc_en.required'=>'مطلوب!، الرجاء إدخال الوصف باللغة الإنجليزية',
-      'description_en.required'=>'مطلوب!، الرجاء إدخال التفاصيل باللغة الإنجليزية',
-      'description_ar.required'=>'مطلوب!، الرجاء إدخال التفاصيل بالعربي',
-      'name_ar.unique'=>' هذا الاسم موجود بالفعل ، رجاءا أدخل اسم آخر',
-      'name_ar.min'=>' يجب ألا يقل الاسم عن ثلاثة احرف',
-      'name_ar.max'=>' يجب ألا يزيد الاسم عن مائة حرف',
-      'name_en.unique'=>' هذا الاسم موجود بالفعل ، رجاءا أدخل اسم آخر',
-      'name_en.required'=>'مطلوب!، الرجاء إدخال اسم الفئة',
-      'name_en.min'=>' يجب ألا يقل الاسم عن ثلاثة احرف',
-      'name_en.max'=>' يجب ألا يزيد الاسم عن مائة حرف',
-      'orginal_price.required'=>'يجب ادخال السعر الاصلي',
-      'Selling_price.required'=>'يجب ادخال نسبة الخصم ',
-      'quantity.required'=>'يجب ادخال الكمية ',
-      'tax.required'=>'يجب ادخال الضريبة ',
-      'image_ar.required'=>'يجب ادخال الصورة ',
-      'images.required'=>'يجب ادخال مجموعة الصور ',
-      'status.required' => 'يجب إدخال الحالة',
-    ]);
+    // $request->validate([
+    //     'category_id'=>'required',
+    //     'code'=>'required|unique:products,code',
+    //     'name_ar'=>'required|min:3|max:100|unique:products,name_ar',
+    //     'name_en'=>'required|min:3|max:100|unique:products,name_en',
+    //     'small_desc_ar'=>'required',
+    //     'small_desc_en'=>'required',
+    //     'description_ar'=>'required',
+    //     'description_en'=>'required',
+    //     'orginal_price'=>'required',
+    //     'Selling_price'=>'sometimes',
+    //     'quantity'=>'required',
+    //     'tax'=>'sometimes',
+    //     'image_ar' =>'required',
+    //     'images' =>'required',
+    //     'status'=>'required|in:1,0',
+    //   ],[
+    //   'name_ar.required'=>'مطلوب!، الرجاء إدخال اسم المنتج',
+    //   'category_id.required'=>'مطلوب!، الرجاء إدخال الفئة',
+    //   'code.required'=>'مطلوب!، الرجاء إدخال الكود',
+    //   'code.unique'=>'الرقم موجود , الرجاء إدخال رقم آخر',
+    //   'small_desc_ar.required'=>'مطلوب!، الرجاء إدخال الوصف بالعربي',
+    //   'small_desc_en.required'=>'مطلوب!، الرجاء إدخال الوصف باللغة الإنجليزية',
+    //   'description_en.required'=>'مطلوب!، الرجاء إدخال التفاصيل باللغة الإنجليزية',
+    //   'description_ar.required'=>'مطلوب!، الرجاء إدخال التفاصيل بالعربي',
+    //   'name_ar.unique'=>' هذا الاسم موجود بالفعل ، رجاءا أدخل اسم آخر',
+    //   'name_ar.min'=>' يجب ألا يقل الاسم عن ثلاثة احرف',
+    //   'name_ar.max'=>' يجب ألا يزيد الاسم عن مائة حرف',
+    //   'name_en.unique'=>' هذا الاسم موجود بالفعل ، رجاءا أدخل اسم آخر',
+    //   'name_en.required'=>'مطلوب!، الرجاء إدخال اسم الفئة',
+    //   'name_en.min'=>' يجب ألا يقل الاسم عن ثلاثة احرف',
+    //   'name_en.max'=>' يجب ألا يزيد الاسم عن مائة حرف',
+    //   'orginal_price.required'=>'يجب ادخال السعر الاصلي',
+    //   'Selling_price.required'=>'يجب ادخال نسبة الخصم ',
+    //   'quantity.required'=>'يجب ادخال الكمية ',
+    //   'tax.required'=>'يجب ادخال الضريبة ',
+    //   'image_ar.required'=>'يجب ادخال الصورة ',
+    //   'images.required'=>'يجب ادخال مجموعة الصور ',
+    //   'status.required' => 'يجب إدخال الحالة',
+    // ]);
  $product = product::where('id',$id)->with('images','color','size')->first();
         $input = $request->all();
         $product->category_id=$request->input('category_id');
@@ -343,6 +343,12 @@ public  function update(Request $request,$id)
 
     $product->delete();
     return redirect()->back()->with('status','تم الحذف!!');
+  }
+  public function search(Request $request){
+    $search=$request->search;
+    $products=Product::where('name_ar','like','%'.$search.'%')->orWhere('name_en','like','%'.$search.'%')->paginate(5);
+    return view('admin.products.index',compact('products'));
+
   }
 
 }

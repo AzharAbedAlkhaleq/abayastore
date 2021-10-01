@@ -16,40 +16,40 @@
             <div class="mb-3 row">
                 <div class="col-md-6 mb-3">
                     <label style="color: blue; font-size:25px"> <span style="color: red">*</span> {{ trans('admin.Categories') }} </label>
-                    <select  style=" font-size:20px"  class="form-select @error('category_id') is-invalid @enderror"   name="category_id">
+                    <select  style=" font-size:20px"  class="form-control"   name="category_id">
                         <option value="">{{ trans('admin.Select the Category') }}</option>
                         @foreach ($category as $category)
-                            <option value="{{ $category->id }}" {{$category->id == $product->category_id ? 'selected':''}}> {{ $category->name_en }}</option>
+                            {{-- <option value="{{ $category->id }}" {{$category->id == $product->category_id ? 'selected':''}}> {{ $category->name_en }}</option> --}}
                             <option value="{{ $category->id }}" {{$category->id == $product->category_id ? 'selected':''}}>{{ $category->name_ar }}</option>
                         @endforeach
                     </select>
-                    @error('category_id')
+                    {{-- @error('category_id')
                     <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
+                    @enderror --}}
                 </div>
                 <div  class="col-md-6  mb-3">
                     <label for="">{{ trans('admin.code') }}</label>
-                    <input style=" font-family:Times New Roman; " type="text"  name="code" class="form-control @error('code') is-invalid @enderror" value="{{$product->code}}">
-                    @error('code')
+                    <input style=" font-family:Times New Roman; " type="text"  name="code" class="form-control" value="{{$product->code}}">
+                    {{-- @error('code')
                     <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
+                    @enderror --}}
                 </div>
 
                 <div  class="col-md-6  mb-3">
                     <label for="">{{ trans('admin.Arabic_Name') }}</label>
-                    <input style="font-family:Times New Roman; " type="text"  name="name_ar" class="form-control @error('name_ar') is-invalid @enderror" value="{{$product->name_ar}}">
-                    @error('name_ar')
+                    <input style="font-family:Times New Roman; " type="text"  name="name_ar" class="form-control" value="{{$product->name_ar}}">
+                    {{-- @error('name_ar')
                     <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
+                    @enderror --}}
                 </div>
 
 
                 <div  class="col-md-6 mb-3">
                     <label for="">{{ trans('admin.English_Name') }}</label>
-                    <input style="font-family:Times New Roman; " type="text"  name="name_en" class="form-control @error('name_en') is-invalid @enderror" value="{{$product->name_en}}">
-                    @error('name_en')
+                    <input style="font-family:Times New Roman; " type="text"  name="name_en" class="form-control" value="{{$product->name_en}}">
+                    {{-- @error('name_en')
                     <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
+                    @enderror --}}
                 </div>
 
                 {{-- <div class="col-md-6 mb-4">
@@ -83,24 +83,24 @@
                 <div class="col-md-6 mb-3">
                     <label for=""> {{ trans('admin.Arabic Description') }}</label>
                     <div class="mb-3">
-              <textarea  style="font-size: 28px; font-family:'Times New Roman', Times, serif" id="small_desc_ar"  type="text" name="small_desc_ar" class="form-control @error('small_desc_ar') is-invalid @enderror">
+              <textarea  style="font-size: 28px; font-family:'Times New Roman', Times, serif" id="small_desc_ar"  type="text" name="small_desc_ar" class="form-control ">
               {{$product->small_desc_ar}}
               </textarea>
-                        @error('small_desc_ar')
+                        {{-- @error('small_desc_ar')
                         <p class="invalid-feedback">{{ $message }}</p>
-                        @enderror
+                        @enderror --}}
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label >{{ trans('admin.Arabic Details') }}</label>
                     <div class="mb-3">
-              <textarea  style="font-size: 28px; font-family:'Times New Roman', Times, serif" type="text" id="description_ar" name="description_ar" class="form-control @error('description_ar') is-invalid @enderror">
+              <textarea  style="font-size: 28px; font-family:'Times New Roman', Times, serif" type="text" id="description_ar" name="description_ar" class="form-control">
                            {{$product->description_ar}}
 
               </textarea>
-                        @error('description_ar')
+                        {{-- @error('description_ar')
                         <p class="invalid-feedback">{{ $message }}</p>
-                        @enderror
+                        @enderror --}}
                     </div>
                 </div>
 
@@ -108,33 +108,33 @@
                 <div class="col-md-6 mb-3">
                     <label for=""> {{ trans('admin.English Description') }}</label>
                     <div class="mb-3">
-              <textarea  style="font-size: 28px; font-family:'Times New Roman', Times, serif" type="text" name="small_desc_en" class="form-control @error('small_desc_en') is-invalid @enderror">
+              <textarea  style="font-size: 28px; font-family:'Times New Roman', Times, serif" type="text" name="small_desc_en" class="form-control">
                                       {{$product->small_desc_en}}
 
               </textarea>
-                        @error('small_desc_en')
+                        {{-- @error('small_desc_en')
                         <p class="invalid-feedback">{{ $message }}</p>
-                        @enderror
+                        @enderror --}}
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="descrpt">{{ trans('admin.English Details') }}</label>
                     <div class="mb-3">
-              <textarea  style="font-size: 28px; font-family:'Times New Roman', Times, serif" type="text" name="description_en" class="form-control @error('description_en') is-invalid @enderror">
+              <textarea  style="font-size: 28px; font-family:'Times New Roman', Times, serif" type="text" name="description_en" class="form-control">
                   {{$product->description_en}}
               </textarea>
-                        @error('description_en')
+                        {{-- @error('description_en')
                         <p class="invalid-feedback">{{ $message }}</p>
-                        @enderror
+                        @enderror --}}
                     </div>
                 </div>
                
                 <div  class="col-md-3 mb-3">
                     <label for="">{{ trans('admin.Orginal Price') }} (OMR) </label>
-                    <input style="font-family:Times New Roman; font-size:24px" type="number"  name="orginal_price" class="form-control @error('orginal_price') is-invalid @enderror" value="{{$product->orginal_price}}">
-                    @error('orginal_price')
+                    <input style="font-family:Times New Roman; font-size:24px" type="number"  name="orginal_price" class="form-control " value="{{$product->orginal_price}}">
+                    {{-- @error('orginal_price')
                     <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
+                    @enderror --}}
                 </div>
                 {{-- <div style="padding-top: 50px;width:70px"  class=" col-md-1 mb-3  ff">
                  OMR
@@ -142,10 +142,10 @@
 
                 <div class="col-md-3 mb-3">
                     <label for="">{{ trans('admin.Selling Price') }}   (%)</label>
-                    <input style=" font-family:Times New Roman;font-size:24px" placeholder="0" type="number" class="form-control @error('Selling_price') is-invalid @enderror" name="Selling_price"  value="{{$product->Selling_price}}">
-                    @error('Selling_price')
+                    <input style=" font-family:Times New Roman;font-size:24px" placeholder="0" type="number" class="form-control " name="Selling_price"  value="{{$product->Selling_price}}">
+                    {{-- @error('Selling_price')
                     <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
+                    @enderror --}}
                 </div>
                 {{-- <div style="padding-top: 50px;width:70px"  class=" col-md-1 mb-3  ff">
                   %
@@ -153,18 +153,18 @@
 
                 <div  class="col-md-3 mb-3">
                     <label for="">{{ trans('admin.Quantity') }}</label>
-                    <input style="font-family:Times New Roman; font-size:24px" type="number"  name="quantity" class="form-control @error('quantity') is-invalid @enderror" value="{{$product->quantity}}">
-                    @error('quantity')
+                    <input style="font-family:Times New Roman; font-size:24px" type="number"  name="quantity" class="form-control" value="{{$product->quantity}}">
+                    {{-- @error('quantity')
                     <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
+                    @enderror --}}
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label for="">{{ trans('admin.Tax') }}  (%)  </label>
-                    <input style=" font-family:Times New Roman;font-size:24px; display:inline;" placeholder="5" type="number" class="form-control @error('tax') is-invalid @enderror" name="tax" value="{{$product->tax}}">
-                    @error('tax')
+                    <input style=" font-family:Times New Roman;font-size:24px; display:inline;" placeholder="5" type="number" class="form-control " name="tax" value="{{$product->tax}}">
+                    {{-- @error('tax')
                     <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
+                    @enderror --}}
 
                 </div>
                 {{-- <div style="padding-top: 50px;width:70px" class=" col-md-1 mb-3  ff">
@@ -185,17 +185,17 @@
                 @endif
                 <div  class="form-group mb-3">
                     <label for="">{{ trans('admin.Image') }}</label>
-                    <input style="color:#0090E7; font-size:24px" type="file"  name="image_ar" class="form-control  @error('image') is-invalid @enderror" accept="image/*">
-                    @error('image')
+                    <input style="color:#0090E7; font-size:24px" type="file"  name="image_ar" class="form-control" accept="image/*">
+                    {{-- @error('image')
                     <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
+                    @enderror --}}
                 </div>
                 <div  class="form-group mb-3">
                     <label for="">{{ trans('admin.Gallery') }}</label>
-                    <input style="color:#0090E7; font-size:24px" type="file"  name="images[]" multiple class="form-control  @error('images') is-invalid @enderror" accept="image/*">
-                    @error('images')
+                    <input style="color:#0090E7; font-size:24px" type="file"  name="images[]" multiple class="form-control" accept="image/*">
+                    {{-- @error('images')
                     <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
+                    @enderror --}}
                 </div>
                 {{--
                             <div class="form-group mb-3">
@@ -213,42 +213,42 @@
                     <label >{{ trans('admin.color') }}</label>
                     <div class="mb-3">
                         @foreach($colors as $color)
-                            <input class="@error('colors') is-invalid @enderror " name="colors[]" type="checkbox" id="{{$color->id}}" value="{{$color->id }}" {{in_array($color->id,$product->color()->pluck('color_id')->toArray()) ? 'checked' :''}}>
+                            <input class=" " name="colors[]" type="checkbox" id="{{$color->id}}" value="{{$color->id }}" {{in_array($color->id,$product->color()->pluck('color_id')->toArray()) ? 'checked' :''}}>
                             <label class="form-check-label" for="{{$color->id}}">{{$color->color}}</label>
                         @endforeach
-                            @error('colors')
+                            {{-- @error('colors')
                             <p class="invalid-feedback">{{ $message }}</p>
-                            @enderror
+                            @enderror --}}
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="descrpt">{{ trans('admin.size') }}</label>
                     <div class="mb-3">
                         @foreach($sizes as $size)
-                            <input class=" @error('sizes') is-invalid @enderror " name="sizes[]" type="checkbox" id="size_{{$size->id}}" value="{{$size->id }}" {{in_array($size->id , $product->size()->pluck('size_id')->toArray()) ? 'checked' :''}}>
+                            <input class="" name="sizes[]" type="checkbox" id="size_{{$size->id}}" value="{{$size->id }}" {{in_array($size->id , $product->size()->pluck('size_id')->toArray()) ? 'checked' :''}}>
                             <label class="form-check-label" for="size_{{$size->id}}">{{$size->size}}</label>
                         @endforeach
-                            @error('sizes')
+                            {{-- @error('sizes')
                             <p class="invalid-feedback">{{ $message }}</p>
-                            @enderror
+                            @enderror --}}
                     </div>
                 </div>
                 <div class="col-md-12 mb-4">
                     <label >{{ trans('admin.Status') }} </label>
-                    <select style=" color:rgb(151, 35, 35);font-size:24px" class="form-control  @error('status') is-invalid @enderror"   name="status">
+                    <select style=" color:rgb(151, 35, 35);font-size:24px" class="form-control"   name="status">
                         <option style="color:rgb(151, 35, 35);" value="" >{{ trans('admin.select the status') }}</option>
                         <option style="color: black" value="0" {{$product->status == 0?'selected':''}}>{{ trans('admin.Inactive') }}</option>
                         <option style="color: black" value="1" {{$product->status == 1?'selected':''}}>{{ trans('admin.Active') }}</option>
                     </select>
-                    @error('status')
+                    {{-- @error('status')
                     <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
+                    @enderror --}}
                 </div>
                 <div class="col mb-3">
-                    @error('trending')
+                    {{-- @error('trending')
                     <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
-                    <input type="checkbox"  name="trending" class=" @error('trending') is-invalid @enderror"  {{$product->trending == 1 ?'checked':''}}>
+                    @enderror --}}
+                    <input type="checkbox"  name="trending" class=""  {{$product->trending == 1 ?'checked':''}}>
                     <label for="">{{ trans('admin.Popular') }}</label>
                 </div>
                 <div class="form-group mb-5">
