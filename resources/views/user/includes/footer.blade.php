@@ -59,10 +59,16 @@
 <script src="{{ asset('front/js/jquery-3.4.1.min.js') }}"></script>
 <script src="{{ asset('front/js/wow.min.js') }}"></script>
 <script src="{{ asset('front/js/slick.min.js') }}"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="{{ asset('front/js/swiper-bundle.min.js')}}"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="{{ asset('front/js/bootstrap.min.js') }}"></script>
+
 <script src="{{ asset('front/js/script.js') }}"></script>
+<script src="{{-- asset('front/js/all.min.js') --}}"></script>
 <script src="{{ asset('front') }}/js/owl.carousel.min.js"></script>
+
+@yield('scripts')
+
 </body>
 </html>

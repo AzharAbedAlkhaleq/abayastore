@@ -7,7 +7,7 @@
 
     <div class="mainimg">
         <div class="container text-center pt-5">
-            <h3 class="mt-5">متجر</h3>
+            <h3 class="mt-5">العبائات الرائجة</h3>
 
         </div>
     </div>
@@ -20,7 +20,7 @@
                 <div>
                     <h5>السعر</h5>
 
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justif]-content-between">
                         <p><span>الأعلي : </span> OMR0</p>
                         <p><span>الأدني : </span> OMR 1000</p>
 

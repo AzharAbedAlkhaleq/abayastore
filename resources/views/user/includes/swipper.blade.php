@@ -2,7 +2,7 @@
     <div class="swiper-wrapper">
         @foreach ($bottom as $bottom )
 
-        <div class="swiper-slide">
+        <div class="swiper-slide ">
 
             <img src="{{ asset ('assets/uploads/Slider/'.$bottom->imageSlider) }}" />
             <div class="text text-right">

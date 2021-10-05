@@ -1,7 +1,7 @@
 <header>
     <div class="main">
         
-        <a class=" px-5 " href="#">
+        <a class="px-5" href="#">
             <div class="navbar-brand">
             <img  style="margin-top:30px"   src="{{ asset('front/images/logo.jpeg') }}" class="brand">
             </div>
@@ -66,17 +66,20 @@
                         @endif
                         <div class="lang">
                            <select onchange="window.location=this.value">
-                                @foreach (LaravelLocalization::getSupportedLocales() as $code => $locale)
+                               {{--  @foreach (LaravelLocalization::getSupportedLocales() as $code => $locale)
                                 <option value="{{ LaravelLocalization::getLocalizedURL($code) }}" @if ($code == app()->getLocale())selected @endif>{{ $locale['native'] }}</option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                         <a href="{{ route('cart') }}">
-                            <img src="{{ asset('front/images/shopping-bag.ico') }}" class="mx-2">
-
+                            @php
+                                 $cart = App\Models\Cart::with('product')->where('cart_id', App::make('cart.id'))->get();
+                            @endphp
+                            <i class="fas fa-shopping-bag icon mx-2"></i>
                         </a>
-                    <div class="hart px-2">    <i class="far fa-heart" ></i></div>
-                        <i class="pt-1 fas fa-search"></i>
+                        <div class="count_cart">{{$cart->count()}}</div>
+                        <div class="hart px-2">    <i class="far fa-heart icon" ></i></div>
+                        <i class="pt-1 fas fa-search icon"></i>
                     </div>
                 </div>
             </div>

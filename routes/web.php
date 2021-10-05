@@ -6,6 +6,7 @@ use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\paymentController;
 use App\Http\Controllers\User\SocialiteController;
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\CouponsController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\VerificationController;
 use Illuminate\Support\Facades\Route;
@@ -41,13 +42,16 @@ Route::post('verifySMSCode', ['uses' => 'VerificationController@verifySMSCode'])
     Route::get('user/products/',[HomeController::class,'product']);
     Route::get('shopping/{id}',[HomeController::class,'shopping'])->name('shopping');
     Route::get('arrival',[HomeController::class,'arrival'])->name('arrival');
-    Route::get('cart',[HomeController::class,'cart'])->name('cart');
     Route::get('aboutUs',[HomeController::class,'aboutUs'])->name('aboutUs');
     Route::get('contact',[HomeController::class,'contact'])->name('contact');
-    Route::get('view-category/{slug_ar}',[HomeController::class,'viewcategory']);
+    Route::get('view-category/{slug_ar}',[HomeController::class,'viewcategory'])->name('category.detalis');
     Route::get('category/{slug_ar}/{prod_slug_ar}',[HomeController::class,'productview']);
-    Route::post('addcart/{id}',[CartController::class,'addcart']);
-    Route::get('moreProduct',[HomeController::class,'moreProduct'])->name('moreProduct');
+    Route::get('cart',[CartController::class,'index'])->name('cart');
+    Route::post('add-cart',[CartController::class,'addcart'])->name('add-cart');
+    Route::delete('delete-cart/{id}',[CartController::class,'delete'])->name('delete-cart');
+    Route::post('apply-coupon',[CouponsController::class,'discount'])->name('apply-coupon');
+    Route::delete('delete-coupon',[CouponsController::class,'delete'])->name('delete-coupon');
+    Route::get('more-product',[HomeController::class,'moreProduct'])->name('moreProduct');
 
 // });
 //--------------------------editor---------------------------
@@ -66,8 +70,8 @@ Route::get('firebase-auth',[FirebaseController::class,'index']);
 //-----------------------------------------Payment GateWay----------------------------------
 
 Route::get('payment',[paymentController::class,'pay'])->name('payment');
-Route::get('payment/success',[paymentController::class,'paySuccess'])->name('payment.success');
-Route::get('payment/cancel',[paymentController::class,'payCancel'])->name('payment.cancel');
+Route::get('payment/success',[paymentController::class,'success'])->name('payment.success');
+Route::get('payment/cancel',[paymentController::class,'cancel'])->name('payment.cancel');
 
 // ------------------------for switch between languages-------------------------
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);

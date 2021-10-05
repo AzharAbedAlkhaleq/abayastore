@@ -81,7 +81,18 @@ var swiper = new Swiper(".mySwiper2", {
       });
     
     
-    
+      var swiper = new Swiper(".mySwiper3", {
+        speed: 600,
+        parallax: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".button-next",
+          prevEl: ".button-prev",
+        },
+      });
     
 })
 

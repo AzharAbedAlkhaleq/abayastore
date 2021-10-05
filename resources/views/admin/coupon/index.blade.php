@@ -16,6 +16,7 @@
             <tr style="text-align: center">
                                     <th>{{ trans('admin.Id') }}</th>
                                     <th>{{ trans('admin.code') }}</th>
+                                    <th>type</th>
                                     <th> {{ trans('admin.value') }}</th>
                                     {{-- <th>{{ trans('admin.description') }}</th> --}}
                                     {{-- <th>{{ trans('admin.use times') }}</th> --}}
@@ -30,6 +31,7 @@
                                 <tr>
                                 <td>{{ $coupon->id }}</td>
                                 <td>{{ $coupon->code}}</td>
+                                <td>{{ $coupon->type}}</td>
                                 <td>{{ $coupon->value }} </td>
                                 {{-- <td>{{ $coupon->description ?? ''}}</td>   --}}
                                 {{-- <td>{{ $coupon->used_time .'/'. $coupon->use_time }}</td>   --}}

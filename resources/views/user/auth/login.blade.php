@@ -250,7 +250,7 @@
                             </div>
                         </div>
 
-                        <div class="">
+                        <div class="resu">
                             <button type="button" class="button next-button py-1">استمرار</button>
                         </div>
 
@@ -261,12 +261,12 @@
                             <button type="button" class="button next-button py-1">الدفع عند الاستلام</button>
                         </div>
                         <div class="">
-                            <button type="button" class="button next-button py-1">دفع بيبال</button>
+                            <a href="{{route('payment')}}" class="btn btn-info next-button py-1">دفع الكتروني</a>
                         </div>
                         <div class="">
                             <button type="button" class="button next-button py-1">الغاء</button>
 
-@include('user.includes.header')
+{{-- @include('user.includes.header')
 
 
 
@@ -517,9 +517,11 @@
     </form>
    
 
-    </form>
+    </form> --}}
 
 </div>
+@section('scripts')
+    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
@@ -575,8 +577,5 @@ firebase.initializeApp(firebaseConfig);
         });
     }
 </script>
+@endsection
 @include('user.includes.footer')
-
-</body>
-
-</html>
