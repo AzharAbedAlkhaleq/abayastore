@@ -20,5 +20,7 @@
     {{-- <link rel="stylesheet" href="{{ asset('front') }}/css/style_en.css"> --}}
 
     {{-- @endif --}}
+    @yield('css')
+
 </head>
 

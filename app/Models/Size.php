@@ -16,6 +16,6 @@ class Size extends Model
     ];
 
     public function product(){
-      return $this->hasMany(Product::class,'size','id')->default(null);
+      return $this->belongsToMany(Product::class,'size','id')->default(null);
     }
 }

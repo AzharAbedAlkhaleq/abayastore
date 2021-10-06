@@ -19,7 +19,7 @@
               <div class="col-md-4 col-sm-6 pb-4">
                 <div class="box">
                       <img src="{{ asset('assets/uploads/Category_ar/'.$category->image_ar) }}" alt="عباية">
-                  <a href="{{ url('view-category/'.$category->slug_ar) }}" class="btn btn-lg">{{ $category->name_ar }}</a>
+                  <a href="{{route('category.detalis',$category->slug_ar) }}" class="btn btn-lg">{{ $category->name_ar }}</a>
                   </div>
                   </div>
               @endforeach

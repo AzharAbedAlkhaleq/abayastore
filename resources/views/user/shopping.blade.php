@@ -15,10 +15,15 @@
                     {{ session()->get('success') }}
                 </div>
             @endif
+           
+            
 
             <!-- Open Content -->
             <section class="bg-shoping">
                 <div class="container pb-5">
+                    <div class="alert alert-success text-center " id="msg_success" style="display: none" role="alert">
+                        <strong>تم اضافة المنتج بنجاح</strong>
+                    </div>
                     <div class="row">
                         
                         <div class="col-md-6 col-sm-12 mt-5">
@@ -117,7 +122,7 @@
 
 
 
-                                    <form action="{{ route('add-cart') }}" method="post">
+                                    <form id="form_cart" action="" method="post">
                                         @csrf
                                         <input type="hidden" name="product-title" value="Activewear">
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -169,7 +174,7 @@
                                                     <i class="mx-2 fas fa-bolt"></i> اشتري الآن </button>
                                             </div>
                                             <div class="d-grid mx-3 btn2">
-                                                <button type="submit" class="btn btn-success  mt-2 addToCart"
+                                                <button id="add_cart" type="submit" class="btn btn-success  mt-2 addToCart"
                                                     name="submit" value="addtocard"> <i
                                                         class="mx-2 fas fa-shopping-cart"></i> إضف إلى السلة
                                                 </button>
@@ -319,12 +324,7 @@
                     });
 
                     //--------------------addToCart------------------------------------
-                    /* $('.addToCart').click(function(e) {
-                        e.preventDefault();
-                        var product_id = $(this).closest('.product_data').find('.prod_id').val();
-                        var product_qty = $(this).closest('.product_data').find('.qty-input').val();
-                        alert();
-                    }); */
+                    
 
                     //-------------------------btn video---------------------
 
@@ -356,5 +356,32 @@
 
                 });
             </script>
+            <script>
+                $(document).on('click','#add_cart',function(e){
+                   e.preventDefault();
+                   var formData = new FormData($('#form_cart')[0]);
+                   $.ajax({
+                           type: 'post',
+                           enctype:'multipart/form-data',
+                           url: "{{ route('add-cart') }}",
+                           data : formData ,
+                           processData: false,
+                           contentType: false,
+                           cache: false,
+                           success: function (data) {
+                               if(data.status == true){
+                                   $('#msg_success').show();
+                                   $("#count_cart").text(function(){
+                                    return(1 + Number($("#count_cart").text()));
+                                });
+                               }else if(data.status == 'update')
+                               {
+                                $('#msg_success').show();
+                               }
+                           }, error: function (reject) {
+                           }
+                       });
+                });
+                </script>
         @endsection
         @include('user.includes.footer')

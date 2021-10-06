@@ -9,6 +9,7 @@ use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\CouponsController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\VerificationController;
+use App\Http\Controllers\User\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 // use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -52,7 +53,8 @@ Route::post('verifySMSCode', ['uses' => 'VerificationController@verifySMSCode'])
     Route::post('apply-coupon',[CouponsController::class,'discount'])->name('apply-coupon');
     Route::delete('delete-coupon',[CouponsController::class,'delete'])->name('delete-coupon');
     Route::get('more-product',[HomeController::class,'moreProduct'])->name('moreProduct');
-
+    Route::get('wishlist',[WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('wishlist',[WishlistController::class, 'store'])->name('wishlist.store');
 // });
 //--------------------------editor---------------------------
 Route::get('editor',[EditorController::class,'editor']);

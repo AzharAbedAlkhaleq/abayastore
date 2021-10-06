@@ -50,6 +50,12 @@ class CartController extends Controller
 
         if ($cart) {
             $cart->increment('quantity', $quantity);
+            return response()->json([
+                'status'=> 'update',
+                'msg'=>'تم اضا بنجاح',
+     
+     
+                ]);
         } else {
             $cart = Cart::create([
                 'user_id' => Auth::id(),
@@ -59,8 +65,24 @@ class CartController extends Controller
                 'size_id' => $request->post('product-size'),
                 'color_id' => $request->post('product-color')
             ]);
+
+            if($cart)
+            return response()->json([
+                'status'=> true,
+                'msg'=>'تم اضا بنجاح',
+                'count' => $cart->count
+     
+                ]);
+             else
+                 return response()->json([
+                     'status'=> false,
+                     'msg'=>'فشل الحفظ برجاء المحاولة مجددا',
+     
+     
+                 ]);
         }
-        return redirect()->back()->with('success', " تم اضافة المنتج بنجاح");
+       
+       // return redirect()->back()->with('success', " تم اضافة المنتج بنجاح");
     }
 
     public function delete($id){
