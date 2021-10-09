@@ -59,7 +59,7 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6>المجموع الفرعي</h6>
-                            <h6>OMR 454</h6>
+                            <h6>OMR {{ $total }}</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6>الخصم</h6>
@@ -92,10 +92,10 @@
                         @endif
                     </div>
                     <div class="brd py-3">
-                        <div class="d-flex justify-content-between">
+                        {{-- <div class="d-flex justify-content-between">
                             <h6> نسبة بيبال</h6>
                             <h6>OMR 454</h6>
-                        </div>
+                        </div> --}}
                         <div class="d-flex justify-content-between">
                             <h6>رسوم الشحن</h6>
                             <h6>OMR 454</h6>
@@ -105,7 +105,7 @@
                     <div class=" py-3 ">
                         <div class="d-flex justify-content-between">
                             <h6> المبلغ الكلي</h6>
-                            <h6>OMR {{ $total }}</h6>
+                            <h6>OMR {{-- $total --}}</h6>
                         </div>
 
                     </div>

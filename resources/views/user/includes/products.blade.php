@@ -1,6 +1,6 @@
 <div class="product container">
     <div class="alert alert-success text-center " id="msg_success" style="display: none" role="alert">
-        <strong>تم اضافة المنتج بنجاح</strong>
+        <strong id="text_msg">تم اضافة المنتج بنجاح</strong>
     </div>
     <div class="row">
         <div class="col-md-3 col-sm-6">
@@ -103,6 +103,8 @@
                success: function (data) {
                    if(data.status == true){
                        $('#msg_success').show();
+                       $('#text_msg').text(data.msg);
+                       $("#count_wishlist").text(1 + data.count);
                    }
                    $('.offerRow'+data.id).remove();
                }, error: function (reject) {

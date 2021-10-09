@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html >
     <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8" />
@@ -260,7 +260,7 @@
                             <button type="button" class="button next-button py-1">الدفع عند الاستلام</button>
                         </div>
                         <div class="">
-                            <a href="{{route('payment')}}" class="btn btn-info next-button py-1">دفع الكتروني</a>
+                            <a href="{{route('payment')}}" class="btn btn-pay next-button py-1">دفع الكتروني</a>
                         </div>
                         <div class="">
                             <button type="button" class="button next-button py-1">الغاء</button>

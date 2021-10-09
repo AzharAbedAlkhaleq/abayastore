@@ -55,6 +55,8 @@ Route::post('verifySMSCode', ['uses' => 'VerificationController@verifySMSCode'])
     Route::get('more-product',[HomeController::class,'moreProduct'])->name('moreProduct');
     Route::get('wishlist',[WishlistController::class, 'index'])->name('wishlist.index');
     Route::post('wishlist',[WishlistController::class, 'store'])->name('wishlist.store');
+    Route::post('wishlist/add-cart',[WishlistController::class, 'addcart'])->name('wishlist.addcart');
+    Route::delete('wishlist',[WishlistController::class, 'destroy'])->name('wishlist.delete');
 // });
 //--------------------------editor---------------------------
 Route::get('editor',[EditorController::class,'editor']);
@@ -72,8 +74,8 @@ Route::get('firebase-auth',[FirebaseController::class,'index']);
 //-----------------------------------------Payment GateWay----------------------------------
 
 Route::get('payment',[paymentController::class,'pay'])->name('payment');
-Route::get('payment/success',[paymentController::class,'success'])->name('payment.success');
-Route::get('payment/cancel',[paymentController::class,'cancel'])->name('payment.cancel');
+Route::get('payment/success/{referance_id}',[paymentController::class,'success'])->name('payment.success');
+Route::get('payment/cancel/{referance_id}',[paymentController::class,'cancel'])->name('payment.cancel');
 
 // ------------------------for switch between languages-------------------------
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);

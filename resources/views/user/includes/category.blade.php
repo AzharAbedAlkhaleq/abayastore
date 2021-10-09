@@ -41,6 +41,8 @@
 
                                     <div class="col-md-5 col-sm-12 right">
                                         @foreach ($category->product as $product)
+                                        <a style="text-decoration: none;color:black; text-align:right;"
+                                           href="{{ route('shopping', $product->id) }}">
                                             <div class="rightdown row pt-3">
                                                 <div class="col-4"> <img
                                                         src="{{ asset('assets/uploads/product/' . $product->image_ar) }}">
@@ -50,6 +52,7 @@
                                                     <h6 style="color: red">OMR {{ $product->orginal_price }}</h6>
                                                 </div>
                                             </div>
+                                        </a>
                                         @endforeach
 
 

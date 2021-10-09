@@ -27,7 +27,7 @@
                     <div class="row">
                         
                         <div class="col-md-6 col-sm-12 mt-5">
-                            <h5><a href="{{route('category.detalis',$product->category->slug_ar)}}">{{$product->category->name_ar}}</a> / {{$product->name_ar}}</h5>
+                            <h5><a class="text-decoration-none" style="font-size: 25px; color:#fff" href="{{route('category.detalis',$product->category->slug_ar)}}  ">{{$product->category->name_ar}} / {{$product->name_ar}}</a></h5>
                             <div class="card mb-3">
                                 @if ($product->video)
                                     <a class="video-icon" id="btn_video" href="#">
@@ -103,13 +103,21 @@
                         <div class="col-md-6 mt-5 col-sm-12 rightside">
                             <div class=" ">
                                 <div class="card-body">
-                                    <h1 class="h2">{{ $product->name_ar }}</h1>
+                                    
+                                    <h1 class="h2">{{ $product->name_ar }} 
+                                        @if ($product->quantity > 0)
+                                        <sub style="color: #1ad40a; font-size:18px">متوفر</sub> 
+                                     @else
+                                         <sub style="color: #dd0404; font-size:18px">غير متوفر</sub>
+                                     @endif
+                                    </h1>
+                                  
                                     <p class=" py-2">
                                         @if ($product->Selling_price > 0)
                                             <del>OMR {{ $product->orginal_price }}</del> <span style="color: red">
                                                 &nbsp;&nbsp;&nbsp;&nbsp; OMR
                                                 {{ $product->orginal_price - ($product->orginal_price * $product->Selling_price) / 100 }}
-
+                                                    
                                                 </ </p>
 
                                             @else
@@ -118,20 +126,17 @@
 
                                     @endif
 
-                                    <p>موقع عباية لوتس لبيع جميع انواع العبايات</p>
-
-
-
+                                   
                                     <form id="form_cart" action="" method="post">
                                         @csrf
                                         <input type="hidden" name="product-title" value="Activewear">
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                        <div class="">
+                                        <div class="d-flex">
 
                                             <ul class="
                                             list-inline">
                                             <li class="list-inline-item">
-                                                <h6>الالوان المتاحة :</h6>
+                                                <p>الالوان المتاحة :</p>
                                             </li>
                                             <li class="list-inline-item">
                                                 <select class="form-control text-center" name="product-color" id="">
@@ -146,15 +151,15 @@
                                             <div class=" col-auto">
                                                 <ul class="list-inline pb-3">
                                                     <li class="list-inline-item">
-                                                        <h6>الحجم :</h6>
+                                                        <p>الحجم :</p>
                                                     </li>
                                                     <li class="list-inline-item">
                                                         <select class="form-control text-center" name="product-size"
                                                             id="">
                                                             @foreach ($product->size as $size)
                                                                 <option class="p-3"
-                                                                    value="{{ $size->size->id }}">
-                                                                    {{ $size->size->size }}</option>
+                                                                    value="{{ $size->id }}">
+                                                                    {{ $size->size }}</option>
                                                             @endforeach
                                                         </select>
 
@@ -271,6 +276,9 @@
                     <h4 class="py-4">قد يعجبك أيضا</h4>
                     <div class="row">
                         @foreach ($related_products as $related_product)
+                        <a style="text-decoration: none;color:black; text-align:right;"
+                        href="{{ route('shopping', $related_product->id) }}">
+
                             <div class="col-md-3 col-sm-6">
                                 <div class="box px-3 text-center">
                                     <img src="{{ asset('assets/uploads/product/' . $related_product->image_ar) }}"

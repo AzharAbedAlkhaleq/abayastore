@@ -13,19 +13,17 @@ class CartController extends Controller
     public function index()
     {
 
-        
+
         $cart = Cart::with('product')->where('cart_id', App::make('cart.id'))->get();
-       // return $cart;
+        // return $cart;
         $total = $cart->sum(function ($item) {
-             // $item->product->Selling_price * $item->quantity;
-              return   ($item->product->orginal_price - ($item->product->orginal_price * $item->product->Selling_price) / 100)* $item->quantity;
-            
+            // $item->product->Selling_price * $item->quantity;
+            return ($item->product->orginal_price - ($item->product->orginal_price * $item->product->Selling_price) / 100) * $item->quantity;
         });
         return view('user.cart', [
             'cart' => $cart,
             'total' => $total
         ]);
-      
     }
 
     public function addcart(Request $request)
@@ -51,11 +49,11 @@ class CartController extends Controller
         if ($cart) {
             $cart->increment('quantity', $quantity);
             return response()->json([
-                'status'=> 'update',
-                'msg'=>'تم اضا بنجاح',
-     
-     
-                ]);
+                'status' => 'update',
+                'msg' => 'تم اضافة المنتج بنجاح',
+
+
+            ]);
         } else {
             $cart = Cart::create([
                 'user_id' => Auth::id(),
@@ -65,27 +63,29 @@ class CartController extends Controller
                 'size_id' => $request->post('product-size'),
                 'color_id' => $request->post('product-color')
             ]);
+            
+            if ($cart)
+                return response()->json([
+                    'status' => true,
+                    'msg' => 'تم اضافة المنتج بنجاح بنجاح',
+                    'count' => $cart->countو
 
-            if($cart)
-            return response()->json([
-                'status'=> true,
-                'msg'=>'تم اضا بنجاح',
-                'count' => $cart->count
-     
+
                 ]);
-             else
-                 return response()->json([
-                     'status'=> false,
-                     'msg'=>'فشل الحفظ برجاء المحاولة مجددا',
-     
-     
-                 ]);
+            else
+                return response()->json([
+                    'status' => false,
+                    'msg' => 'فشل الحفظ برجاء المحاولة مجددا',
+                    
+
+                ]);
         }
-       
-       // return redirect()->back()->with('success', " تم اضافة المنتج بنجاح");
+
+        // return redirect()->back()->with('success', " تم اضافة المنتج بنجاح");
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $cart = Cart::findOrFail($id);
         $cart->delete();
         return redirect()->back()->with('success', " تم الغاء الطلب بنجاح");

@@ -25,9 +25,12 @@
 }
 .main .navbar-brand{
     margin-left: 39%;
+    width: 95%;
+    display: flex;
+    justify-content: center;
 }
 .main .navbar-brand img{
- width: 80px;
+ width: 120px;
      height: 70px;
 }
 .main .lgside img{
@@ -90,6 +93,7 @@ nav {
 }
 .product .box img{
     height: 250px;
+    width: 100%;
 }
 .product .box .offer {
     position: absolute;
@@ -148,6 +152,7 @@ nav {
 .mainslider .swiper {
     width: 100%;
     height: 500px;
+
 }
 
 .mainslider .swiper-slide {
@@ -158,15 +163,16 @@ nav {
 .mainslider .swiper-slide img {
     display: block;
     width: 100%;
-        position: relative;
+    position: relative;
     height: 100%;
 
     
 }
 
 .mainslider{
-        width: 100%;
+ width: 100%;
  height: 500px;
+ position: relative;
 }
 .phone a{
     background-color: aliceblue;
@@ -243,12 +249,12 @@ nav {
             border: 1px solid #a09e9e;
     padding: 13px;
 }
-.categorytable .down .col-md-7 .bg{
+/* .categorytable .down .col-md-7 .bg{
 background-image: url(../images/bgislamc.jpeg);
      background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-}
+} */
 .category .advimg img{
     width: 100%;
     height: 382px;
@@ -381,11 +387,11 @@ color: #f44218;
 .step-form-1 button{
     position: absolute;
     right: 0;
-    top: 260px;
+    bottom: -26px;
     width: 200px;
     background-color: #d64f4f;
     color: #fff;
-    
+    z-index: 6;
     border-radius: 5px;
 }
 .phone a{
@@ -409,7 +415,10 @@ color: #f44218;
 }
 .rightside input{
   height: 30px;
-    width: 100px;
+    width: 40px;
+    background: #000;
+    color: #fff;
+    border: 1px #fff solid;
 }
 .step-form-2 button{
     position: absolute;
@@ -455,11 +464,16 @@ color: #f44218;
  font-size: 14px;
 }
 .step-form-3 input[type=email]{
- border: none;
-  border-bottom: 1px solid #c4c1c1;
+    border: none;
+    border: 1px solid #c4c1c1;
     width: 270px;
- font-size: 14px;
+     font-size: 14px;
     text-align: center;
+    background: rgb(255, 255, 255);
+    color: #000;
+    font-size: 18px;
+    margin-right: 5px;
+
 }
 .leftside{
         text-align: right;
@@ -870,8 +884,7 @@ position: absolute;
     .step-form-1 button{
     position: absolute;
     right: 0;
-    top: 450px;
-    width: 200px;
+    width: 160px;
     background-color: #d64f4f;
     color: #fff;
     
@@ -908,4 +921,155 @@ position: absolute;
     
     border-radius: 5px; 
 }
+}
+
+.icon{
+    font-size: 25px !important;
+}
+.heart-icon{
+    z-index: 9999;
+}
+.heart-icon i{
+    color: #353535 !important;
+    font-size: 18px !important;
+}
+.heart-icon i:hover{
+    color: #ec1a1a !important;
+    /* background: #ec1a1a; */
+    font-weight: 900;
+   
+}
+.count_cart{
+    display: inline-block;
+    position: relative;
+    bottom: 10px;
+    left: 10px;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background-color: #ff863f;
+    text-align: center;
+}
+
+.video-icon{
+    display: inline-block;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    font-size: 17px;
+    border: 1px #000 solid;
+    padding: 5px;
+    padding: 5px;
+    color: #040404;
+    text-decoration: none;
+    box-shadow: -2px 4px 6px 0px #5a5a5a;
+    background: #fff;
+}
+.video-icon:hover{
+   
+    text-decoration: none;
+    font-size: 22px;
+    padding: 8px;
+    color: #f7db40;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    flex-direction: row;;
+    justify-content:space-evenly;
+    align-items: flex-start;
+  }
+  .modal-content video{
+      width: 60%;
+  }
+  /* The Close Button */
+  .close {
+    color: #fffdfd;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    background: rgb(182, 2, 38);
+    padding: 2px;
+    opacity: 1;
+    
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+.input-range{
+    width: 100% !important;
+}
+
+.btn-filter{
+    font-size: 20px;
+    background: #a58622;
+    border-radius: 20px;
+    max-width: 50%;
+}
+.btn-filter:hover{
+    background: #ddb635;
+}
+.wishlist-details{
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+#form_cart p{
+    
+    font-size: 20px;
+
+}
+
+.btn-pay{
+    background: #d64f4f !important;
+    width: 150px;
+    border: 1px solid #292929 !important;
+    color: #fff !important;
+}
+.btn-pay:hover{
+    background: #f85959;
+    border: 1px solid #eaeaea;
+}
+
+
+@media(min-width: 992px) {
+    .bnner_right,.bnner_left{
+        width: 100%;
+        height: 250px;
+    }
+    .nav-container{
+        width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .bnner_right,.bnner_left,img{
+        width: 100%;
+        height: auto;
+    }
 }

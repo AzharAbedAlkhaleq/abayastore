@@ -7,7 +7,7 @@
             </div>
         </a>
         <nav class="navbar navbar-expand-lg  ">
-            <div class="">
+            <div class="nav-container">
 
                 <button style=" background-color:#fff ;color: #fff;" class="navbar-toggler"
                 type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -87,12 +87,21 @@
                                 $cart = App\Models\Cart::with('product')
                                     ->where('cart_id', App::make('cart.id'))
                                     ->get();
+
+                                $id = Cookie::get('id_product');
+                                $id = json_decode($id);
+                                if (is_array($id)) {
+                                    # code...
+                                    $count = count($id);
+                                }
                             @endphp
                             <i class="fas fa-shopping-bag icon mx-2"></i>
                         </a>
                         <div id="count_cart" class="count_cart">{{ $cart->count() }}</div>
+
                         <div class="hart px-2"><a href="{{ route('wishlist.index') }}"><i
                                     class="far fa-heart icon"></i></a></div>
+                                    <div id="count_wishlist" class="count_cart">{{$count ?? 0}}</div>
                         <i class="pt-1 fas fa-search icon"></i>
                     </div>
                 </div>
