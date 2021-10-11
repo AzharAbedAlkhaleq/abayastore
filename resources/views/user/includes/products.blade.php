@@ -21,14 +21,27 @@
                             <p>{{ $product->Selling_price }}% <br>OFF </p>
                         </div>
                     @endif
-                    <a style="text-decoration: none;color:black; text-align:right;"
+                    
+                        <img id="myImg" class="my_img" src="{{ asset('assets/uploads/product/' . $product->image_ar) }}">
+                                                    <!-- The Modal -->
+                            <div id="myModal" class="modal">
+
+                                <!-- The Close Button -->
+                                <span class="close">&times;</span>
+                            
+                                <!-- Modal Content (The Image) -->
+                                <img class="modal-content" id="img01">
+                            
+                                <!-- Modal Caption (Image Text) -->
+                                <div id="caption"></div>
+                            </div>
+                            <a style="text-decoration: none;color:black; text-align:right;"
                         href="{{ route('shopping', $product->id) }}">
-                        <img src="{{ asset('assets/uploads/product/' . $product->image_ar) }}">
                         <div class="text-right">
                             <div class="d-flex justify-content-between mt-3">
                                 <h5>{{ $product->name_ar }}</h5>
                                 <a class="heart-icon" href="" product_id="{{$product->id}}"><i
-                                        class="far fa-heart icon"></i></a>
+                                        class="far fa-heart icon "></i></a>
                             </div>
                            
                     </a>
@@ -74,8 +87,6 @@
 
         @endforeach
 
-
-
                                </div>
              <div class="
                     more text-center py-3">
@@ -92,6 +103,7 @@
     $(document).on('click','.heart-icon',function(e){
        e.preventDefault();
        var product_id = $(this).attr('product_id');
+       $(this).children().toggleClass("fill");
        $.ajax({
                type: 'post',
                enctype:'multipart/form-data',
@@ -105,6 +117,9 @@
                        $('#msg_success').show();
                        $('#text_msg').text(data.msg);
                        $("#count_wishlist").text(1 + data.count);
+                      
+
+
                    }
                    $('.offerRow'+data.id).remove();
                }, error: function (reject) {
@@ -113,4 +128,26 @@
     });
  
 </script>
+<script>
+var modal = document.getElementById("myModal");
+var img = document.getElementById("myImg");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+  $(".my_img").on("click",function(){
+    modal.style.display = "block";
+  modalImg.src = this.src;
+  captionText.innerHTML = this.alt;
+});  
+
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+</script>
+
 @endsection

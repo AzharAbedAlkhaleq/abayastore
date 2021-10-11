@@ -134,6 +134,9 @@
         </div>
 
         <div class="products container mt-3">
+            <div class="alert alert-success text-center " id="msg_success" style="display: none" role="alert">
+                <strong id="text_msg">تم اضافة المنتج بنجاح</strong>
+            </div>
             <div class="row">
                 <div class="col-md-4 col-sm-12 rightside py-3">
                     <form action="{{ route('category.detalis', $category->slug_ar) }}" method="get">
@@ -267,24 +270,36 @@
                     </div>
 
                     <div class="product row pt-2">
+                        
                         @foreach ($category_products as $prod)
 
                             <div class="col-md-4 col-sm-2 text-center">
                                 {{-- <a href="{{ url('category/'.$category->slug_ar.'/'.$prod->slug_ar) }}"> --}}
-                                <a style="text-decoration: none; color:black;"
-                                    href="{{ route('shopping', $prod->id) }}">
+                                
 
-                                    <img src="{{ asset('assets/uploads/product/' . $prod->image_ar) }}" alt="women">
+                                    <img id="myImg" class="my_img" src="{{ asset('assets/uploads/product/' . $prod->image_ar) }}" alt="women">
+                                    <div id="myModal" class="modal">
 
+                                        <!-- The Close Button -->
+                                        <span class="close">&times;</span>
+                                    
+                                        <!-- Modal Content (The Image) -->
+                                        <img class="modal-content" id="img01">
+                                    
+                                        <!-- Modal Caption (Image Text) -->
+                                        <div id="caption"></div>
+                                    </div>
                                     {{-- </a> --}}
                                     <h6 class="pt-3 pb-2">
-
+                                        <a style="text-decoration: none; color:black;"
+                                    href="{{ route('shopping', $prod->id) }}">
 
                                         {{ $prod->name_ar }}
 
                                 </a>
                                 </h6>
-                                <p><a href="#" class="px-2"><i class="far fa-heart"></i></a> OMR
+                                <p><a class="heart-icon" href="" product_id="{{$prod->id}}"><i
+                                    class="far fa-heart icon "></i></a> OMR
                                     {{ $prod->orginal_price }} </p>
                             </div>
 
@@ -518,7 +533,60 @@
                 $('input[type="range"]').on('input', rangeInputChangeEventHandler);
             })();
         </script>
+
+<script>
+    $(document).on('click','.heart-icon',function(e){
+       e.preventDefault();
+       var product_id = $(this).attr('product_id');
+       $(this).children().toggleClass("fill");
+       $.ajax({
+               type: 'post',
+               enctype:'multipart/form-data',
+               url: "{{route('wishlist.store')}}",
+               data :{
+                   '_token':"{{csrf_token()}}",
+                   'id' : product_id
+               },
+               success: function (data) {
+                   if(data.status == true){
+                       $('#msg_success').show();
+                       $('#text_msg').text(data.msg);
+                       $("#count_wishlist").text(1 + data.count);
+                      
+
+
+                   }
+                   $('.offerRow'+data.id).remove();
+               }, error: function (reject) {
+               }
+           });
+    });
+ 
+</script>
+<script>
+    var modal = document.getElementById("myModal");
+    var img = document.getElementById("myImg");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    $(".my_img").on("click",function(){
+        modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+    });  
+
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+    modal.style.display = "none";
+    }
+
+</script>
     @endsection
+
+
     @include('user.includes.footer')
 
 </body>

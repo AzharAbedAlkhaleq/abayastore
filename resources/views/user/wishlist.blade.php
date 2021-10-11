@@ -172,7 +172,7 @@
                                if(data.status == true){
                                    $('#msg_success').show().text(data.msg);
                                    $("#count_cart").text(function(){
-                                    return(1 + Number($("#count_cart")));
+                                    return(1 + Number($("#count_cart").text()));
                                 });
                                 $("#count_wishlist").text(data.count - 1);
                                 $('.wishlist'+data.id).remove();

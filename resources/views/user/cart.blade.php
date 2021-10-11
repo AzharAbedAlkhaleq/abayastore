@@ -109,7 +109,7 @@
                         </div>
 
                     </div>
-                    <a href="#" class="btn " style="background-color: #e85079;color: #fff;width: 100% ">أمر
+                    <a href="{{route('login')}}" class="btn " style="background-color: #e85079;color: #fff;width: 100% ">أمر
                         الطلب</a>
                 </div>
             </div>

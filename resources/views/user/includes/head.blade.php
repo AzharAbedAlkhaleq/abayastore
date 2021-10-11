@@ -15,6 +15,8 @@
     {{-- @if (app()->getLocale() == 'ar') --}}
     <link rel="stylesheet" href="{{ asset('front') }}/css/bootstrap-rtl.css">
     <link rel="stylesheet" href="{{ asset('front') }}/css/style.css">
+    <link rel="stylesheet" href="{{ asset('front') }}/css/animate.min.css">
+    
     {{-- @else --}}
     
     {{-- <link rel="stylesheet" href="{{ asset('front') }}/css/style_en.css"> --}}

@@ -73,11 +73,42 @@ class HomeController extends Controller
         $product = Product::where('id',$id)->with('images','color.color','size')->first();
         $related_products = Product::where('category_id',$product->category->id)->take(4)->get();
         
+        
         return view('user.shopping',get_defined_vars());
     }
-    public function arrival(){
-        $arrival_products=Product::orderby('created_at','DESC')->get()->take(9);
-        return view('user.arrival',compact('arrival_products'));
+
+
+    public function arrival(Request $request){
+        
+        $size = $request->size;
+        $range = null;
+        if ($request->min_range && $request->max_range) {
+            # code...
+            $range = [$request->min_range,$request->max_range];
+        }
+
+        $categories = Category::get();
+
+        $arrival_products=Product::orderby('created_at','DESC')
+        ->when($size, function($query, $size) {
+            $query->whereHas('size' , function($q) use ($size){
+                $q->whereIn('sizes.id' ,$size);
+             });
+         })
+         ->when($range, function($query, $value) {
+            $query->whereBetween('orginal_price',[$value[0],$value[1]]);
+          }) 
+         ->when($request->category, function($query, $value) {
+            $query->where('category_id',$value);
+          }) 
+         ->where('status',1)
+        ->get()->take(9);
+
+        $min_price = $arrival_products->sortBy(['orginal_price','desc'])->first();
+        $max_price = $arrival_products->sortBy(['orginal_price','desc'])->last();
+        $sizes = Size::orderBy('size')->get();
+
+        return view('user.arrival',compact('arrival_products','categories','min_price','max_price','sizes'));
     }
     //-------------------------------------------------------------=======================
 

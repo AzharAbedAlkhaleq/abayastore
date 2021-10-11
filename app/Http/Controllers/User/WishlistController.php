@@ -26,7 +26,7 @@ class WishlistController extends Controller
     {
         $id = Cookie::get('id_product');
 
-        if ($id) {
+        if (!empty($id)) {
             $id = json_decode($id);
             //  return $id;
             if (!is_null($id)) {

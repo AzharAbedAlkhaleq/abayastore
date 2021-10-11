@@ -9,10 +9,10 @@
         <nav class="navbar navbar-expand-lg  ">
             <div class="nav-container">
 
-                <button style=" background-color:#fff ;color: #fff;" class="navbar-toggler"
-                type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon" style="color: #fff;"></span>
+                <button style=" background-color:#fff ;color: #fff;" class="navbar-toggler" type="button"
+                    data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" style="color: #fff;"></span>
                 </button>
 
                 <div class="collapse navbar-collapse   justify-content-between" id="navbarSupportedContent">
@@ -24,7 +24,7 @@
                             </li>
 
                             <li class="nav-item active">
-                                <a class="nav-link mx-1" href="{{ url('user/categories') }}">التسوق <span
+                                <a class="nav-link mx-1" href="{{ url('user/categories') }}">الأقسام <span
                                         class="sr-only"></span></a>
                             </li>
                             <li class="nav-item active">
@@ -80,6 +80,8 @@
                                 {{-- @foreach (LaravelLocalization::getSupportedLocales() as $code => $locale)
                                 <option value="{{ LaravelLocalization::getLocalizedURL($code) }}" @if ($code == app()->getLocale())selected @endif>{{ $locale['native'] }}</option>
                                 @endforeach --}}
+                                <option value="">العربية</option>
+                                <option>English</option>
                             </select>
                         </div>
                         <a href="{{ route('cart') }}">
@@ -87,7 +89,7 @@
                                 $cart = App\Models\Cart::with('product')
                                     ->where('cart_id', App::make('cart.id'))
                                     ->get();
-
+                                
                                 $id = Cookie::get('id_product');
                                 $id = json_decode($id);
                                 if (is_array($id)) {
@@ -101,8 +103,18 @@
 
                         <div class="hart px-2"><a href="{{ route('wishlist.index') }}"><i
                                     class="far fa-heart icon"></i></a></div>
-                                    <div id="count_wishlist" class="count_cart">{{$count ?? 0}}</div>
-                        <i class="pt-1 fas fa-search icon"></i>
+                        <div id="count_wishlist" class="count_cart">{{ $count ?? 0 }}</div>
+                        {{-- <div class="searchbar">
+                                        <input class="search" type="text" name="" placeholder="">
+                                        <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                                      </div> --}}
+
+
+                        <form class="search">
+                            <div class="search__wrapper">
+                                <input type="text" name="" placeholder="Search" class="search__field">
+                                <button type="submit" class="fa fa-search search__icon"></button>
+                            </div>
                     </div>
                 </div>
             </div>
