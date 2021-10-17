@@ -1,6 +1,6 @@
 
 <div class="mainslider">
-    <a href="{{ route('user.categories') }}" class="btn btn-lg animate__animated animate__backInLeft animate__delay-2s"> تسوق الان </a>
+    <a href="{{ route('user.categories') }}" class="aaa d-none btn btn-lg animate__animated animate__backInLeft"> تسوق الان </a>
     
     <div class="swiper mySwiper">
    

@@ -3,7 +3,7 @@
         <strong id="text_msg">تم اضافة المنتج بنجاح</strong>
     </div>
     <div class="row">
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3 col-sm-6 pt-2">
             <div class="boxblc ">
 
                 <i class="fire fas fa-fire-alt"></i>
@@ -63,7 +63,7 @@
 </div>
 </div>
 @if ($loop->iteration == 4)
-    <div class="col-md-9 col-sm-12 pt-2">
+    <div class="col-md-9 col-sm-12 pt-2 wow tada data-wow-duration=3s animate__delay-4s">
 
         <div class="imgadv">
             <?php

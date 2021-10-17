@@ -256,6 +256,10 @@
                  @endforeach
                   
                 </div>
+                <div class="paginate d-flex justify-content-center">
+
+                    {{$arrival_products->links()}}
+                </div>
             </div><!-- end leftside -->
 
         </div>

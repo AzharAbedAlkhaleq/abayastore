@@ -1,6 +1,6 @@
 <div class="category container">
     <div class="row">
-        <div class="advimg col-md-3 col-sm-12">
+        <div class="advimg col-md-3 col-sm-12  wow fadeInDown data-wow-duration=3s animate__delay-4s">
             <?php
             $banners = App\Models\Banner::where('location', 'bottom')
                 ->latest()
@@ -21,7 +21,8 @@
                             <div class="swiper-slide">
                                 <div class="top d-flex justify-content-between">
                                     <h4 class="px-3 pt-2">{{ $category->name_ar }}</h4>
-                                    <div><i class="button-prev fas fa-angle-right"></i>
+                                    <div>
+                                        <i class="button-prev fas fa-angle-right"></i>
                                         <i class="button-next  fas fa-angle-left"></i>
                                     </div>
                                 </div>

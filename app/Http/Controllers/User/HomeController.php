@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Models\Banner;
-use App\Models\Category;
-use App\Models\HomeSlider;
-use App\Models\Product;
 use App\Models\Size;
+use App\Models\Banner;
+use App\Models\Product;
+use App\Models\Category;
+use Jorenvh\Share\Share;
+use App\Models\HomeSlider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request as FacadesRequest;
+use Illuminate\Support\Facades\URL;
 
 class HomeController extends Controller
 {
@@ -40,36 +43,46 @@ class HomeController extends Controller
     
     public function moreProduct(){
      
-        $more_products=Product::where('trending',1)->take(9)->get();   
-        if(FacadesRequest::get('sort')== 'newest'){
-          $more_products=Product::orderby('created_at','DESC')->get()->take(9);  
-        }
-        elseif(FacadesRequest::get('sort')== 'price_desc'){
-            $more_products=Product::orderby('orginal_price','DESC')->get()->take(9);  
-
-        }
-        elseif(FacadesRequest::get('sort')== 'price_asc'){
-            $more_products=Product::orderby('orginal_price','ASC')->get()->take(9);  
-        }
-        else
-        {
-            $more_products=Product::where('trending',1)->get()->take(9);  
-   
-        }
+        $more_products=Product::where('trending',1)
+        ->when(FacadesRequest::get('sort'), function($query, $sort) {
+            if ($sort == 'newest') {
+                $query->orderby('created_at','DESC');
+            }
+            elseif($sort== 'price_desc'){
+               $query->orderby('orginal_price','DESC');  
+         
+                  }
+           elseif($sort == 'price_asc'){
+               $query->orderby('orginal_price','ASC');  
+              }
+        })
+        ->paginate(9);   
+       
         
         return view('user.more-product',compact('more_products'));
 
     }
     public function category(){
-        $categories=Category::orderby('created_at','DESC')->get()->take(9);
+        $categories=Category::orderby('created_at','DESC')->paginate(9);
         return view('user.category',compact('categories'));
     }
+
     public function product(){
         return view('user.products');
     }
+
     public function shopping($id){
         
-       
+        $shareComponent = \Share::page(
+            URL::current(),
+            'Your share text comes here',)
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->telegram()
+            ->whatsapp()        
+            ->reddit();
+            $category = Category::get();
         $product = Product::where('id',$id)->with('images','color.color','size')->first();
         $related_products = Product::where('category_id',$product->category->id)->take(4)->get();
         
@@ -102,7 +115,7 @@ class HomeController extends Controller
             $query->where('category_id',$value);
           }) 
          ->where('status',1)
-        ->get()->take(9);
+        ->paginate(9);
 
         $min_price = $arrival_products->sortBy(['orginal_price','desc'])->first();
         $max_price = $arrival_products->sortBy(['orginal_price','desc'])->last();
@@ -114,7 +127,7 @@ class HomeController extends Controller
 
      public function viewcategory(Request $request,$slug_ar){
 
-       /*  if($request->slug_ar){
+      /*   if($request->slug_ar){
             return redirect()->route('category.detalis',$request->slug_ar);
         } */
         
@@ -153,7 +166,7 @@ class HomeController extends Controller
              ->when($range, function($query, $value) {
                 $query->whereBetween('orginal_price',[$value[0],$value[1]]);
               }) 
-             ->where('status',1)->take(9)->get();
+             ->where('status',1)->paginate(9);
              $min_price = $category_products->sortBy(['orginal_price','desc'])->first();
              $max_price = $category_products->sortBy(['orginal_price','desc'])->last();
 
@@ -180,7 +193,12 @@ return view('user.contactUs');
 
         return view('user.about us');
     }
+
+
     public function productview($slug_ar,$_prod_slug_ar){
+
+        
+
         if(Category::where('slug_ar',$slug_ar)->exists()){
             if(Product::where('prod_slug_ar',$slug_ar)->exists())
             {

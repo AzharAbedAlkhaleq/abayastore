@@ -117,6 +117,10 @@ modal.style.display = "none";
 }
 
 
+$(".search__field").focus(function(){
+  console.log('hello');
+  $(".search__icon").css("pointer-events", "all");
+});
 
 
  

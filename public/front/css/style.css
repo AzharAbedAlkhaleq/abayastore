@@ -25,7 +25,7 @@
 
 .main .lgside {
     color: #fff;
-    margin-right: 520px;
+    
     font-size: 20px;
 }
 .main .navbar-brand{
@@ -39,8 +39,8 @@
      height: 70px;
 }
 .main .lgside img{
-    width: 25px;
-    height: 25px;
+    width: 37px;
+    height: 37px;
 }
 .main .lgside  .hart i{
     font-size: 25px;
@@ -640,7 +640,7 @@ color: #f44218;
     margin: auto;
     display: block;
     width: 80%;
-    max-width: 33%;
+    max-width: 28%;
   }
   
   /* Caption of Modal Image (Image Text) - Same Width as the Image */
@@ -831,6 +831,7 @@ text-align: right;
 }
 .products_main .products .leftside .product{
         border-top:1px solid #dbe0e0; 
+       
 }
 .products_main .products .leftside .product p a i{
 color: #000;
@@ -1238,15 +1239,15 @@ width: 70%;
   .search__field:focus ~ .search__icon {
     background-color: transparent;
     cursor: pointer;
-    pointer-events: auto;
+    pointer-events: all;
   }
   .search__icon {
     position: absolute;
     top: 0;
     right: 0;
     background-color: #080808;
-    width: 38px;
-    height: 38px;
+    width: 35px;
+    height: 35px;
     font-size: 18px;
     text-align: center;
     border-color: #fff;
@@ -1341,3 +1342,38 @@ width: 70%;
     visibility: visible !important;
   }
   
+  .social-button{
+      font-size: 22px;
+  }
+
+  .paginate nav{
+      background: #fff;
+  }
+  .breadcrumb-nav{
+      background: none;
+  }
+  .breadcrumb{
+      background: none;
+      font-size: 18px;
+  }
+  .breadcrumb-item{
+      position: relative;
+  }
+  .breadcrumb-item a{
+      color: #ddb635;
+      text-decoration: none;
+  }
+ .breadcrumb-chevron{
+     position: relative;
+     padding: 0 8px;
+ }
+.breadcrumb-nav .active{
+    color: #a7a7a7;
+}
+/*  @media (min-width:752px) and (max-width:974px) { 
+
+    .bnner_right,.bnner_left {
+        width: 100% !important;
+        height: auto !important;
+    }
+  } */

@@ -132,8 +132,22 @@
 
             </div>
         </div>
-
+        
         <div class="products container mt-3">
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{route('user')}}">الرئيسية</a></li>
+                <span class="breadcrumb-chevron">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                <li class="breadcrumb-item"><a href="{{route('user.categories')}}">الأقسام</a></li>
+                <span class="breadcrumb-chevron">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+    
+                <li class="breadcrumb-item active" aria-current="page">{{$category->name_ar}}</li>
+                </ol>
+            </nav>
             <div class="alert alert-success text-center " id="msg_success" style="display: none" role="alert">
                 <strong id="text_msg">تم اضافة المنتج بنجاح</strong>
             </div>
@@ -305,10 +319,10 @@
 
 
                         @endforeach
-
-
+                           
 
                     </div>
+                    
                 </div><!-- end leftside -->
 
             </div>

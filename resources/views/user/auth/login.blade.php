@@ -39,6 +39,11 @@
                 <div class="steps text-left">
 
                     <div class="steps-container " finish="1">
+                        @if (session()->has('error'))
+                          <div class="aler alert-danger">
+                            {{session()->get('error')}}    
+                          </div>  
+                        @endif
                         <div>
                             <div id="step1" class="active">
                                 <p class="pt-2">1</p>

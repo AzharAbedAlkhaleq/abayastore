@@ -16,7 +16,7 @@
                     <div class="alert alert-success text-center " id="msg_success" style="display: none" role="alert">
                         <strong>تم الغاء المنتج بنجاح</strong>
                     </div> 
-                    @if (!is_null($products))
+                    @if (count($product_id) > 0)
                     @foreach ($products as $product)
                     <div class="rightside wishlist{{$product->id}}">
 

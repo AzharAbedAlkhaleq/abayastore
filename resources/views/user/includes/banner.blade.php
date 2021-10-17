@@ -1,6 +1,6 @@
 <div class="adv container">
     <div class="row pb-5 mb-2">
-        <div class="col-md-6 col-sm-12 pt-2">
+        <div class="col-md-6 col-sm-12 pt-2 wow slideInRight animate__delay-2s" >
             <div class="">
                 <?php
                 $banners = App\Models\Banner::where('location', 'right')
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-sm-12 pt-2">
+        <div class="col-md-6 col-sm-12 pt-2 wow slideInLeft animate__delay-2s">
             <div class="">
                 <?php
                 $banners = App\Models\Banner::where('location', 'left ')

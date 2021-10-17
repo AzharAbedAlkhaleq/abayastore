@@ -3,6 +3,7 @@
 <head>
     <title>abaya Lotus</title>
     <meta charset="utf-8" />
+    
     <meta data-brackets-id='7728' name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{ asset('front') }}/css/all.min.css">
     <link rel="stylesheet" href="{{asset('front/css/swiper-bundle.min.css')}}" />

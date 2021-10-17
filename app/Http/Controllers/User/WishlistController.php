@@ -28,14 +28,15 @@ class WishlistController extends Controller
 
         if (!empty($id)) {
             $id = json_decode($id);
+            $products = null;
             //  return $id;
-            if (!is_null($id)) {
+            if (is_array($id) && count($id) > 0) {
                 $products = Product::whereIn('id', $id)->get();
-            } else {
-                $products = new Product();
-            }
+                
+            } 
             return view('user.wishlist', [
-                'products' => $products
+                'products' => $products,
+                'product_id' => $id
             ]);
         }
     }
@@ -55,8 +56,6 @@ class WishlistController extends Controller
         if ($id) {
             $ids = $id;
             $ids = json_decode($ids);
-            
-           
             
             if ( array_search($request->id, $ids)!== false) {
                 return response()->json([
@@ -203,7 +202,7 @@ class WishlistController extends Controller
             if ($cart)
                 return response()->json([
                     'status' => true,
-                    'msg' => 'تم اضافة المنتج بنجاح بنجاح',
+                    'msg' => 'تم اضافة المنتج  بنجاح',
                     'count' => $count,
                     'id' => $request->product_id,
                 ]);

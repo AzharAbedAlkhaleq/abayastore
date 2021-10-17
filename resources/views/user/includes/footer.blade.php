@@ -65,6 +65,7 @@
 <script src="{{ asset('front/js/bootstrap.min.js') }}"></script>
 
 <script src="{{ asset('front/js/script.js') }}"></script>
+<script src="{{ asset('front/js/wow.min.js') }}"></script>
 <script src="{{-- asset('front/js/all.min.js') --}}"></script>
 <script src="{{ asset('front') }}/js/owl.carousel.min.js"></script>
 

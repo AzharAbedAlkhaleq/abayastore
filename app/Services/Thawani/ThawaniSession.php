@@ -58,6 +58,8 @@ class ThawaniSession
             }
           }
     }
+
+    
     function getSession($session_id){
        
       // $response = Http::withHeaders([

@@ -12,7 +12,8 @@
                 <button style=" background-color:#fff ;color: #fff;" class="navbar-toggler" type="button"
                     data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon" style="color: #fff;"></span>
+                    <span class="navbar-toggler-icon" style="color: #fff;">
+                    </span>
                 </button>
 
                 <div class="collapse navbar-collapse   justify-content-between" id="navbarSupportedContent">
@@ -45,22 +46,22 @@
                     </div>
                     <div class="lgside d-flex justify-content-end">
 
-                        @if (\Illuminate\Support\Facades\Auth::check())
+                        @if (Auth::check())
                             <div class="dropdown">
                                 <li class="nav-item dropdown list-unstyled">
 
                                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                                        <img src=" {{ \Illuminate\Support\Facades\Auth::user()->picture }} "
+                                        <img src="{{Auth::user()->picture}}"
                                             class="rounded-circle" alt="...">
                                     </a>
-                                    <div class="dropdown-menu li" aria-labelledby="navbarDropdown">
-                                        {{ \Illuminate\Support\Facades\Auth::user()->name }}
-                                        <a class="q" href="#"
+                                    <div class="dropdown-menu li text-center" aria-labelledby="navbarDropdown">
+                                        {{Auth::user()->name }}
+                                        <a class="btn btn-outline-light btn-sm d-block" style="color:#000" href="#"
                                             onclick="document.getElementById('logout').submit()"> تسجيل الخروج </a>
-                                        <form id="logout" class="d-none" action="{{-- route('logout') --}}"
-                                            method="post">
+                                             <form id="logout" class="d-none" action="{{route('user.logout')}}"
+                                                method="post">
                                             @csrf
                                         </form>
                                     </div>
@@ -110,11 +111,12 @@
                                       </div> --}}
 
 
-                        <form class="search">
+                        <form class="search" method="get" action="{{route('user.search')}}">
                             <div class="search__wrapper">
-                                <input type="text" name="" placeholder="Search" class="search__field">
+                                <input type="text" name="search" placeholder="Search" class="search__field">
                                 <button type="submit" class="fa fa-search search__icon"></button>
                             </div>
+                        </form>
                     </div>
                 </div>
             </div>

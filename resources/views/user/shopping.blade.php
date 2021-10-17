@@ -115,13 +115,33 @@
                     <div class="alert alert-success text-center " id="msg_success" style="display: none" role="alert">
                         <strong>تم اضافة المنتج بنجاح</strong>
                     </div>
+
+                    <div class="alert alert-danger text-center " id="msg_error" style="display: none" role="alert">
+                        
+                    </div>
                     <div class="row">
 
                         <div class="slider_product col-md-5">
-                             <h5><a class="text-decoration-none" style="font-size: 25px; color:#fff"
-            href="{{route('category.detalis',$product->category->slug_ar)}}  ">{{$product->category->name_ar}} /
-            {{$product->name_ar}}</a></h5>
-  
+              
+              
+                    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{route('user')}}">الرئيسية</a></li>
+                        <span class="breadcrumb-chevron">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <li class="breadcrumb-item"><a href="{{route('user.categories')}}">الأقسام</a></li>
+                        <span class="breadcrumb-chevron">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <li class="breadcrumb-item"><a href="{{route('category.detalis',$product->category->slug_ar)}}">{{$product->category->name_ar}}</a></li>
+                        <span class="breadcrumb-chevron">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <li class="breadcrumb-item active" aria-current="page">{{$product->name_ar}}</li>
+                        </ol>
+                    </nav>
+                         
                             <div class="container_product">
                                 <div class="card mb-3">
                                     @if ($product->video)
@@ -145,13 +165,13 @@
                             
                                 </div>
                                 <div class="mySlides">
-                                    <img src="{{ asset('assets/uploads/product/' . $product->image_ar) }}" style="width:100%">
+                                    <img src="{{ asset('assets/uploads/product/' . $product->image_ar) }}" style="width:100%; height:540px">
                                 
                                 </div>
 
                                 @foreach ($product->images as $image)
                                 <div class="mySlides">
-                                    <img src="{{ asset('assets/uploads/product/' . $image->filename) }}" style="width:100%">
+                                    <img src="{{ asset('assets/uploads/product/' . $image->filename) }}" style="width:100%; height:540px">
                                 </div>
                                 @endforeach
                                  
@@ -162,20 +182,35 @@
                              
 
                                 <div class="row mt-3 text-center">
-                                    <div class="column">
-                                        <img class="demo cursor" src="{{ asset('assets/uploads/product/' . $product->image_ar) }}"{{--  style="width:100%" --}}
-                                            onclick="currentSlide(1)" width="90px" height="90px" alt="Cinque Terre">
-                                    </div>
+                                   
                                     @php
                                        $i = 2; 
                                     @endphp
-                                    @foreach ($product->images as $image)
-                                    <div class="column">
-                                        <img class="demo cursor mx-2" src="{{ asset('assets/uploads/product/' . $image->filename) }}"{{--  style="width:100%" --}}
-                                            onclick="currentSlide({{$i++}})" width="90px" height="90px" alt="The Woods">
+                                    <div class="swiper mySwiper2">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide"> 
+                                                <div class="column">
+                                                    <img class="demo cursor" src="{{ asset('assets/uploads/product/' . $product->image_ar) }}"{{--  style="width:100%" --}}
+                                                        onclick="currentSlide(1)" width="90px" height="90px" alt="Cinque Terre">
+                                                </div>
+                                            </div>
+                                            @foreach ($product->images as $image)
+                                            <div class="swiper-slide"> 
+                                                <div class="column">
+                                                    <img class="demo cursor mx-2" src="{{ asset('assets/uploads/product/' . $image->filename) }}"{{--  style="width:100%" --}}
+                                                        onclick="currentSlide({{$i++}})" width="90px" height="90px" alt="The Woods">
+                                                </div>                                            
+                                            </div>
+                                            @endforeach
+
+                                          {{--   
+                                            <div class="swiper-slide"> <img class="card-img " src="images/women.jpeg" alt="Card image cap" id="product-detail"></div> --}}
+            
+                                        </div>
+                                        <div class="swiper-button-next"></div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-pagination"></div>
                                     </div>
-                                    @endforeach
-                                   
                                 </div>
                             </div>
                      
@@ -319,12 +354,15 @@
                                     </div>
 
                                 </form>
-
+                                
                                 <div class="d-flex">
                                     <p class="pt-2" style="color: #8b8109;">شارك :</p>
-                                    <ul class="list-unstyled d-flex">
-                                        <li class="mx-1 p-2"><a href="#"><i class="fab fa-facebook-f"
-                                                    style="color: fff;border-radius: 50%;font-size:25px;"></i></a>
+                                    {{-- start share package --}}
+                                    {!! $shareComponent!!}
+                                    {{-- End share package --}}
+                                   
+                                   {{--  <ul class="list-unstyled d-flex">
+                                        <li class=""><a href="#"></a>
                                         </li>
                                         <li class="mx-1 p-2"><a href="#"><i class=" fab fa-twitter"
                                                     style="border-radius: 50%;font-size:25px;"></i></a></li>
@@ -334,7 +372,7 @@
                                         <li class="mx-1 p-2"><a href="#"><i class="fab fa-whatsapp"
                                                     style="color: #5b9b4b;border-radius: 50%;font-size:25px;"></i></a>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                 </div>
 
                                 <div class="charg py-2 px-2">
@@ -496,9 +534,24 @@
                             });
                         } else if (data.status == 'update') {
                             $('#msg_success').show();
+                        }else if (data.status == 'login') {
+                            window.location = "{{route('login')}}";
                         }
                     },
-                    error: function(reject) {}
+                    error: function(reject) {
+                       var errorsArray = reject.responseJSON.errors.quantity;
+                       console.log(errorsArray.length);
+                        $('#msg_error').show();
+                       for(var i = 0; errorsArray.length  > i ; i++){
+                        $('#msg_error').append("<li><strong>"+ errorsArray[i]+"</strong></li>");
+                       
+                       }
+                     
+                      
+                       
+                       /*  $('#msg_error').append("<li><strong>"+reject.responseJSON.errors.quantity+"</strong></li>");
+                        $('#msg_error').append("<li><strong>"+reject.responseJSON.errors.quantity+"</strong></li>"); */
+                    }
                 });
             });
         </script>

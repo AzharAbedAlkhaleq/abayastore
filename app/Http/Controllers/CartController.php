@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Rules\QuantityValidate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class CartController extends Controller
 {
@@ -28,10 +30,12 @@ class CartController extends Controller
 
     public function addcart(Request $request)
     {
-
+        if (Auth::check()) {
+           
+        
         $request->validate([
             'product_id' => 'required|exists:products,id',
-            'quantity' => 'int|min:1',
+            'quantity' => ['int','min:1', new QuantityValidate($request->post('product_id'))],
         ]);
 
         $cart_id = App::make('cart.id');
@@ -80,8 +84,14 @@ class CartController extends Controller
 
                 ]);
         }
-
-        // return redirect()->back()->with('success', " تم اضافة المنتج بنجاح");
+    }
+    else{
+        
+        return response()->json([
+            'status' => 'login',
+            'route'=>'login'
+        ]);
+    }
     }
 
     public function delete($id)

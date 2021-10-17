@@ -1,16 +1,18 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\EditorController;
-use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\paymentController;
-use App\Http\Controllers\User\SocialiteController;
+use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\User\AuthController;
-use App\Http\Controllers\User\CouponsController;
 use App\Http\Controllers\User\HomeController;
-use App\Http\Controllers\User\VerificationController;
+use App\Http\Controllers\User\SearchController;
+use App\Http\Controllers\User\CouponsController;
 use App\Http\Controllers\User\WishlistController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\SocialiteController;
+use App\Http\Controllers\User\VerificationController;
+use App\Http\Controllers\User\SocialShareButtonsController;
 
 // use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -31,6 +33,7 @@ Route::post('verifySMSCode', ['uses' => 'VerificationController@verifySMSCode'])
 
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'auth']);
+    Route::post('logout', [AuthController::class, 'logout'])->name('user.logout');
 
 // Route::group([
 //     'prefix' => LaravelLocalization::setLocale(),
@@ -57,6 +60,8 @@ Route::post('verifySMSCode', ['uses' => 'VerificationController@verifySMSCode'])
     Route::post('wishlist',[WishlistController::class, 'store'])->name('wishlist.store');
     Route::post('wishlist/add-cart',[WishlistController::class, 'addcart'])->name('wishlist.addcart');
     Route::delete('wishlist',[WishlistController::class, 'destroy'])->name('wishlist.delete');
+    Route::get('/social-media-share', [SocialShareButtonsController::class,'ShareWidget']);
+
 // });
 //--------------------------editor---------------------------
 Route::get('editor',[EditorController::class,'editor']);
@@ -79,3 +84,4 @@ Route::get('payment/cancel/{referance_id}',[paymentController::class,'cancel'])-
 
 // ------------------------for switch between languages-------------------------
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
+Route::get('user/search',[SearchController::class,'search'])->name('user.search');

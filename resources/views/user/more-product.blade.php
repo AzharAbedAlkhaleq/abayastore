@@ -138,6 +138,9 @@
 
 
                 </div>
+                <div class="paginate d-flex justify-content-center">
+                    {{$more_products->links()}}
+                </div>
             </div><!-- end leftside -->
 
         </div>
