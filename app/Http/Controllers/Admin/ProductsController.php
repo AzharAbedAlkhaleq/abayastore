@@ -44,6 +44,7 @@ class ProductsController extends Controller
    'orginal_price'=>'required',
    'Selling_price'=>'sometimes',
    'quantity'=>'required',
+   'weight'=>'required',
    'tax'=>'sometimes',
    'image_ar' =>'required',
    'images' =>'required',
@@ -67,6 +68,7 @@ class ProductsController extends Controller
  'orginal_price.required'=>'يجب ادخال السعر الاصلي',
  'Selling_price.required'=>'يجب ادخال نسبة الخصم ',
  'quantity.required'=>'يجب ادخال الكمية ',
+ 'weight.required'=>'يجب ادخال الوزن ',
  'tax.required'=>'يجب ادخال الضريبة ',
  'image_ar.required'=>'يجب ادخال الصورة ',
  'images.required'=>'يجب ادخال مجموعة الصور ',
@@ -88,6 +90,7 @@ class ProductsController extends Controller
         $product->description_en=$request->input('description_en');
         $product->orginal_price=$request->input('orginal_price');
         $product->quantity=$request->input('quantity');
+        $product->weight=$request->input('weight');
         if ($request->tax != null){
             $product->tax=$request->input('tax');
         }else{

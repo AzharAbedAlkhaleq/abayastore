@@ -143,7 +143,7 @@ return [
 "Name"=>"Name",
 "Phone"=>"Phone",
 "Email"=>"Email",
-""=>"",
+"order details"=>"Order Details",
 ""=>"",
 ""=>"",
 ""=>"",

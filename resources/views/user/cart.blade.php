@@ -20,6 +20,9 @@
 
                 <div class="col-md-5 col-sm-12">
                     <p><i class="fas fa-shopping-cart"></i> سلتي </p>
+                    <div class="alert alert-success d-none" id="msg_success">
+                        <strong id="text_msg"></strong>
+                    </div>
                     @foreach ($cart as $item)
                         <div class="rightside">
                             <div class="row py-2 mb-2">
@@ -33,18 +36,23 @@
                                 <div class="col-7 pt-3">
                                     <p>{{ $item->product->name_ar }} ({{ $item->colors->color }})</p>
                                     <p>OMR
-                                        {{ $item->product->orginal_price - ($item->product->orginal_price * $item->product->Selling_price) / 100 }}
+                                        {{ $item->product->price}}
                                     </p>
-                                    <div>
-                                        <p class="d-inline">الكمية : {{ $item->quantity }}</p>
+                                    <div class="cart-form">
+                                       
+                                        <input type="hidden" id="product_id" name="product_id" value="{{$item->product->id}}">
+                                        <p class="d-inline">الكمية : <input type="number" id="q_input" class="form-control q-input" name="quantity" value="{{ $item->quantity }}" id=""> </p>
                                         <p class="px-4 d-inline">الحجم : {{ $item->sizes->size }} </p>
-                                        <form class="d-block mt-2" action="{{ route('delete-cart', $item->id) }}"
-                                            method="post">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="btn btn-outline-danger">الغاء</button>
-                                        </form>
-
+                                        <div class="d-flex justify-content-between align-items-end mt-4">
+                                            <form class="d-inline mt-2" action="{{ route('delete-cart', $item->id) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-outline-danger">الغاء</button>
+                                            </form>
+                                            <a href="#" cart_id = "{{$item->cart_id}}" id="update_cart" class="btn btn-outline-success">تحديث</a>
+                                        </div>
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -59,11 +67,11 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6>المجموع الفرعي</h6>
-                            <h6>OMR {{ $total }}</h6>
+                            <h6>OMR {{ $total}}</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6>الخصم</h6>
-                            <h6>OMR 454</h6>
+                            <h6>%{{$total_discount}}</h6>
                         </div>
                     </div>
                     <div class="meddle py-3 brd">
@@ -98,14 +106,14 @@
                         </div> --}}
                         <div class="d-flex justify-content-between">
                             <h6>رسوم الشحن</h6>
-                            <h6>OMR 454</h6>
+                            <h6>OMR 0</h6>
                         </div>
 
                     </div>
                     <div class=" py-3 ">
                         <div class="d-flex justify-content-between">
                             <h6> المبلغ الكلي</h6>
-                            <h6>OMR {{-- $total --}}</h6>
+                            <h6>OMR {{$total}}</h6>
                         </div>
 
                     </div>
@@ -119,7 +127,43 @@
     </div>
 
 
-
+    @section('scripts')
+    <script>
+        
+        $(document).on('click', '#update_cart', function(e) {
+        
+          var qparent = $(this).parents('.cart-form');
+          var quantity  = qparent.find('#q_input');
+          quantity = quantity.val();
+          var product_id  = qparent.find('#product_id');
+          product_id = product_id.val();
+            console.log(product_id);
+            e.preventDefault();
+         
+            $.ajax({
+                type: 'post',
+                enctype: 'multipart/form-data',
+                url: "{{route('update-cart')}}",
+                data:{
+                "_token": "{{ csrf_token() }}",
+                'quantity' : quantity,
+                'product_id':product_id,                
+                 },
+                
+                success: function (data) {
+                   if(data.status == true){
+                       console.log(data);
+                       $('#msg_success').removeClass('d-none');
+                       $('#text_msg').text(data.msg);
+                      
+                     }
+                   $('.offerRow'+data.id).remove();
+               }, error: function (reject) {
+               }
+            });
+        });
+    </script>
+    @endsection
 
     @include('user.includes.footer')
 

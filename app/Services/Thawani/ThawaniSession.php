@@ -53,8 +53,9 @@ class ThawaniSession
                 'session_id' => $session_id
               );
             } else {
+              $response = json_decode($result, true);
               
-              return ['result' => 'error'];
+              return ['result' => 'error',$response];
             }
           }
     }
@@ -101,7 +102,8 @@ class ThawaniSession
           $code = $response['code'];
           //dd($code);
           if($code == 2000 || $code == '2000') {
-           dd($response);
+           //dd($response);
+            return redirect()->route('payment.success',$response['data']['client_reference_id']);
           } else {
             
             return ['result' => 'error'];

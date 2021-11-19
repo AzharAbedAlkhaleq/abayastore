@@ -31,8 +31,7 @@ xcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 
 </head>
 
-<body style="font-family:Andalus;
-font-size: 20px;
+<body style="
 color: black;
 font-weight: bold;
 background:#000;

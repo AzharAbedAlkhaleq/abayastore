@@ -14,6 +14,17 @@
           <a href="{{route ('dashboard') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home " ></i></span><span class="pcoded-mtext">{{ trans('admin.Dashboard') }}</span></a>
          
         </li>
+        
+        {{--  <li class="nav-item  {{ Request::is('#!')? 'active':'' }}     pcoded-hasmenu">
+              <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">{{ trans('admin.HelloMessage') }}</span></a>
+              <ul class="pcoded-submenu">
+                <li><a style="text-decoration: none" href="{{ route('HelloMessage')}}">
+                  <i  style="font-size:15px; color:cornflowerblue;" class="feather icon-eye">
+                  </i> <span style="font-size: 18px;bottom-left:5px;"> {{ trans('admin.Show HelloMessage') }} </a></li>
+             <li><a style="text-decoration: none" href="{{ route('addmessage') }}"><i style="color: green; font-size:20px" class="feather icon-plus"></i> {{ trans('admin.Add HelloMessage') }}</a></li> 
+                
+              </ul>
+            </li> --}}
         <li class="nav-item pcoded-hasmenu">
           <a href="{{ route('users') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">{{ trans('admin.Users') }}</span></a>
             </li>
@@ -27,6 +38,20 @@
                 <li><a style="text-decoration: none" href="{{ route('add-category') }}"><i style="color: green; font-size:20px" class="feather icon-plus"></i> {{ trans('admin. Add Category') }}</a></li>
                 {{-- <li><a style="text-decoration: none" href="{{ url('admin/edit-category/'.$category->id) }}"> <i style="font-size:15px; color:blue;" class="feather icon-edit"></i> &nbsp; Edit Category</a></li> --}}
                 {{-- <li><a style="text-decoration: none" href="{{ route('categories') }}"><i  style="font-size:15px; color: red;" class="feather icon-trash"></i> &nbsp; Delete Category</a></li> --}}
+              </ul>
+            </li>
+            {{---------- Order-------}}
+
+            <li class="nav-item  {{ Request::is('#!')? 'active':'' }}     pcoded-hasmenu">
+              <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="fas fa-shopping-bag"></i></span><span class="pcoded-mtext">الطلبات</span></a>
+              <ul class="pcoded-submenu">
+                <li><a style="text-decoration: none" href="{{ route('order') }}">
+                  <i  style="font-size:15px; color:cornflowerblue;" class="feather shopping-bag">
+                  </i> <span style="font-size: 18px;bottom-left:5px;">عرض الطلبات</a></li>
+                <li><a style="text-decoration: none" href="{{ route('order.canceled') }}">
+                  <i  style="font-size:15px; color:cornflowerblue;" class="feather shopping-bag">
+                  </i> <span style="font-size: 18px;bottom-left:5px;">الطلبات الملغية </a></li>
+               
               </ul>
             </li>
 
@@ -127,7 +152,7 @@
                   
                         </li>
                         <li class="nav-item pcoded-hasmenu">
-                          <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-thumbs-up"></i></span><span class="pcoded-mtext">{{ trans('admin.FeedBack') }}</span></a>
+                          <a href="{{route('reviews')}}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-thumbs-up"></i></span><span class="pcoded-mtext">{{ trans('admin.FeedBack') }}</span></a>
                             </li>
       </ul>
     

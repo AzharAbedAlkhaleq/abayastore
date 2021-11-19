@@ -39,6 +39,12 @@ class WishlistController extends Controller
                 'product_id' => $id
             ]);
         }
+        else{
+            return view('user.wishlist', [
+                'products' => new Product(),
+                'product_id' => []
+            ]);
+        }
     }
 
 

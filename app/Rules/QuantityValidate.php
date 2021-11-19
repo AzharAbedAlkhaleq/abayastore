@@ -29,7 +29,7 @@ class QuantityValidate implements Rule
     public function passes($attribute, $value)
     {
       $product = Product::where('id',$this->product_id)->first();
-      return $product->quantity > $value ;
+      return $product->quantity >= $value ;
     }
 
     /**

@@ -15,15 +15,16 @@ class CreateCountriesTable extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
+            $table->string('phone_code');
             $table->string('name_ar');
             $table->string('name_en');
-            $table->string('country_code');
-            $table->string('phone_code');
-            $table->string('currency_ar');
-            $table->string('currency_en');
+            $table->string('capital');
+            $table->string('code');
+            $table->string('currency');
             $table->string('currency_code');
+            $table->string('continent');
+            $table->string('continent_code');
             $table->string('time_zone');
-            $table->string('flag')->nullable();
             $table->timestamps();
         });
     }

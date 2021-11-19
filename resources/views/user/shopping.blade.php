@@ -88,6 +88,31 @@
 
     </style>
 
+    <style>
+        
+        .img-zoom-container {
+          position: relative;
+        }
+        
+        .img-zoom-lens {
+          position: absolute;
+          border: 1px solid #d4d4d4;
+          /*set the size of the lens:*/
+          width: 40px;
+          height: 40px;
+        }
+        
+        .img-zoom-result {
+            border: 1px solid #d4d4d4; 
+            width: 455px;
+            height: 355px ;
+            z-index: 99;
+            position: absolute;
+            top: 0;
+            right: 480px;
+        }
+        </style>
+
 @endsection
 
 @include('user.includes.head')
@@ -116,9 +141,7 @@
                         <strong>تم اضافة المنتج بنجاح</strong>
                     </div>
 
-                    <div class="alert alert-danger text-center " id="msg_error" style="display: none" role="alert">
-                        
-                    </div>
+                  
                     <div class="row">
 
                         <div class="slider_product col-md-5">
@@ -164,14 +187,15 @@
                                     </div>
                             
                                 </div>
-                                <div class="mySlides">
-                                    <img src="{{ asset('assets/uploads/product/' . $product->image_ar) }}" style="width:100%; height:540px">
+                                
+                                <div class="mySlides img-zoom-container">
+                                    <img class="myimage" src="{{ asset('assets/uploads/product/' . $product->image_ar) }}" style="width:100%; height:540px">
                                 
                                 </div>
 
                                 @foreach ($product->images as $image)
-                                <div class="mySlides">
-                                    <img src="{{ asset('assets/uploads/product/' . $image->filename) }}" style="width:100%; height:540px">
+                                <div class="mySlides img-zoom-container">
+                                    <img class="myimage" src="{{ asset('assets/uploads/product/' . $image->filename) }}" style="width:100%; height:540px">
                                 </div>
                                 @endforeach
                                  
@@ -180,7 +204,7 @@
                                 <a class="next" onclick="plusSlides(1)">❯</a>
 
                              
-
+                               
                                 <div class="row mt-3 text-center">
                                    
                                     @php
@@ -217,9 +241,9 @@
                         <div class="product_rated container pt-4">
                             <h6>التقييم و المراجعات</h6>
                             <div class="row pt-3">
-                                <div class="col-4">
+                                <div class="">
                                     <h5>4.5 <i class="fas fa-star"></i></h5>
-                                    <p>1,344 التقييمات & 343 المراجعات</p>
+                                    <p>التقييمات & المراجعات ({{$product->reviews->count()}})</p>
                                 </div>
 
 
@@ -229,22 +253,19 @@
                         </div>
 
                         <div class="reve">
-                            <div>
-                                <p> جيد جدا <span class="px-2 py-1">5 <i class="fas fa-star"></i></span></p>
-                                <img src="images/womenhihab11.jpg" width="100px;" height="80px">
-                                <div class="d-flex justify-content-between mt-2">
-                                    <p>العباية <i class="mr-2 fas fa-check-circle"></i> مشتري منذ ١١ شهر </p>
-                                    <p><i class="fas fa-thumbs-up"></i> 17 <i class="fas fa-thumbs-down"></i> 5</p>
-                                </div>
-                            </div>
+                            @foreach ($product->reviews as $review)
+                                
                             <div class="mt-4">
-                                <p> جيد جدا <span class="px-2 py-1">5 <i class="fas fa-star"></i></span></p>
-                                <img src="images/womenhihab11.jpg" width="100px;" height="80px">
+                                <span>{{$review->user->name}}</span>
+                                <p>  <span class="px-2 py-1">{{$review->rate}} <i class="fas fa-star"></i></span></p>
+                                {{$review->notes}}
                                 <div class="d-flex justify-content-between mt-2">
-                                    <p>العباية <i class="mr-2 fas fa-check-circle"></i> مشتري منذ ١١ شهر </p>
-                                    <p><i class="fas fa-thumbs-up"></i> 17 <i class="fas fa-thumbs-down"></i> 5</p>
+                                    <p>العباية <i class="mr-2 fas fa-check-circle"></i> مشتري  {{$review->created_at->diffForHumans()}}  </p>
+                                    {{-- <p><i class="fas fa-thumbs-up"></i> 17 <i class="fas fa-thumbs-down"></i> 5</p> --}}
                                 </div>
                             </div>
+                            <hr style="background: #fff">
+                            @endforeach
                         </div>
 
                     </div>
@@ -351,10 +372,11 @@
                                             </ul>
 
                                         </div>
+                                        <div class="alert alert-danger text-center " id="msg_error_login" style="display: none" role="alert"></div>
+
                                     </div>
 
                                 </form>
-                                
                                 <div class="d-flex">
                                     <p class="pt-2" style="color: #8b8109;">شارك :</p>
                                     {{-- start share package --}}
@@ -409,6 +431,42 @@
                                 <iframe class="mt-5" width="" height="315" src="https://www.youtube.com/embed/fMPEx0zJl7g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
 
                             </div>
+                            @auth
+                                
+                            
+                            @if (Auth::user()->customer->order->where('status','completed')->first())
+                          
+                            @if ($product->order->product_id = $product->id && $product_id->product_id = $product->id ) 
+                           
+                            <form action="{{route('stroe.review')}}" method="post">
+                                @csrf
+                                <h3>أضف مراجعة</h3>
+                                <h4 >التقييم</h4>
+                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                <div class="rate">
+                                    <input type="radio" id="star5" name="rate" value="5" />
+                                    <label for="star5" title="text">5 stars</label>
+
+                                    <input type="radio" id="star4" name="rate" value="4" />
+                                    <label for="star4" title="text">4 stars</label>
+
+                                    <input type="radio" id="star3" name="rate" value="3" />
+                                    <label for="star3" title="text">3 stars</label>
+
+                                    <input type="radio" id="star2" name="rate" value="2" />
+                                    <label for="star2" title="text">2 stars</label>
+
+                                    <input type="radio" id="star1" name="rate" value="1" />
+                                    <label for="star1" title="text">1 star</label>
+                                </div>
+                                <textarea name="notes" class="form-control review-area mt-3" id="" placeholder="ملاحظات" rows="3"></textarea>
+                                <button class="btn btn-success mt-3">ارسل</button>
+                            </form>
+
+                            @endif
+
+                            @endif
+                            @endauth
                         </div>
                     </div>
 
@@ -434,7 +492,7 @@
                                     <img src="{{ asset('assets/uploads/product/' . $related_product->image_ar) }}"
                                         alt="women">
                                     <h5 class="pt-4 "> <a style="text-decoration: none; color:black"
-                                            href="{{ route('shopping', $related_product->id) }}">{{ $related_product->name_ar }}</a>
+                                           href="{{ route('shopping', $related_product->id) }}">{{ $related_product->name_ar }}</a>
                                     </h5>
                                 </div>
                             </div>
@@ -451,6 +509,17 @@
 
 
     @section('scripts')
+        <script src="{{asset('front/js/jquery.zoom.min.js')}}"></script>
+        <script>
+         $(document).ready(function(){
+        $('.zoomImg')
+            
+            .css('display', 'block')
+            .css('width', '100%')
+            .parent()
+            .zoom();
+        });
+        </script>
         <script>
             $(document).ready(function() {
 
@@ -535,7 +604,9 @@
                         } else if (data.status == 'update') {
                             $('#msg_success').show();
                         }else if (data.status == 'login') {
-                            window.location = "{{route('login')}}";
+                            // window.location = "{{route('login')}}";
+                            $('#msg_error_login').show();
+                            $('#msg_error_login').append("<strong>"+ "يجب  <a target='_blank' href='{{route('login')}}'>تسجيل الدخول"+"</a>"+" لتتمكن من اضافة المنتجات للسلة "+"</strong>")
                         }
                     },
                     error: function(reject) {
@@ -546,11 +617,7 @@
                         $('#msg_error').append("<li><strong>"+ errorsArray[i]+"</strong></li>");
                        
                        }
-                     
-                      
-                       
-                       /*  $('#msg_error').append("<li><strong>"+reject.responseJSON.errors.quantity+"</strong></li>");
-                        $('#msg_error').append("<li><strong>"+reject.responseJSON.errors.quantity+"</strong></li>"); */
+        
                     }
                 });
             });
@@ -590,5 +657,14 @@
                 captionText.innerHTML = dots[slideIndex - 1].alt;
             }
         </script>
+       <script>
+     $(document).ready(function(){
+        $('.myimage')
+          
+            .css('display', 'block')
+            .parent()
+            .zoom();
+        });
+       </script>
     @endsection
     @include('user.includes.footer')

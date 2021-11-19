@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\EditorController;
 use App\Http\Controllers\paymentController;
@@ -9,6 +10,8 @@ use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\SearchController;
 use App\Http\Controllers\User\CouponsController;
+use App\Http\Controllers\User\OrderController;
+use App\Http\Controllers\User\ReviewsController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\SocialiteController;
 use App\Http\Controllers\User\VerificationController;
@@ -26,6 +29,10 @@ use App\Http\Controllers\User\SocialShareButtonsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/* Route::get('artisan', function () {
+  //dd(exec('php artisan migrate --path=database\migration\2021_11_09_144205_add_type_to_orders_table.php'));
+  Artisan::call('migrate --path=/database/migrations/2021_11_09_144205_add_type_to_orders_table.php') ;
+}); */
 
 Route::post('sendSMSCode', [VerificationController::class , 'sendSMSCode'])->name('sendSMSCode');
 Route::post('verifySMSCode', ['uses' => 'VerificationController@verifySMSCode']);
@@ -34,6 +41,7 @@ Route::post('verifySMSCode', ['uses' => 'VerificationController@verifySMSCode'])
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'auth']);
     Route::post('logout', [AuthController::class, 'logout'])->name('user.logout');
+    Route::post('registerValidateURL', [AuthController::class, 'registerValidateURL'])->name('user.registerValidate');
 
 // Route::group([
 //     'prefix' => LaravelLocalization::setLocale(),
@@ -45,6 +53,7 @@ Route::post('verifySMSCode', ['uses' => 'VerificationController@verifySMSCode'])
     Route::get('user/categories',[HomeController::class,'category'])->name('user.categories');
     Route::get('user/products/',[HomeController::class,'product']);
     Route::get('shopping/{id}',[HomeController::class,'shopping'])->name('shopping');
+    Route::post('review',[ReviewsController::class,'store'])->name('stroe.review');
     Route::get('arrival',[HomeController::class,'arrival'])->name('arrival');
     Route::get('aboutUs',[HomeController::class,'aboutUs'])->name('aboutUs');
     Route::get('contact',[HomeController::class,'contact'])->name('contact');
@@ -52,6 +61,7 @@ Route::post('verifySMSCode', ['uses' => 'VerificationController@verifySMSCode'])
     Route::get('category/{slug_ar}/{prod_slug_ar}',[HomeController::class,'productview']);
     Route::get('cart',[CartController::class,'index'])->name('cart');
     Route::post('add-cart',[CartController::class,'addcart'])->name('add-cart');
+    Route::post('update-cart',[CartController::class,'update'])->name('update-cart');
     Route::delete('delete-cart/{id}',[CartController::class,'delete'])->name('delete-cart');
     Route::post('apply-coupon',[CouponsController::class,'discount'])->name('apply-coupon');
     Route::delete('delete-coupon',[CouponsController::class,'delete'])->name('delete-coupon');
@@ -61,6 +71,10 @@ Route::post('verifySMSCode', ['uses' => 'VerificationController@verifySMSCode'])
     Route::post('wishlist/add-cart',[WishlistController::class, 'addcart'])->name('wishlist.addcart');
     Route::delete('wishlist',[WishlistController::class, 'destroy'])->name('wishlist.delete');
     Route::get('/social-media-share', [SocialShareButtonsController::class,'ShareWidget']);
+    Route::get('orders',[OrderController::class,'index'])->name('order.index');
+    Route::get('import-excel',[HomeController::class,'viewImport'])->name('view.import');
+    Route::post('import-excel',[HomeController::class,'import'])->name('excel.import');
+        
 
 // });
 //--------------------------editor---------------------------
@@ -78,7 +92,7 @@ Route::get('firebase-auth',[FirebaseController::class,'index']);
 
 //-----------------------------------------Payment GateWay----------------------------------
 
-Route::get('payment',[paymentController::class,'pay'])->name('payment');
+Route::post('payment',[paymentController::class,'pay'])->name('payment');
 Route::get('payment/success/{referance_id}',[paymentController::class,'success'])->name('payment.success');
 Route::get('payment/cancel/{referance_id}',[paymentController::class,'cancel'])->name('payment.cancel');
 

@@ -6,14 +6,21 @@ use App\Models\Size;
 use App\Models\Banner;
 use App\Models\Product;
 use App\Models\Category;
-use Jorenvh\Share\Share;
+//use Jorenvh\Share\Share;
+//use Jorenvh\Share\Share;
 use App\Models\HomeSlider;
+use App\Imports\ZonesImport;
 use Illuminate\Http\Request;
+use App\Imports\WeightImport;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request as FacadesRequest;
-use Illuminate\Support\Facades\URL;
+use Share;
 
 class HomeController extends Controller
 {
@@ -43,7 +50,7 @@ class HomeController extends Controller
     
     public function moreProduct(){
      
-        $more_products=Product::where('trending',1)
+        $more_products=Product::with('reviews')->where('trending',1)->whereHas('reviews')
         ->when(FacadesRequest::get('sort'), function($query, $sort) {
             if ($sort == 'newest') {
                 $query->orderby('created_at','DESC');
@@ -57,9 +64,21 @@ class HomeController extends Controller
               }
         })
         ->paginate(9);   
-       
         
-        return view('user.more-product',compact('more_products'));
+       
+        $reviews =   Product::join('reviews', 'reviews.product_id', '=', 'products.id')
+            ->select([
+                'products.id', 'products.name_ar', 'products.name_en','image_ar','Selling_price','orginal_price',
+                DB::raw('COUNT(reviews.product_id) as count'),
+                DB::raw('AVG(reviews.rate) as rate')
+            ])
+            ->groupBy([
+                'products.id', 'products.name_ar', 'products.name_en','image_ar','Selling_price','orginal_price',
+            ])
+            ->orderByRaw('COUNT(reviews.product_id) DESC')->where('trending',1)->take(5)->get();
+    
+
+        return view('user.more-product',compact('more_products','reviews'));
 
     }
     public function category(){
@@ -73,7 +92,7 @@ class HomeController extends Controller
 
     public function shopping($id){
         
-        $shareComponent = \Share::page(
+        $shareComponent = Share::page(
             URL::current(),
             'Your share text comes here',)
             ->facebook()
@@ -83,8 +102,16 @@ class HomeController extends Controller
             ->whatsapp()        
             ->reddit();
             $category = Category::get();
-        $product = Product::where('id',$id)->with('images','color.color','size')->first();
-        $related_products = Product::where('category_id',$product->category->id)->take(4)->get();
+            $product = Product::where('id',$id)->with('images','color.color','size')->first();
+          
+            if (Auth::user()) {
+            if (Auth::user()->customer->order->where('status','completed')->first()) {
+               
+                $product_id = Auth::user()->customer->order->where('status','completed')->first()->orderProduct->where('product_id',$product->id)->first();
+               //  return($product_id);
+            }
+          }
+            $related_products = Product::where('category_id',$product->category->id)->take(4)->get();
         
         
         return view('user.shopping',get_defined_vars());
@@ -102,7 +129,7 @@ class HomeController extends Controller
 
         $categories = Category::get();
 
-        $arrival_products=Product::orderby('created_at','DESC')
+        $arrival_products = Product::orderby('created_at','DESC')
         ->when($size, function($query, $size) {
             $query->whereHas('size' , function($q) use ($size){
                 $q->whereIn('sizes.id' ,$size);
@@ -116,6 +143,8 @@ class HomeController extends Controller
           }) 
          ->where('status',1)
         ->paginate(9);
+
+        $arrival_products = $arrival_products->appends($request->all());
 
         $min_price = $arrival_products->sortBy(['orginal_price','desc'])->first();
         $max_price = $arrival_products->sortBy(['orginal_price','desc'])->last();
@@ -167,13 +196,17 @@ class HomeController extends Controller
                 $query->whereBetween('orginal_price',[$value[0],$value[1]]);
               }) 
              ->where('status',1)->paginate(9);
+
+             $reviews_products=Product::with('reviews')->where('category_id',$category->id)->whereHas('reviews')->take(5)->get();
+
              $min_price = $category_products->sortBy(['orginal_price','desc'])->first();
              $max_price = $category_products->sortBy(['orginal_price','desc'])->last();
 
              
-             return view('user.view_product',compact('category','category_products','categories','sizes','min_price','max_price'));
+             return view('user.view_product',compact('category','category_products','categories','sizes','min_price','max_price','reviews_products'));
 
-
+             
+              
         }
        else{
              return redirect('/')->with('status','  not exists');
@@ -215,5 +248,16 @@ return view('user.contactUs');
         }
 
        
+    }
+
+    public function viewImport(){
+        return view('user.formimport');
+    }
+
+    public function import(Request $request) 
+    {
+        Excel::import(new ZonesImport, $request->file('excel'));
+        
+        return redirect('/')->with('success', 'All good!');
     }
 }

@@ -9,7 +9,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EmailController;
 use App\Http\Controllers\Admin\HomeCategoriesController;
 use App\Http\Controllers\Admin\Homeslider;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\ReviewsController;
 use App\Http\Controllers\Admin\SizesController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -134,7 +136,18 @@ Route::group(['middleware' => 'Lang'], function () {
           
           //Delete coupon
           Route::delete('delete-coupon/{id}',[CouponController::class,'delete']);
+        //-----------------------------------Orders-------------------------------
+
+        Route::get('orders',[OrderController::class,'index'])->name('order');
+        Route::get('orders-canceled',[OrderController::class,'orderCanceld'])->name('order.canceled');
+        Route::get('orders-details/{id}',[OrderController::class,'show'])->name('order.details');
+        Route::delete('orders/{id}',[OrderController::class,'destroy'])->name('order.destroy');
+        Route::get('order-shipping/{id}',[OrderController::class,'shipping'])->name('order.shipping');
+        Route::get('get-label/{tracking_id}',[OrderController::class,'getLabel'])->name('order.get.label');
+        Route::get('cancel-order/{tracking_id}',[OrderController::class,'cancelOrder'])->name('cancel.order');
         
+        //---------------------Reviews
+        Route::get('reviews', [ReviewsController::class,'index'])->name('reviews');
         //-------------------------------Show Users-----------------------------
           Route::get('users',[UserController::class,'users'])->name('users');
           

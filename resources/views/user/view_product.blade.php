@@ -160,7 +160,7 @@
                         </div>
 
                         <p class="d-flex justify-content-between">الفئات</p>
-                        <select style=" font-size:20px" class="form-select form-control" name="slug_ar">
+                        <select id="filter_category" style=" font-size:20px" class="form-select form-control" name="slug_ar">
                             <option value="">{{ trans('admin.Select the Category') }}</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->slug_ar }}">{{ $category->name_ar }}</option>
@@ -168,26 +168,7 @@
                         </select>
                         <div>
 
-                            <p class="d-flex justify-content-between m"> السعر </p>
-                            <hr class="mb-5" >
-                            <div class="d-flex align-items-center  ">
-                             @if ($min_price && $max_price)
-                             
-                            <div class="rangeslider">
-                                <input class="min" name="min_range" type="range" min="{{$min_price->orginal_price}}" max="{{$max_price->orginal_price}}"
-                                    value="10" />
-                                <input class="max" name="max_range" type="range" min="1" max="{{$max_price->orginal_price}}"
-                                    value="90" />
-                                   
-                                     <span class="range_min light right">الأدنى:  {{$min_price->orginal_price}} OMR </span>
-                                      <span class="range_max light left">الأعلى:  {{$max_price->orginal_price}} OMR</span>
-                            </div>
-                            @endif   
-                        </div>
-                          {{--   <div class="d-flex justify-content-between">
-                                <p class="d-inline m-0 p-0 text-end range_min light left "><span>الأدني : </span> OMR 200</p>
-                                <p class="d-inline m-0 p-0 range_max light right"><span>الأعلي : </span> OMR500</p>
-                            </div> --}}
+                        
 
                             <div class="filter">
 
@@ -335,168 +316,45 @@
                 <h5 class="pb-3 pt-2">مراجعات للعبايات الشعبية </h5>
                 <div class="rated">
                     <div class="row">
-                        <div class="col-md-3 col-sm-12">
-                            <img src="{{ asset('front/images/womenadv.jpeg') }}">
-                        </div>
-                        <div class="col-md-9 col-sm-12">
+                       
+                        @foreach ($reviews_products as $products)
+                   
+                        <div class="col-md-4 col-sm-12">
+    
                             <div class="row">
+                               <div class="col-md-7 col-sm-12">
+                                <img src="{{ asset('assets/uploads/product/'.$products->image_ar)}}">
+                                  </div>
                                 <div class="col-md-4 col-sm-6">
                                     <div class="pp">
-                                        <h6>سويت شيرت بطبعة نجمة لندن</h6>
-                                        <div class="d-flex starr"> <span class="px-2 mx-2 mt-2"> 3.6 <i
-                                                    class="fas fa-star"></i></span>
-                                            <p class="pt-2">15 تقييمات 4 مراجعات</p>
+                                        <h6>{{$products->name_ar}}</h6>
+                                      
+                                        
+                                        
+                                        <p class="pt-2">  تقييمات ({{$products->reviews->count()}})</p>
+                                       {{--  <p class="pt-2">  {{$products->reviews_avg}} تقييمات  مراجعات</p> --}}
+                                       <div class="d-flex starr"> 
+                                           <span class="px-2 mx-2 mt-2"> {{$products->reviews->avg('rate')}} <i class="fas fa-star"></i></span>
                                         </div>
-                                        <div class="rate">
-                                            <input type="radio" id="star5" name="rate" value="5" />
-                                            <label for="star5" title="text">5 stars</label>
-                                            <input type="radio" id="star4" name="rate" value="4" />
-                                            <label for="star4" title="text">4 stars</label>
-                                            <input type="radio" id="star3" name="rate" value="3" />
-                                            <label for="star3" title="text">3 stars</label>
-                                            <input type="radio" id="star2" name="rate" value="2" />
-                                            <label for="star2" title="text">2 stars</label>
-                                            <input type="radio" id="star1" name="rate" value="1" />
-                                            <label for="star1" title="text">1 star</label>
+                                       @foreach ($products->reviews as $review)
+                                       @endforeach
+                                     
+                                        <div class="px-2 mt-2">
+                                            <p>{{$products->price}} ريال خصم {{$products->Selling_price}}%</p>
+                                            
                                         </div>
-                                        <div class="px-2">
-                                            <p>220 ريال عمال 50%</p>
-                                            <p>النوع : عباية</p>
-                                            <p>اللون : رمادي</p>
-                                            <p> الحجم L </p>
-                                        </div>
-
+                                       
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="pp">
-                                        <h6>سويت شيرت بطبعة نجمة لندن</h6>
-                                        <div class="d-flex starr"> <span class="px-2 mx-2 mt-2"> 3.6 <i
-                                                    class="fas fa-star"></i></span>
-                                            <p class="pt-2">15 تقييمات 4 مراجعات</p>
-                                        </div>
-                                        <div class="rate">
-                                            <input type="radio" id="star5" name="rate" value="5" />
-                                            <label for="star5" title="text">5 stars</label>
-                                            <input type="radio" id="star4" name="rate" value="4" />
-                                            <label for="star4" title="text">4 stars</label>
-                                            <input type="radio" id="star3" name="rate" value="3" />
-                                            <label for="star3" title="text">3 stars</label>
-                                            <input type="radio" id="star2" name="rate" value="2" />
-                                            <label for="star2" title="text">2 stars</label>
-                                            <input type="radio" id="star1" name="rate" value="1" />
-                                            <label for="star1" title="text">1 star</label>
-                                        </div>
-                                        <div class="px-2">
-                                            <p>220 ريال عمال 50%</p>
-                                            <p>النوع : عباية</p>
-                                            <p>اللون : رمادي</p>
-                                            <p> الحجم L </p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="pp">
-                                        <h6>سويت شيرت بطبعة نجمة لندن</h6>
-                                        <div class="d-flex starr"> <span class="px-2 mx-2 mt-2"> 3.6 <i
-                                                    class="fas fa-star"></i></span>
-                                            <p class="pt-2">15 تقييمات 4 مراجعات</p>
-                                        </div>
-                                        <div class="rate">
-                                            <input type="radio" id="star5" name="rate" value="5" />
-                                            <label for="star5" title="text">5 stars</label>
-                                            <input type="radio" id="star4" name="rate" value="4" />
-                                            <label for="star4" title="text">4 stars</label>
-                                            <input type="radio" id="star3" name="rate" value="3" />
-                                            <label for="star3" title="text">3 stars</label>
-                                            <input type="radio" id="star2" name="rate" value="2" />
-                                            <label for="star2" title="text">2 stars</label>
-                                            <input type="radio" id="star1" name="rate" value="1" />
-                                            <label for="star1" title="text">1 star</label>
-                                        </div>
-                                        <div class="px-2">
-                                            <p>220 ريال عمال 50%</p>
-                                            <p>النوع : عباية</p>
-                                            <p>اللون : رمادي</p>
-                                            <p> الحجم L </p>
-                                        </div>
-
-                                    </div>
-                                </div>
+                                
+                                
                             </div>
                         </div>
+                        @endforeach
+
                     </div>
                 </div>
-                <div class="rated pt-5">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-12">
-                            <img src="{{ asset('front/images/womenadv.jpeg') }}">
-                        </div>
-                        <div class="col-md-9 col-sm-12">
-                            <div class="row">
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="pp">
-                                        <h6>سويت شيرت بطبعة نجمة لندن</h6>
-                                        <div class="d-flex starr"> <span class="px-2 mx-2 mt-2"> 3.6 <i
-                                                    class="fas fa-star"></i></span>
-                                            <p class="pt-2">15 تقييمات 4 مراجعات</p>
-                                        </div>
-                                        <div class="rate">
-                                            <input type="radio" id="star5" name="rate" value="5" />
-                                            <label for="star5" title="text">5 stars</label>
-                                            <input type="radio" id="star4" name="rate" value="4" />
-                                            <label for="star4" title="text">4 stars</label>
-                                            <input type="radio" id="star3" name="rate" value="3" />
-                                            <label for="star3" title="text">3 stars</label>
-                                            <input type="radio" id="star2" name="rate" value="2" />
-                                            <label for="star2" title="text">2 stars</label>
-                                            <input type="radio" id="star1" name="rate" value="1" />
-                                            <label for="star1" title="text">1 star</label>
-                                        </div>
-                                        <div class="px-2">
-                                            <p>220 ريال عمال 50%</p>
-                                            <p>النوع : عباية</p>
-                                            <p>اللون : رمادي</p>
-                                            <p> الحجم L </p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="pp">
-                                        <h6>سويت شيرت بطبعة نجمة لندن</h6>
-                                        <div class="d-flex starr"> <span class="px-2 mx-2 mt-2"> 3.6 <i
-                                                    class="fas fa-star"></i></span>
-                                            <p class="pt-2">15 تقييمات 4 مراجعات</p>
-                                        </div>
-                                        <div class="rate">
-                                            <input type="radio" id="star5" name="rate" value="5" />
-                                            <label for="star5" title="text">5 stars</label>
-                                            <input type="radio" id="star4" name="rate" value="4" />
-                                            <label for="star4" title="text">4 stars</label>
-                                            <input type="radio" id="star3" name="rate" value="3" />
-                                            <label for="star3" title="text">3 stars</label>
-                                            <input type="radio" id="star2" name="rate" value="2" />
-                                            <label for="star2" title="text">2 stars</label>
-                                            <input type="radio" id="star1" name="rate" value="1" />
-                                            <label for="star1" title="text">1 star</label>
-                                        </div>
-                                        <div class="px-2">
-                                            <p>220 ريال عمال 50%</p>
-                                            <p>النوع : عباية</p>
-                                            <p>اللون : رمادي</p>
-                                            <p> الحجم L </p>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+              
             </div>
         </div>
 

@@ -153,6 +153,14 @@
               <p class="invalid-feedback">{{ $message }}</p>
               @enderror
         </div>
+        
+          <div  class="col-md-3 mb-3">
+            <label for="">الوزن</label>
+            <input style="font-family:Times New Roman; font-size:24px" type="number"  name="weight" class="form-control @error('weight') is-invalid @enderror">
+              @error('weight')
+              <p class="invalid-feedback">{{ $message }}</p>
+              @enderror
+        </div>
 
         <div class="col-md-3 mb-3">
             <label for="">{{ trans('admin.Tax') }}  (%)  </label>

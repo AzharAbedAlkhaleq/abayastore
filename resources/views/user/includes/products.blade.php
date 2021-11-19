@@ -117,10 +117,7 @@
                        $('#msg_success').show();
                        $('#text_msg').text(data.msg);
                        $("#count_wishlist").text(1 + data.count);
-                      
-
-
-                   }
+                     }
                    $('.offerRow'+data.id).remove();
                }, error: function (reject) {
                }
@@ -128,6 +125,7 @@
     });
  
 </script>
+
 <script>
 var modal = document.getElementById("myModal");
 var img = document.getElementById("myImg");

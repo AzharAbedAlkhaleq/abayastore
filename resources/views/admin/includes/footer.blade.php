@@ -62,6 +62,8 @@
 <script src="{{ asset('dashboard/assets/js/pcoded.min.js') }}"></script>
 <script src="{{ asset('dashboard/assets/js/menu-setting.min.js') }}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
 @if(session('status'))
 
 <script>
@@ -83,5 +85,5 @@ swal("{{ session('status') }}");
     }
 </script>
 </body>
-
+@yield('scripts')
 </html>

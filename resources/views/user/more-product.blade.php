@@ -153,17 +153,30 @@
             <h5 class="pb-3 pt-2">مراجعات للعبايات الشعبية </h5>
             <div class="rated">
                 <div class="row">
-                    <div class="col-md-3 col-sm-12">
-                        <img src="{{ asset('front/images/womenadv.jpeg') }}">
-                    </div>
-                    <div class="col-md-9 col-sm-12">
+                
+                        
+                   
+                    @foreach ($reviews as $review)
+                   
+                    <div class="col-md-4 col-sm-12">
+
                         <div class="row">
+                           <div class="col-md-7 col-sm-12">
+                            <img src="{{ asset('assets/uploads/product/'.$review->image_ar)}}">
+                              </div>
                             <div class="col-md-4 col-sm-6">
                                 <div class="pp">
-                                    <h6>سويت شيرت بطبعة نجمة لندن</h6>
-                                    <div class="d-flex starr"> <span class="px-2 mx-2 mt-2"> 3.6 <i class="fas fa-star"></i></span>
-                                        <p class="pt-2">15 تقييمات 4 مراجعات</p>
+                                    <h6>{{$review->name_ar}}</h6>
+                                  
+                                    
+                                    
+                                    <p class="pt-2">  تقييمات ({{$review->count}})</p>
+                                   {{--  <p class="pt-2">  {{$products->reviews_avg}} تقييمات  مراجعات</p> --}}
+                                   <div class="d-flex starr"> 
+                                       <span class="px-2 mx-2 mt-2"> {{number_format($review->rate,1)}} <i class="fas fa-star"></i></span>
                                     </div>
+                                   
+                                   {{--  
                                     <div class="rate">
                                         <input type="radio" id="star5" name="rate" value="5" />
                                         <label for="star5" title="text">5 stars</label>
@@ -175,75 +188,22 @@
                                         <label for="star2" title="text">2 stars</label>
                                         <input type="radio" id="star1" name="rate" value="1" />
                                         <label for="star1" title="text">1 star</label>
+                                    </div>--}}
+                                    <div class="px-2 mt-2">
+                                        <p>{{$review->orginal_price - ($review->orginal_price * $review->Selling_price) / 100}} ريال خصم {{$review->Selling_price}}%</p>
+                                        
                                     </div>
-                                    <div class="px-2">
-                                        <p>220 ريال عمال 50%</p>
-                                        <p>النوع : عباية</p>
-                                        <p>اللون : رمادي</p>
-                                        <p> الحجم L </p>
-                                    </div>
-
+                                   
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6">
-                                <div class="pp">
-                                    <h6>سويت شيرت بطبعة نجمة لندن</h6>
-                                    <div class="d-flex starr"> <span class="px-2 mx-2 mt-2"> 3.6 <i class="fas fa-star"></i></span>
-                                        <p class="pt-2">15 تقييمات 4 مراجعات</p>
-                                    </div>
-                                    <div class="rate">
-                                        <input type="radio" id="star5" name="rate" value="5" />
-                                        <label for="star5" title="text">5 stars</label>
-                                        <input type="radio" id="star4" name="rate" value="4" />
-                                        <label for="star4" title="text">4 stars</label>
-                                        <input type="radio" id="star3" name="rate" value="3" />
-                                        <label for="star3" title="text">3 stars</label>
-                                        <input type="radio" id="star2" name="rate" value="2" />
-                                        <label for="star2" title="text">2 stars</label>
-                                        <input type="radio" id="star1" name="rate" value="1" />
-                                        <label for="star1" title="text">1 star</label>
-                                    </div>
-                                    <div class="px-2">
-                                        <p>220 ريال عمال 50%</p>
-                                        <p>النوع : عباية</p>
-                                        <p>اللون : رمادي</p>
-                                        <p> الحجم L </p>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6">
-                                <div class="pp">
-                                    <h6>سويت شيرت بطبعة نجمة لندن</h6>
-                                    <div class="d-flex starr"> <span class="px-2 mx-2 mt-2"> 3.6 <i class="fas fa-star"></i></span>
-                                        <p class="pt-2">15 تقييمات 4 مراجعات</p>
-                                    </div>
-                                    <div class="rate">
-                                        <input type="radio" id="star5" name="rate" value="5" />
-                                        <label for="star5" title="text">5 stars</label>
-                                        <input type="radio" id="star4" name="rate" value="4" />
-                                        <label for="star4" title="text">4 stars</label>
-                                        <input type="radio" id="star3" name="rate" value="3" />
-                                        <label for="star3" title="text">3 stars</label>
-                                        <input type="radio" id="star2" name="rate" value="2" />
-                                        <label for="star2" title="text">2 stars</label>
-                                        <input type="radio" id="star1" name="rate" value="1" />
-                                        <label for="star1" title="text">1 star</label>
-                                    </div>
-                                    <div class="px-2">
-                                        <p>220 ريال عمال 50%</p>
-                                        <p>النوع : عباية</p>
-                                        <p>اللون : رمادي</p>
-                                        <p> الحجم L </p>
-                                    </div>
-
-                                </div>
-                            </div>
+                            
+                            
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
-            <div class="rated pt-5">
+           {{--  <div class="rated pt-5">
                 <div class="row">
                     <div class="col-md-3 col-sm-12">
                         <img src="{{ asset('front/images/womenadv.jpeg') }}">
@@ -308,7 +268,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>

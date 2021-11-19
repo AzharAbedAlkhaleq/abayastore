@@ -144,7 +144,7 @@
                     </div>
 
                     <p class="d-flex justify-content-between">الفئات</p>
-                    <select style=" font-size:20px" class="form-select form-control" name="category">
+                    <select  style=" font-size:20px" class="form-select form-control" name="category">
                         <option value="">{{ trans('admin.Select the Category') }}</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name_ar }}</option>

@@ -3,7 +3,7 @@
 
         <a class="px-5" href="#">
             <div class="navbar-brand">
-                <img style="margin-top:30px" src="{{ asset('front/images/logo.jpeg') }}" class="brand">
+                <img style="margin-top:30px" src="{{ asset('front/images/logo.png') }}" class="brand">
             </div>
         </a>
         <nav class="navbar navbar-expand-lg  ">
@@ -20,24 +20,24 @@
                     <div>
                         <ul class="navbar-nav">
                             <li class="nav-item active">
-                                <a class="nav-link " href="{{ url('/') }}">الرئيسية <span
+                                <a class="nav-link " href="{{ url('/') }}">{{__('Main')}} <span
                                         class="sr-only"></span></a>
                             </li>
 
                             <li class="nav-item active">
-                                <a class="nav-link mx-1" href="{{ url('user/categories') }}">الأقسام <span
+                                <a class="nav-link mx-1" href="{{ url('user/categories') }}">{{__('Categories')}} <span
                                         class="sr-only"></span></a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link mx-1" href="{{ route('arrival') }}">العبايات الجديدة <span
+                                <a class="nav-link mx-1" href="{{ route('arrival') }}">@lang('New Arrival') <span
                                         class="sr-only"></span></a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link mx-1" href="{{ route('aboutUs') }}">من نحن <span
+                                <a class="nav-link mx-1" href="{{ route('aboutUs') }}"> {{__('About us')}} <span
                                         class="sr-only"></span></a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link mx-1" href="{{ route('contact') }}">تواصل معنا <span
+                                <a class="nav-link mx-1" href="{{ route('contact') }}">{{__('Contact Us')}} <span
                                         class="sr-only"></span></a>
                             </li>
 
@@ -58,6 +58,7 @@
                                     </a>
                                     <div class="dropdown-menu li text-center" aria-labelledby="navbarDropdown">
                                         {{Auth::user()->name }}
+                                        <a class="btn btn-outline-light btn-sm d-block" style="color:#000" href="{{route('order.index')}}">الطلبات</a>
                                         <a class="btn btn-outline-light btn-sm d-block" style="color:#000" href="#"
                                             onclick="document.getElementById('logout').submit()"> تسجيل الخروج </a>
                                              <form id="logout" class="d-none" action="{{route('user.logout')}}"

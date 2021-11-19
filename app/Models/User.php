@@ -21,8 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'mobile',
-'social_id',
-'social_type',
+        'social_id',
+        'social_type',
         'password',
         'picture',
     ];
@@ -45,4 +45,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function customer(){
+        return $this->hasOne(Customer::class);
+    }
+
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
 }

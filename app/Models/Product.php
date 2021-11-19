@@ -30,6 +30,7 @@ class Product extends Model
       'status',
       'trending',
       'video',
+      'weight'
 
     ];
     public function category(){
@@ -50,5 +51,26 @@ class Product extends Model
     public function banner(){
       return $this->hasMany(Banner::class,'category_id','id')->default('null');
     }
+
+    public function order(){
+      return $this->hasMany(OrderProduct::class);
+    } 
+    
+    public function reviews(){
+      return $this->hasMany(Review::class);
+    }
+
+   public function getPriceAttribute(){
+
+     return  $this->orginal_price - ($this->orginal_price * $this->Selling_price) / 100 ;
+
+   }
+
+   public function getReviewsAvgAttribute(){
+    $this->avg(function ($item) {
+
+      return $item->reviews->rate;
+  });
+   }
 
 }

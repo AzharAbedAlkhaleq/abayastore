@@ -60,6 +60,16 @@
  
   @include('user.includes.header')
     <!-- end header -->
+    {{-- success payment --}}
+    @if (session()->has('success'))
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+      <strong>{{session()->get('success')}}</strong>.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    @endif
+
 @include('user.includes.slider')
     @include('user.includes.bar')
     <!-- end bar -->
@@ -77,41 +87,37 @@
 
    @include('user.includes.footer')
 
-   <script type="module" src="{{asset('front/js/js.cookie.min.js')}}"></script>
+ <script type="module" src="{{asset('front/js/js.cookie.min.js')}}"></script>
 <script type="module">
-//  let ip = '';
  
-  $.get('https://www.cloudflare.com/cdn-cgi/trace', function(data) {
-  // Convert key-value pairs to JSON
-  // https://stackoverflow.com/a/39284735/452587
-  data = data.trim().split('\n').reduce(function(obj, pair) {
-    pair = pair.split('=');
-    return obj[pair[0]] = pair[1], obj;
-  }, {});
-  //console.log(data.ip);
- var  ip = data.ip;
+      $.get('https://www.cloudflare.com/cdn-cgi/trace', function(data) {
 
- Cookies.set('coustomerIp',ip);
-   
-});
-var cookie = Cookies.get('coustomerIp')
-//console.log( Cookies.get('coustomerIp'));
-if (cookie) {
-  $(".aaa").removeClass("d-none");
-}
-else{
+      data = data.trim().split('\n').reduce(function(obj, pair) {
+        pair = pair.split('=');
+        return obj[pair[0]] = pair[1], obj;
+      }, {});
+      
+    var  ip = data.ip;
 
-  $(".welcome").removeClass("d-none");
-  $(".closebtn").click(function(){
- 
-  $(".welcome").addClass("d-none");
-  $(".aaa").removeClass("d-none");
+    Cookies.set('coustomerIp',ip);
+      
+    });
 
+    var cookie = Cookies.get('coustomerIp')
+    if (cookie) {
+      $(".aaa").removeClass("d-none");
+    }
+    
+    else{
 
+      $(".welcome").removeClass("d-none");
+      $(".closebtn").click(function(){
+    
+      $(".welcome").addClass("d-none");
+      $(".aaa").removeClass("d-none");
 
 
-
-});
-}
+    });
+    }
 </script>
 
